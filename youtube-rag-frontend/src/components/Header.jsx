@@ -21,8 +21,16 @@ export default function Header() {
   const fetchCredits = async () => {
     try {
       const response = await userAPI.getCredits();
-      setCredits(response.data.credits);
-      setUsername(response.data.username || 'User');
+      console.log('Credits response:', response);
+
+      // API returns { credits: number }
+      setCredits(response.credits || 0);
+
+      // Get username from auth service
+      const user = authService.getUser();
+      if (user) {
+        setUsername(user.username || 'User');
+      }
     } catch (error) {
       console.error('Failed to fetch credits:', error);
     }

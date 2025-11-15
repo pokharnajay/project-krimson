@@ -12,6 +12,9 @@ export default function AddSourcePage() {
   const [title, setTitle] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [sourceId, setSourceId] = useState(null);
+  const [countdown, setCountdown] = useState(5);
   const [videoId, setVideoId] = useState(null);
   const [playlistVideos, setPlaylistVideos] = useState([]);
   const [isPlaylist, setIsPlaylist] = useState(false);
@@ -68,19 +71,37 @@ export default function AddSourcePage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setSuccess(false);
     setIsSubmitting(true);
-  
+
     try {
-      // CORRECT WAY - send as object with url and title properties
-      await transcriptAPI.processVideos({ 
-        url: url,  // Just the URL string
-        title: title || undefined 
+      const response = await transcriptAPI.processVideos({
+        url: url,
+        title: title || undefined
       });
-      router.push('/dashboard');
+
+      console.log('Process response:', response);
+
+      // Success! Show message and start countdown
+      setSourceId(response.source_id);
+      setSuccess(true);
+      setIsSubmitting(false);
+
+      // Start countdown timer
+      let timeLeft = 5;
+      const timer = setInterval(() => {
+        timeLeft -= 1;
+        setCountdown(timeLeft);
+
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          router.push('/dashboard');
+        }
+      }, 1000);
+
     } catch (err) {
-      setError(err.response?.data?.error || 'Failed to process video');
-      console.log(err)
-    } finally {
+      console.error('Process error:', err);
+      setError(err.response?.data?.message || err.response?.data?.error || 'Failed to process video');
       setIsSubmitting(false);
     }
   };
@@ -106,6 +127,38 @@ export default function AddSourcePage() {
             {error && (
               <div className="bg-red-50 text-red-600 px-4 py-3 rounded-lg text-sm">
                 {error}
+              </div>
+            )}
+
+            {success && (
+              <div className="bg-green-50 border-2 border-green-500 px-6 py-4 rounded-lg">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-white" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                      <path d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-green-800">Source Created Successfully!</p>
+                    <p className="text-sm text-green-700">Your video is now being processed in the background.</p>
+                  </div>
+                </div>
+                <div className="mt-3 p-3 bg-white rounded border border-green-200">
+                  <p className="text-xs text-gray-600 font-mono">Source ID: {sourceId}</p>
+                  <p className="text-xs text-gray-600 mt-1">Status: <span className="font-semibold text-yellow-600">Processing</span></p>
+                </div>
+                <div className="mt-4 text-center">
+                  <p className="text-sm text-green-700">
+                    Redirecting to dashboard in <span className="font-bold text-lg">{countdown}</span> seconds...
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => router.push('/dashboard')}
+                    className="mt-2 text-sm text-green-600 hover:text-green-800 underline"
+                  >
+                    Go to dashboard now
+                  </button>
+                </div>
               </div>
             )}
 

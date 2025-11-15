@@ -32,30 +32,16 @@ export default function DashboardPage() {
 
   const fetchSources = async (silent = false) => {
     if (!silent) setIsLoading(true);
-    
+
     try {
       const response = await transcriptAPI.getAllSources();
-      setSources(response.data.sources || []);
+      console.log('Fetch sources response:', response);
+
+      // API returns { sources: [...], pagination: {...} }
+      setSources(response.sources || []);
     } catch (error) {
       console.error('Failed to fetch sources:', error);
-      
-      // Mock data for testing
-      setSources([
-        {
-          id: 'source_1',
-          video_ids: ['dQw4w9WgXcQ'],
-          status: 'ready',
-          created_at: new Date().toISOString(),
-          title: 'Sample Video 1',
-        },
-        {
-          id: 'source_2',
-          video_ids: ['dQw4w9WgXcQ', 'jNQXAC9IVRw'],
-          status: 'processing',
-          created_at: new Date().toISOString(),
-          title: 'Sample Playlist',
-        },
-      ]);
+      setSources([]);
     } finally {
       if (!silent) setIsLoading(false);
     }

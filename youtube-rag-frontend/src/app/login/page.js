@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Loader2 } from 'lucide-react';
-import { authAPI } from '@/lib/api';
+import { authAPI, userAPI } from '@/lib/api';
 import { authService } from '@/lib/auth';
 
 export default function LoginPage() {
@@ -32,9 +32,21 @@ export default function LoginPage() {
       const data = await authAPI.login(username, password);
       console.log('Login successful');
 
+      // Store tokens
       authService.setTokens(data);
       authService.initializeAutoRefresh();
-      console.log('Tokens stored, redirecting...');
+
+      // Fetch and store user profile
+      try {
+        const profile = await userAPI.getProfile();
+        authService.setUser(profile);
+        console.log('User profile stored:', profile);
+      } catch (profileErr) {
+        console.error('Failed to fetch profile:', profileErr);
+        // Continue anyway, profile will be fetched by components
+      }
+
+      console.log('Redirecting to dashboard...');
 
       // Force hard redirect
       setTimeout(() => {
