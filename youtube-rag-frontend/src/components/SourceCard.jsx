@@ -68,58 +68,107 @@ export default function SourceCard({ source, onUpdate }) {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <Video className="text-accent" size={24} />
-          <div>
-            <h3 className="font-semibold text-lg text-gray-900">{source.title}</h3>
-            <p className="text-sm text-gray-500">{source.video_ids.length} video(s)</p>
+    <div className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-accent/30 flex flex-col h-[280px]">
+      {/* Card Header with Status Badge */}
+      <div className="p-5 border-b border-gray-100 flex-shrink-0">
+        <div className="flex items-start justify-between mb-3">
+          <div className="flex items-center gap-3 flex-1 min-w-0">
+            <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-sm">
+              <Video className="text-white" size={20} />
+            </div>
+            <div className="flex-1 min-w-0">
+              {/* Title with tooltip */}
+              <div className="group/title relative">
+                <h3
+                  className="font-semibold text-base text-gray-900 truncate cursor-default"
+                  title={source.title}
+                >
+                  {source.title}
+                </h3>
+                {/* Tooltip - shows on hover if title is truncated */}
+                {source.title.length > 30 && (
+                  <div className="absolute left-0 top-full mt-1 hidden group-hover/title:block z-50 bg-gray-900 text-white text-xs px-3 py-2 rounded-lg shadow-xl max-w-xs whitespace-normal">
+                    {source.title}
+                    <div className="absolute -top-1 left-4 w-2 h-2 bg-gray-900 transform rotate-45"></div>
+                  </div>
+                )}
+              </div>
+              <p className="text-xs text-gray-500 mt-1">
+                {source.video_ids.length} video{source.video_ids.length > 1 ? 's' : ''}
+              </p>
+            </div>
           </div>
         </div>
-        <div className="flex items-center gap-2">
+
+        {/* Status Badge */}
+        <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium ${
+          source.status === 'ready'
+            ? 'bg-green-50 text-green-700 border border-green-200'
+            : source.status === 'failed'
+            ? 'bg-red-50 text-red-700 border border-red-200'
+            : 'bg-yellow-50 text-yellow-700 border border-yellow-200'
+        }`}>
           {getStatusIcon()}
-          <span className="text-sm font-medium">{getStatusText()}</span>
+          <span>{getStatusText()}</span>
         </div>
       </div>
 
-      <div className="text-sm text-gray-600 mb-4">
-        Created: {new Date(source.created_at).toLocaleDateString()}
-      </div>
+      {/* Card Body */}
+      <div className="p-5 flex-1 flex flex-col justify-between">
+        <div className="text-xs text-gray-500 mb-4">
+          <div className="flex items-center gap-2">
+            <Clock size={14} />
+            <span>Created {new Date(source.created_at).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric'
+            })}</span>
+          </div>
+        </div>
 
-      <div className="flex gap-2">
-        {/* Chat Button - Only show when ready */}
-        {source.status === 'ready' && (
-          <button
-            onClick={handleChat}
-            className="btn-primary flex items-center gap-2 flex-1"
-          >
-            <MessageCircle size={16} />
-            Chat
-          </button>
-        )}
+        {/* Action Buttons */}
+        <div className="flex flex-col gap-2">
+          {/* Chat Button - Only show when ready */}
+          {source.status === 'ready' && (
+            <button
+              onClick={handleChat}
+              className="w-full bg-accent hover:bg-blue-600 text-white rounded-lg px-4 py-2.5 flex items-center justify-center gap-2 font-medium transition-all duration-200 active:scale-95 shadow-sm"
+            >
+              <MessageCircle size={18} />
+              <span>Start Chat</span>
+            </button>
+          )}
 
-        {/* Retry Button - Only show when failed */}
-        {source.status === 'failed' && (
+          {/* Retry Button - Only show when failed */}
+          {source.status === 'failed' && (
+            <button
+              onClick={handleRetry}
+              disabled={isRetrying}
+              className="w-full bg-yellow-500 hover:bg-yellow-600 disabled:bg-gray-300 text-white rounded-lg px-4 py-2.5 flex items-center justify-center gap-2 font-medium transition-all duration-200 active:scale-95 shadow-sm"
+            >
+              <RefreshCw size={18} className={isRetrying ? 'animate-spin' : ''} />
+              <span>{isRetrying ? 'Retrying...' : 'Retry Processing'}</span>
+            </button>
+          )}
+
+          {/* Processing State */}
+          {source.status === 'processing' && (
+            <div className="w-full bg-gray-100 text-gray-500 rounded-lg px-4 py-2.5 flex items-center justify-center gap-2 font-medium">
+              <RefreshCw size={18} className="animate-spin" />
+              <span>Processing...</span>
+            </div>
+          )}
+
+          {/* Delete Button - Always show */}
           <button
-            onClick={handleRetry}
-            disabled={isRetrying}
-            className="btn-secondary flex items-center gap-2 flex-1"
+            onClick={handleDelete}
+            disabled={isDeleting}
+            className="w-full bg-white hover:bg-red-50 text-red-600 border border-red-200 hover:border-red-300 rounded-lg px-4 py-2 flex items-center justify-center gap-2 font-medium transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <RefreshCw size={16} className={isRetrying ? 'animate-spin' : ''} />
-            {isRetrying ? 'Retrying...' : 'Retry'}
+            <Trash2 size={16} />
+            <span className="text-sm">{isDeleting ? 'Deleting...' : 'Delete'}</span>
           </button>
-        )}
-        
-        {/* Delete Button - Always show */}
-        <button
-          onClick={handleDelete}
-          disabled={isDeleting}
-          className="btn-danger flex items-center gap-2"
-        >
-          <Trash2 size={16} />
-          {isDeleting ? 'Deleting...' : 'Delete'}
-        </button>
+        </div>
       </div>
     </div>
   );
