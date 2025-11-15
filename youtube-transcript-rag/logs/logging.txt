@@ -1,0 +1,327 @@
+2025-10-26 20:35:26,026 - youtube_rag - INFO - [logger.py:37] - Processing video request from user: c8992235-5976-4981-9b20-bb6521f2fc34, URL: https://www.youtube.com/watch?v=hAVBJdSvKhQ
+2025-10-26 20:35:26,027 - youtube_rag - INFO - [logger.py:37] - Initializing PineconeService
+2025-10-26 20:35:26,105 - youtube_rag - DEBUG - [logger.py:43] - Initializing EmbeddingService
+2025-10-26 20:35:27,979 - youtube_rag - INFO - [logger.py:37] - Pinecone index youtube-transcripts already exists
+2025-10-26 20:35:27,979 - youtube_rag - DEBUG - [logger.py:43] - Extracting video IDs from URL
+2025-10-26 20:35:27,980 - youtube_rag - INFO - [logger.py:37] - Processing single video: hAVBJdSvKhQ
+2025-10-26 20:35:27,980 - youtube_rag - DEBUG - [logger.py:43] - Creating source entry in Supabase
+2025-10-26 20:35:28,237 - youtube_rag - INFO - [logger.py:37] - Created source: 42b87b9b-d9d9-4733-9916-d91569eba7c7
+2025-10-26 20:35:28,237 - youtube_rag - INFO - [logger.py:37] - Starting transcript fetch
+2025-10-26 20:35:28,237 - youtube_rag - INFO - [logger.py:37] - Starting batch transcript fetch for 1 videos
+2025-10-26 20:35:28,238 - youtube_rag - INFO - [logger.py:37] - Starting transcript fetch for video: hAVBJdSvKhQ
+2025-10-26 20:35:28,238 - youtube_rag - ERROR - [logger.py:40] - Unexpected error fetching transcript for hAVBJdSvKhQ: 'YouTubeTranscriptApi' object has no attribute 'list'
+2025-10-26 20:35:28,343 - youtube_rag - INFO - [logger.py:37] - Batch processing complete: 0 success, 1 errors
+2025-10-26 20:35:28,344 - youtube_rag - INFO - [logger.py:37] - Transcript fetch complete: 0 success, 1 errors
+2025-10-26 20:35:28,344 - youtube_rag - INFO - [logger.py:37] - Starting Pinecone storage
+2025-10-26 20:38:05,753 - youtube_rag - INFO - [logger.py:38] - Processing video request from user: c8992235-5976-4981-9b20-bb6521f2fc34, URL: https://www.youtube.com/watch?v=hAVBJdSvKhQ
+2025-10-26 20:38:05,753 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-10-26 20:38:05,827 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService
+2025-10-26 20:38:07,696 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-10-26 20:38:07,696 - youtube_rag - DEBUG - [logger.py:44] - Extracting video IDs from URL
+2025-10-26 20:38:07,697 - youtube_rag - INFO - [logger.py:38] - Processing single video: hAVBJdSvKhQ
+2025-10-26 20:38:07,697 - youtube_rag - DEBUG - [logger.py:44] - Creating source entry in Supabase
+2025-10-26 20:38:07,826 - youtube_rag - INFO - [logger.py:38] - Created source: 6e42dfa3-e405-446c-99c3-63f177a0d54b
+2025-10-26 20:38:07,826 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch
+2025-10-26 20:38:07,826 - youtube_rag - INFO - [logger.py:38] - Starting batch transcript fetch for 1 videos
+2025-10-26 20:38:07,827 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch for video: hAVBJdSvKhQ
+2025-10-26 20:38:07,827 - youtube_rag - ERROR - [logger.py:41] - Unexpected error fetching transcript for hAVBJdSvKhQ: 'YouTubeTranscriptApi' object has no attribute 'list'
+2025-10-26 20:38:07,827 - youtube_rag - ERROR - [logger.py:41] - Failed to process video hAVBJdSvKhQ: 'YouTubeTranscriptApi' object has no attribute 'list'
+2025-10-26 20:38:07,827 - youtube_rag - INFO - [logger.py:38] - Batch processing complete: 0 success, 1 errors
+2025-10-26 20:38:07,827 - youtube_rag - INFO - [logger.py:38] - Transcript fetch complete: 0 success, 1 errors
+2025-10-26 20:38:07,828 - youtube_rag - INFO - [logger.py:38] - Starting Pinecone storage
+2025-10-26 20:38:07,828 - youtube_rag - WARNING - [logger.py:47] - Source 6e42dfa3-e405-446c-99c3-63f177a0d54b has errors, marking as failed
+2025-10-26 20:38:07,976 - youtube_rag - INFO - [logger.py:38] - Processing complete: {'success': True, 'source_id': '6e42dfa3-e405-446c-99c3-63f177a0d54b', 'processed': 0, 'errors': [{'video_id': 'hAVBJdSvKhQ', 'error': "'YouTubeTranscriptApi' object has no attribute 'list'"}], 'storage_results': []}
+2025-10-26 20:42:27,095 - youtube_rag - INFO - [logger.py:38] - Processing video request from user: c8992235-5976-4981-9b20-bb6521f2fc34, URL: https://www.youtube.com/watch?v=hAVBJdSvKhQ
+2025-10-26 20:42:27,096 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-10-26 20:42:27,163 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService
+2025-10-26 20:42:29,161 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-10-26 20:42:29,161 - youtube_rag - DEBUG - [logger.py:44] - Extracting video IDs from URL
+2025-10-26 20:42:29,162 - youtube_rag - INFO - [logger.py:38] - Processing single video: hAVBJdSvKhQ
+2025-10-26 20:42:29,162 - youtube_rag - DEBUG - [logger.py:44] - Creating source entry in Supabase
+2025-10-26 20:42:29,297 - youtube_rag - INFO - [logger.py:38] - Created source: 620fae64-ed14-4fb8-b9ca-a71a1b92572d
+2025-10-26 20:42:29,298 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch
+2025-10-26 20:42:29,298 - youtube_rag - INFO - [logger.py:38] - Starting batch transcript fetch for 1 videos
+2025-10-26 20:42:29,298 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch for video: hAVBJdSvKhQ
+2025-10-26 20:42:29,299 - youtube_rag - ERROR - [logger.py:41] - Unexpected error fetching transcript for hAVBJdSvKhQ: 'YouTubeTranscriptApi' object has no attribute 'fetch'
+2025-10-26 20:42:29,299 - youtube_rag - ERROR - [logger.py:41] - Failed to process video hAVBJdSvKhQ: 'YouTubeTranscriptApi' object has no attribute 'fetch'
+2025-10-26 20:42:29,299 - youtube_rag - INFO - [logger.py:38] - Batch processing complete: 0 success, 1 errors
+2025-10-26 20:42:29,299 - youtube_rag - INFO - [logger.py:38] - Transcript fetch complete: 0 success, 1 errors
+2025-10-26 20:42:29,299 - youtube_rag - INFO - [logger.py:38] - Starting Pinecone storage
+2025-10-26 20:42:29,299 - youtube_rag - WARNING - [logger.py:47] - Source 620fae64-ed14-4fb8-b9ca-a71a1b92572d has errors, marking as failed
+2025-10-26 20:42:29,485 - youtube_rag - INFO - [logger.py:38] - Processing complete: {'success': True, 'source_id': '620fae64-ed14-4fb8-b9ca-a71a1b92572d', 'processed': 0, 'errors': [{'video_id': 'hAVBJdSvKhQ', 'error': "'YouTubeTranscriptApi' object has no attribute 'fetch'"}], 'storage_results': []}
+2025-10-26 20:46:34,904 - youtube_rag - INFO - [logger.py:38] - Processing video request from user: c8992235-5976-4981-9b20-bb6521f2fc34, URL: https://www.youtube.com/watch?v=hAVBJdSvKhQ
+2025-10-26 20:46:34,904 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-10-26 20:46:34,974 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService
+2025-10-26 20:46:36,916 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-10-26 20:46:36,916 - youtube_rag - DEBUG - [logger.py:44] - Extracting video IDs from URL
+2025-10-26 20:46:36,916 - youtube_rag - INFO - [logger.py:38] - Processing single video: hAVBJdSvKhQ
+2025-10-26 20:46:36,916 - youtube_rag - DEBUG - [logger.py:44] - Creating source entry in Supabase
+2025-10-26 20:46:37,051 - youtube_rag - INFO - [logger.py:38] - Created source: f57b5d29-a5de-4024-947f-a916a0575b79
+2025-10-26 20:46:37,051 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch
+2025-10-26 20:46:37,051 - youtube_rag - INFO - [logger.py:38] - Starting batch transcript fetch for 1 videos
+2025-10-26 20:46:37,052 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch for video: hAVBJdSvKhQ
+2025-10-26 20:46:38,169 - youtube_rag - DEBUG - [logger.py:44] - Found transcripts for hAVBJdSvKhQ
+2025-10-26 20:46:38,169 - youtube_rag - INFO - [logger.py:38] - Using available transcript for hAVBJdSvKhQ
+2025-10-26 20:46:38,660 - youtube_rag - ERROR - [logger.py:41] - Unexpected error fetching transcript for hAVBJdSvKhQ: no element found: line 1, column 0
+2025-10-26 20:46:38,660 - youtube_rag - ERROR - [logger.py:41] - Failed to process video hAVBJdSvKhQ: no element found: line 1, column 0
+2025-10-26 20:46:38,660 - youtube_rag - INFO - [logger.py:38] - Batch processing complete: 0 success, 1 errors
+2025-10-26 20:46:38,661 - youtube_rag - INFO - [logger.py:38] - Transcript fetch complete: 0 success, 1 errors
+2025-10-26 20:46:38,661 - youtube_rag - INFO - [logger.py:38] - Starting Pinecone storage
+2025-10-26 20:46:38,661 - youtube_rag - WARNING - [logger.py:47] - Source f57b5d29-a5de-4024-947f-a916a0575b79 has errors, marking as failed
+2025-10-26 20:46:38,787 - youtube_rag - INFO - [logger.py:38] - Processing complete: {'success': True, 'source_id': 'f57b5d29-a5de-4024-947f-a916a0575b79', 'processed': 0, 'errors': [{'video_id': 'hAVBJdSvKhQ', 'error': 'no element found: line 1, column 0'}], 'storage_results': []}
+2025-10-26 21:21:27,111 - youtube_rag - INFO - [logger.py:38] - Processing video request from user: c8992235-5976-4981-9b20-bb6521f2fc34, URL: https://www.youtube.com/watch?v=hAVBJdSvKhQ
+2025-10-26 21:21:27,111 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-10-26 21:21:27,190 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService
+2025-10-26 21:21:29,054 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-10-26 21:21:29,055 - youtube_rag - DEBUG - [logger.py:44] - Extracting video IDs from URL
+2025-10-26 21:21:29,055 - youtube_rag - INFO - [logger.py:38] - Processing single video: hAVBJdSvKhQ
+2025-10-26 21:21:29,055 - youtube_rag - DEBUG - [logger.py:44] - Creating source entry in Supabase
+2025-10-26 21:21:29,242 - youtube_rag - INFO - [logger.py:38] - Created source: 31422433-2fa4-41b4-9066-61f156fab88f
+2025-10-26 21:21:29,242 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch
+2025-10-26 21:21:29,243 - youtube_rag - INFO - [logger.py:38] - Starting batch transcript fetch for 1 videos
+2025-10-26 21:21:29,243 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch for video: hAVBJdSvKhQ
+2025-10-26 21:21:29,243 - youtube_rag - ERROR - [logger.py:41] - Error fetching transcript for hAVBJdSvKhQ: type object 'YouTubeTranscriptApi' has no attribute 'list_transcripts'
+2025-10-26 21:21:29,244 - youtube_rag - ERROR - [logger.py:41] - ✗ Failed to process video hAVBJdSvKhQ: Failed to fetch transcript: type object 'YouTubeTranscriptApi' has no attribute 'list_transcripts'
+2025-10-26 21:21:29,244 - youtube_rag - INFO - [logger.py:38] - Batch complete: 0 success, 1 errors
+2025-10-26 21:21:29,244 - youtube_rag - INFO - [logger.py:38] - Transcript fetch complete: 0 success, 1 errors
+2025-10-26 21:21:29,244 - youtube_rag - INFO - [logger.py:38] - Starting Pinecone storage
+2025-10-26 21:21:29,244 - youtube_rag - WARNING - [logger.py:47] - Source 31422433-2fa4-41b4-9066-61f156fab88f has errors, marking as failed
+2025-10-26 21:21:29,404 - youtube_rag - INFO - [logger.py:38] - Processing complete: {'success': True, 'source_id': '31422433-2fa4-41b4-9066-61f156fab88f', 'processed': 0, 'errors': [{'video_id': 'hAVBJdSvKhQ', 'error': "Failed to fetch transcript: type object 'YouTubeTranscriptApi' has no attribute 'list_transcripts'"}], 'storage_results': []}
+2025-10-26 21:55:07,238 - youtube_rag - INFO - [logger.py:38] - Processing video request from user: c8992235-5976-4981-9b20-bb6521f2fc34, URL: https://www.youtube.com/watch?v=kK9E95EuZGY
+2025-10-26 21:55:07,238 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-10-26 21:55:07,333 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService
+2025-10-26 21:55:09,380 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-10-26 21:55:09,381 - youtube_rag - DEBUG - [logger.py:44] - Extracting video IDs from URL
+2025-10-26 21:55:09,381 - youtube_rag - INFO - [logger.py:38] - Processing single video: kK9E95EuZGY
+2025-10-26 21:55:09,381 - youtube_rag - DEBUG - [logger.py:44] - Creating source entry in Supabase
+2025-10-26 21:55:09,533 - youtube_rag - INFO - [logger.py:38] - Created source: 0fa77b7f-eb04-49f3-bf87-df45b09a9160
+2025-10-26 21:55:09,534 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch
+2025-10-26 21:55:09,534 - youtube_rag - INFO - [logger.py:38] - Starting batch transcript fetch for 1 videos
+2025-10-26 21:55:09,534 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch for video: kK9E95EuZGY
+2025-10-26 21:55:11,249 - youtube_rag - DEBUG - [logger.py:44] - Retrieved transcript list for kK9E95EuZGY
+2025-10-26 21:55:11,250 - youtube_rag - INFO - [logger.py:38] - Using auto-generated transcript for kK9E95EuZGY: Hindi (auto-generated)
+2025-10-26 21:55:11,250 - youtube_rag - DEBUG - [logger.py:44] - Fetching transcript data for kK9E95EuZGY
+2025-10-26 21:55:11,506 - youtube_rag - INFO - [logger.py:38] - Successfully fetched 741 segments for kK9E95EuZGY
+2025-10-26 21:55:11,506 - youtube_rag - ERROR - [logger.py:41] - Error fetching transcript for kK9E95EuZGY: 'FetchedTranscriptSnippet' object is not subscriptable
+2025-10-26 21:55:11,506 - youtube_rag - ERROR - [logger.py:41] - ✗ Failed to process video kK9E95EuZGY: Failed to fetch transcript: 'FetchedTranscriptSnippet' object is not subscriptable
+2025-10-26 21:55:11,507 - youtube_rag - INFO - [logger.py:38] - Batch complete: 0 success, 1 errors
+2025-10-26 21:55:11,507 - youtube_rag - INFO - [logger.py:38] - Transcript fetch complete: 0 success, 1 errors
+2025-10-26 21:55:11,507 - youtube_rag - INFO - [logger.py:38] - Starting Pinecone storage
+2025-10-26 21:55:11,507 - youtube_rag - WARNING - [logger.py:47] - Source 0fa77b7f-eb04-49f3-bf87-df45b09a9160 has errors, marking as failed
+2025-10-26 21:55:11,640 - youtube_rag - INFO - [logger.py:38] - Processing complete: {'success': True, 'source_id': '0fa77b7f-eb04-49f3-bf87-df45b09a9160', 'processed': 0, 'errors': [{'video_id': 'kK9E95EuZGY', 'error': "Failed to fetch transcript: 'FetchedTranscriptSnippet' object is not subscriptable"}], 'storage_results': []}
+2025-10-26 21:55:29,280 - youtube_rag - INFO - [logger.py:38] - Processing video request from user: c8992235-5976-4981-9b20-bb6521f2fc34, URL: https://www.youtube.com/watch?v=kK9E95EuZGY
+2025-10-26 21:55:29,280 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-10-26 21:55:29,362 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService
+2025-10-26 21:55:31,296 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-10-26 21:55:31,297 - youtube_rag - DEBUG - [logger.py:44] - Extracting video IDs from URL
+2025-10-26 21:55:31,297 - youtube_rag - INFO - [logger.py:38] - Processing single video: kK9E95EuZGY
+2025-10-26 21:55:31,297 - youtube_rag - DEBUG - [logger.py:44] - Creating source entry in Supabase
+2025-10-26 21:55:31,431 - youtube_rag - INFO - [logger.py:38] - Created source: ee466397-ff2f-4c23-a7f4-d3cc775f0f0b
+2025-10-26 21:55:31,431 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch
+2025-10-26 21:55:31,432 - youtube_rag - INFO - [logger.py:38] - Starting batch transcript fetch for 1 videos
+2025-10-26 21:55:31,432 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch for video: kK9E95EuZGY
+2025-10-26 21:55:33,313 - youtube_rag - DEBUG - [logger.py:44] - Retrieved transcript list for kK9E95EuZGY
+2025-10-26 21:55:33,313 - youtube_rag - INFO - [logger.py:38] - Using auto-generated transcript for kK9E95EuZGY: Hindi (auto-generated)
+2025-10-26 21:55:33,313 - youtube_rag - DEBUG - [logger.py:44] - Fetching transcript data for kK9E95EuZGY
+2025-10-26 21:55:33,528 - youtube_rag - INFO - [logger.py:38] - Successfully fetched 741 segments for kK9E95EuZGY
+2025-10-26 21:55:33,528 - youtube_rag - ERROR - [logger.py:41] - Error fetching transcript for kK9E95EuZGY: 'FetchedTranscriptSnippet' object is not subscriptable
+2025-10-26 21:55:33,528 - youtube_rag - ERROR - [logger.py:41] - ✗ Failed to process video kK9E95EuZGY: Failed to fetch transcript: 'FetchedTranscriptSnippet' object is not subscriptable
+2025-10-26 21:55:33,529 - youtube_rag - INFO - [logger.py:38] - Batch complete: 0 success, 1 errors
+2025-10-26 21:55:33,529 - youtube_rag - INFO - [logger.py:38] - Transcript fetch complete: 0 success, 1 errors
+2025-10-26 21:55:33,529 - youtube_rag - INFO - [logger.py:38] - Starting Pinecone storage
+2025-10-26 21:55:33,529 - youtube_rag - WARNING - [logger.py:47] - Source ee466397-ff2f-4c23-a7f4-d3cc775f0f0b has errors, marking as failed
+2025-10-26 21:55:33,678 - youtube_rag - INFO - [logger.py:38] - Processing complete: {'success': True, 'source_id': 'ee466397-ff2f-4c23-a7f4-d3cc775f0f0b', 'processed': 0, 'errors': [{'video_id': 'kK9E95EuZGY', 'error': "Failed to fetch transcript: 'FetchedTranscriptSnippet' object is not subscriptable"}], 'storage_results': []}
+2025-10-26 21:59:33,233 - youtube_rag - INFO - [logger.py:38] - Processing video request from user: c8992235-5976-4981-9b20-bb6521f2fc34, URL: https://www.youtube.com/watch?v=kK9E95EuZGY
+2025-10-26 21:59:33,234 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-10-26 21:59:33,331 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService
+2025-10-26 21:59:35,073 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-10-26 21:59:35,073 - youtube_rag - DEBUG - [logger.py:44] - Extracting video IDs from URL
+2025-10-26 21:59:35,074 - youtube_rag - INFO - [logger.py:38] - Processing single video: kK9E95EuZGY
+2025-10-26 21:59:35,074 - youtube_rag - DEBUG - [logger.py:44] - Creating source entry in Supabase
+2025-10-26 21:59:35,214 - youtube_rag - INFO - [logger.py:38] - Created source: fe20a4b5-8b50-4cb3-9be4-be8a7ba951fd
+2025-10-26 21:59:35,215 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch
+2025-10-26 21:59:35,215 - youtube_rag - INFO - [logger.py:38] - Starting batch transcript fetch for 1 videos
+2025-10-26 21:59:35,215 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch for video: kK9E95EuZGY
+2025-10-26 21:59:36,353 - youtube_rag - DEBUG - [logger.py:44] - Retrieved transcript list for kK9E95EuZGY
+2025-10-26 21:59:36,353 - youtube_rag - INFO - [logger.py:38] - Using auto-generated transcript for kK9E95EuZGY: Hindi (auto-generated)
+2025-10-26 21:59:36,354 - youtube_rag - DEBUG - [logger.py:44] - Fetching transcript data for kK9E95EuZGY
+2025-10-26 21:59:36,577 - youtube_rag - INFO - [logger.py:38] - Successfully fetched 741 segments for kK9E95EuZGY
+2025-10-26 21:59:36,579 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully processed video kK9E95EuZGY
+2025-10-26 21:59:36,579 - youtube_rag - INFO - [logger.py:38] - Batch complete: 1 success, 0 errors
+2025-10-26 21:59:36,579 - youtube_rag - INFO - [logger.py:38] - Transcript fetch complete: 1 success, 0 errors
+2025-10-26 21:59:36,579 - youtube_rag - INFO - [logger.py:38] - Starting Pinecone storage
+2025-10-26 21:59:36,579 - youtube_rag - DEBUG - [logger.py:44] - Storing transcript for video: kK9E95EuZGY
+2025-10-26 21:59:36,579 - youtube_rag - INFO - [logger.py:38] - Starting to store transcript for video kK9E95EuZGY
+2025-10-26 21:59:38,330 - youtube_rag - DEBUG - [logger.py:44] - Video kK9E95EuZGY exists in Pinecone: False
+2025-10-26 21:59:38,331 - youtube_rag - DEBUG - [logger.py:44] - Chunking transcript with 741 segments
+2025-10-26 21:59:38,331 - youtube_rag - DEBUG - [logger.py:44] - Chunking 741 segments with chunk_size=1000
+2025-10-26 21:59:38,332 - youtube_rag - DEBUG - [logger.py:44] - Created 29 chunks
+2025-10-26 21:59:38,332 - youtube_rag - INFO - [logger.py:38] - Created 29 chunks for video kK9E95EuZGY
+2025-10-26 21:59:38,332 - youtube_rag - DEBUG - [logger.py:44] - Creating embeddings for 29 text chunks
+2025-10-26 21:59:38,332 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 29 texts
+2025-10-26 21:59:39,536 - youtube_rag - ERROR - [logger.py:41] - Embedding creation failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-or-v1*************************************************************6e43. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-10-26 21:59:39,536 - youtube_rag - ERROR - [logger.py:41] - Error storing transcript for video kK9E95EuZGY: Embedding creation failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-or-v1*************************************************************6e43. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-10-26 21:59:39,536 - youtube_rag - ERROR - [logger.py:41] - Error processing videos: Embedding creation failed: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-or-v1*************************************************************6e43. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-10-26 22:21:35,303 - youtube_rag - INFO - [logger.py:38] - Processing video request from user: c8992235-5976-4981-9b20-bb6521f2fc34, URL: https://www.youtube.com/watch?v=kK9E95EuZGY
+2025-10-26 22:21:35,304 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-10-26 22:21:35,467 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-10-26 22:21:35,485 - youtube_rag - INFO - [logger.py:38] - Using device: cuda
+2025-10-26 22:21:35,489 - youtube_rag - INFO - [logger.py:38] - GPU: NVIDIA GeForce RTX 2060 SUPER
+2025-10-26 22:21:52,338 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-10-26 22:21:52,339 - youtube_rag - DEBUG - [logger.py:44] - Extracting video IDs from URL
+2025-10-26 22:21:52,339 - youtube_rag - INFO - [logger.py:38] - Processing single video: kK9E95EuZGY
+2025-10-26 22:21:52,339 - youtube_rag - DEBUG - [logger.py:44] - Creating source entry in Supabase
+2025-10-26 22:21:52,575 - youtube_rag - INFO - [logger.py:38] - Created source: c5d50159-94e0-45ab-8e8c-4e76a9ade480
+2025-10-26 22:21:52,575 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch
+2025-10-26 22:21:52,575 - youtube_rag - INFO - [logger.py:38] - Starting batch transcript fetch for 1 videos
+2025-10-26 22:21:52,576 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch for video: kK9E95EuZGY
+2025-10-26 22:21:53,917 - youtube_rag - DEBUG - [logger.py:44] - Retrieved transcript list for kK9E95EuZGY
+2025-10-26 22:21:53,917 - youtube_rag - INFO - [logger.py:38] - Using auto-generated transcript for kK9E95EuZGY: Hindi (auto-generated)
+2025-10-26 22:21:53,917 - youtube_rag - DEBUG - [logger.py:44] - Fetching transcript data for kK9E95EuZGY
+2025-10-26 22:21:54,081 - youtube_rag - INFO - [logger.py:38] - Successfully fetched 741 segments for kK9E95EuZGY
+2025-10-26 22:21:54,082 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully processed video kK9E95EuZGY
+2025-10-26 22:21:54,083 - youtube_rag - INFO - [logger.py:38] - Batch complete: 1 success, 0 errors
+2025-10-26 22:21:54,083 - youtube_rag - INFO - [logger.py:38] - Transcript fetch complete: 1 success, 0 errors
+2025-10-26 22:21:54,083 - youtube_rag - INFO - [logger.py:38] - Starting Pinecone storage
+2025-10-26 22:21:54,083 - youtube_rag - DEBUG - [logger.py:44] - Storing transcript for video: kK9E95EuZGY
+2025-10-26 22:21:54,083 - youtube_rag - INFO - [logger.py:38] - Starting to store transcript for video kK9E95EuZGY
+2025-10-26 22:21:56,545 - youtube_rag - DEBUG - [logger.py:44] - Video kK9E95EuZGY exists in Pinecone: False
+2025-10-26 22:21:56,546 - youtube_rag - DEBUG - [logger.py:44] - Chunking transcript with 741 segments
+2025-10-26 22:21:56,546 - youtube_rag - DEBUG - [logger.py:44] - Chunking 741 segments with chunk_size=1000
+2025-10-26 22:21:56,547 - youtube_rag - DEBUG - [logger.py:44] - Created 29 chunks
+2025-10-26 22:21:56,547 - youtube_rag - INFO - [logger.py:38] - Created 29 chunks for video kK9E95EuZGY
+2025-10-26 22:21:56,547 - youtube_rag - DEBUG - [logger.py:44] - Creating embeddings for 29 text chunks
+2025-10-26 22:21:56,547 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 29 texts
+2025-10-26 22:21:56,928 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 29 embeddings
+2025-10-26 22:21:56,929 - youtube_rag - INFO - [logger.py:38] - Created 29 embeddings
+2025-10-26 22:21:56,929 - youtube_rag - DEBUG - [logger.py:44] - Prepared 29 vectors for upsert
+2025-10-26 22:21:59,106 - youtube_rag - ERROR - [logger.py:41] - Error storing transcript for video kK9E95EuZGY: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Sun, 26 Oct 2025 16:52:00 GMT', 'Content-Type': 'application/json', 'Content-Length': '103', 'Connection': 'keep-alive', 'x-pinecone-request-latency-ms': '974', 'x-pinecone-request-id': '7518743394202505549', 'x-envoy-upstream-service-time': '35', 'server': 'envoy'})
+HTTP response body: {"code":3,"message":"Vector dimension 384 does not match the dimension of the index 1536","details":[]}
+
+2025-10-26 22:21:59,107 - youtube_rag - ERROR - [logger.py:41] - Error processing videos: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Sun, 26 Oct 2025 16:52:00 GMT', 'Content-Type': 'application/json', 'Content-Length': '103', 'Connection': 'keep-alive', 'x-pinecone-request-latency-ms': '974', 'x-pinecone-request-id': '7518743394202505549', 'x-envoy-upstream-service-time': '35', 'server': 'envoy'})
+HTTP response body: {"code":3,"message":"Vector dimension 384 does not match the dimension of the index 1536","details":[]}
+
+2025-10-26 22:25:43,780 - youtube_rag - INFO - [logger.py:38] - Processing video request from user: c8992235-5976-4981-9b20-bb6521f2fc34, URL: https://www.youtube.com/watch?v=kK9E95EuZGY
+2025-10-26 22:25:43,780 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-10-26 22:25:43,878 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-10-26 22:25:43,893 - youtube_rag - INFO - [logger.py:38] - Using device: cuda
+2025-10-26 22:25:43,896 - youtube_rag - INFO - [logger.py:38] - GPU: NVIDIA GeForce RTX 2060 SUPER
+2025-10-26 22:25:49,498 - youtube_rag - INFO - [logger.py:38] - Creating new Pinecone index: youtube-transcripts
+2025-10-26 22:25:54,244 - youtube_rag - DEBUG - [logger.py:44] - Extracting video IDs from URL
+2025-10-26 22:25:54,244 - youtube_rag - INFO - [logger.py:38] - Processing single video: kK9E95EuZGY
+2025-10-26 22:25:54,245 - youtube_rag - DEBUG - [logger.py:44] - Creating source entry in Supabase
+2025-10-26 22:25:54,492 - youtube_rag - INFO - [logger.py:38] - Created source: 78ab4d47-be83-459a-8d1d-d3b252b7a76c
+2025-10-26 22:25:54,492 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch
+2025-10-26 22:25:54,492 - youtube_rag - INFO - [logger.py:38] - Starting batch transcript fetch for 1 videos
+2025-10-26 22:25:54,493 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch for video: kK9E95EuZGY
+2025-10-26 22:25:55,844 - youtube_rag - DEBUG - [logger.py:44] - Retrieved transcript list for kK9E95EuZGY
+2025-10-26 22:25:55,844 - youtube_rag - INFO - [logger.py:38] - Using auto-generated transcript for kK9E95EuZGY: Hindi (auto-generated)
+2025-10-26 22:25:55,844 - youtube_rag - DEBUG - [logger.py:44] - Fetching transcript data for kK9E95EuZGY
+2025-10-26 22:25:56,067 - youtube_rag - INFO - [logger.py:38] - Successfully fetched 741 segments for kK9E95EuZGY
+2025-10-26 22:25:56,069 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully processed video kK9E95EuZGY
+2025-10-26 22:25:56,070 - youtube_rag - INFO - [logger.py:38] - Batch complete: 1 success, 0 errors
+2025-10-26 22:25:56,070 - youtube_rag - INFO - [logger.py:38] - Transcript fetch complete: 1 success, 0 errors
+2025-10-26 22:25:56,070 - youtube_rag - INFO - [logger.py:38] - Starting Pinecone storage
+2025-10-26 22:25:56,070 - youtube_rag - DEBUG - [logger.py:44] - Storing transcript for video: kK9E95EuZGY
+2025-10-26 22:25:56,070 - youtube_rag - INFO - [logger.py:38] - Starting to store transcript for video kK9E95EuZGY
+2025-10-26 22:25:58,318 - youtube_rag - DEBUG - [logger.py:44] - Video kK9E95EuZGY exists in Pinecone: False
+2025-10-26 22:25:58,319 - youtube_rag - DEBUG - [logger.py:44] - Chunking transcript with 741 segments
+2025-10-26 22:25:58,319 - youtube_rag - DEBUG - [logger.py:44] - Chunking 741 segments with chunk_size=1000
+2025-10-26 22:25:58,320 - youtube_rag - DEBUG - [logger.py:44] - Created 29 chunks
+2025-10-26 22:25:58,320 - youtube_rag - INFO - [logger.py:38] - Created 29 chunks for video kK9E95EuZGY
+2025-10-26 22:25:58,320 - youtube_rag - DEBUG - [logger.py:44] - Creating embeddings for 29 text chunks
+2025-10-26 22:25:58,320 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 29 texts
+2025-10-26 22:25:58,665 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 29 embeddings
+2025-10-26 22:25:58,665 - youtube_rag - INFO - [logger.py:38] - Created 29 embeddings
+2025-10-26 22:25:58,665 - youtube_rag - DEBUG - [logger.py:44] - Prepared 29 vectors for upsert
+2025-10-26 22:26:00,808 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully stored 29 vectors for video kK9E95EuZGY
+2025-10-26 22:26:00,810 - youtube_rag - INFO - [logger.py:38] - Storage result for kK9E95EuZGY: stored
+2025-10-26 22:26:00,810 - youtube_rag - INFO - [logger.py:38] - Source 78ab4d47-be83-459a-8d1d-d3b252b7a76c processed successfully, marking as ready
+2025-10-26 22:26:01,110 - youtube_rag - INFO - [logger.py:38] - Processing complete: {'success': True, 'source_id': '78ab4d47-be83-459a-8d1d-d3b252b7a76c', 'processed': 1, 'errors': [], 'storage_results': [{'status': 'stored', 'video_id': 'kK9E95EuZGY', 'chunks': 29}]}
+2025-10-26 22:26:39,198 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-10-26 22:26:39,201 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-10-26 22:26:39,202 - youtube_rag - INFO - [logger.py:38] - Using device: cuda
+2025-10-26 22:26:39,202 - youtube_rag - INFO - [logger.py:38] - GPU: NVIDIA GeForce RTX 2060 SUPER
+2025-10-26 22:26:45,169 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-10-26 22:26:45,430 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['kK9E95EuZGY'], source_id=None
+2025-10-26 22:26:45,431 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-10-26 22:26:45,460 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-10-26 22:26:45,460 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['kK9E95EuZGY']}}
+2025-10-26 22:26:46,685 - youtube_rag - INFO - [logger.py:38] - Query returned 5 results
+2025-10-26 23:07:18,524 - youtube_rag - INFO - [logger.py:38] - Processing video request from user: c8992235-5976-4981-9b20-bb6521f2fc34, URL: {'url': 'https://www.youtube.com/watch?v=AHWVvFLLFig'}
+2025-10-26 23:07:18,525 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-10-26 23:07:18,618 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-10-26 23:07:18,667 - youtube_rag - INFO - [logger.py:38] - Using device: cuda
+2025-10-26 23:07:18,674 - youtube_rag - INFO - [logger.py:38] - GPU: NVIDIA GeForce RTX 2060 SUPER
+2025-10-26 23:07:24,195 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-10-26 23:07:24,195 - youtube_rag - DEBUG - [logger.py:44] - Extracting video IDs from URL
+2025-10-26 23:07:24,196 - youtube_rag - ERROR - [logger.py:41] - Error processing videos: 'dict' object has no attribute 'strip'
+2025-10-26 23:33:27,203 - youtube_rag - INFO - [logger.py:38] - Processing video request from user: c8992235-5976-4981-9b20-bb6521f2fc34, URL: https://www.youtube.com/watch?v=AHWVvFLLFig
+2025-10-26 23:33:27,205 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-10-26 23:33:27,320 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-10-26 23:33:27,384 - youtube_rag - INFO - [logger.py:38] - Using device: cuda
+2025-10-26 23:33:27,390 - youtube_rag - INFO - [logger.py:38] - GPU: NVIDIA GeForce RTX 2060 SUPER
+2025-10-26 23:33:33,915 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-10-26 23:33:33,916 - youtube_rag - DEBUG - [logger.py:44] - Extracting video IDs from URL
+2025-10-26 23:33:33,916 - youtube_rag - INFO - [logger.py:38] - Processing single video: AHWVvFLLFig
+2025-10-26 23:33:34,418 - youtube_rag - DEBUG - [logger.py:44] - Creating source entry in Supabase
+2025-10-26 23:33:34,646 - youtube_rag - INFO - [logger.py:38] - Created source: 8a258ded-6840-42fc-a4e4-61cd29e12268
+2025-10-26 23:33:34,647 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch
+2025-10-26 23:33:34,647 - youtube_rag - INFO - [logger.py:38] - Starting batch transcript fetch for 1 videos
+2025-10-26 23:33:34,648 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch for video: AHWVvFLLFig
+2025-10-26 23:33:35,863 - youtube_rag - DEBUG - [logger.py:44] - Retrieved transcript list for AHWVvFLLFig
+2025-10-26 23:33:35,863 - youtube_rag - INFO - [logger.py:38] - Using auto-generated transcript for AHWVvFLLFig: English (auto-generated)
+2025-10-26 23:33:35,863 - youtube_rag - DEBUG - [logger.py:44] - Fetching transcript data for AHWVvFLLFig
+2025-10-26 23:33:36,053 - youtube_rag - INFO - [logger.py:38] - Successfully fetched 281 segments for AHWVvFLLFig
+2025-10-26 23:33:36,055 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully processed video AHWVvFLLFig
+2025-10-26 23:33:36,055 - youtube_rag - INFO - [logger.py:38] - Batch complete: 1 success, 0 errors
+2025-10-26 23:33:36,056 - youtube_rag - INFO - [logger.py:38] - Transcript fetch complete: 1 success, 0 errors
+2025-10-26 23:33:36,056 - youtube_rag - INFO - [logger.py:38] - Starting Pinecone storage
+2025-10-26 23:33:36,056 - youtube_rag - DEBUG - [logger.py:44] - Storing transcript for video: AHWVvFLLFig
+2025-10-26 23:33:36,056 - youtube_rag - INFO - [logger.py:38] - Starting to store transcript for video AHWVvFLLFig
+2025-10-26 23:33:38,438 - youtube_rag - DEBUG - [logger.py:44] - Video AHWVvFLLFig exists in Pinecone: False
+2025-10-26 23:33:38,439 - youtube_rag - DEBUG - [logger.py:44] - Chunking transcript with 281 segments
+2025-10-26 23:33:38,439 - youtube_rag - DEBUG - [logger.py:44] - Chunking 281 segments with chunk_size=1000
+2025-10-26 23:33:38,439 - youtube_rag - DEBUG - [logger.py:44] - Created 11 chunks
+2025-10-26 23:33:38,440 - youtube_rag - INFO - [logger.py:38] - Created 11 chunks for video AHWVvFLLFig
+2025-10-26 23:33:38,440 - youtube_rag - DEBUG - [logger.py:44] - Creating embeddings for 11 text chunks
+2025-10-26 23:33:38,440 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 11 texts
+2025-10-26 23:33:38,974 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 11 embeddings
+2025-10-26 23:33:38,974 - youtube_rag - INFO - [logger.py:38] - Created 11 embeddings
+2025-10-26 23:33:38,975 - youtube_rag - DEBUG - [logger.py:44] - Prepared 11 vectors for upsert
+2025-10-26 23:33:41,240 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully stored 11 vectors for video AHWVvFLLFig
+2025-10-26 23:33:41,242 - youtube_rag - INFO - [logger.py:38] - Storage result for AHWVvFLLFig: stored
+2025-10-26 23:33:41,242 - youtube_rag - INFO - [logger.py:38] - Source 8a258ded-6840-42fc-a4e4-61cd29e12268 processed successfully, marking as ready
+2025-10-26 23:33:41,833 - youtube_rag - INFO - [logger.py:38] - Processing complete: {'success': True, 'source_id': '8a258ded-6840-42fc-a4e4-61cd29e12268', 'processed': 1, 'errors': [], 'storage_results': [{'status': 'stored', 'video_id': 'AHWVvFLLFig', 'chunks': 11}]}
+2025-10-27 00:46:42,548 - youtube_rag - INFO - [logger.py:38] - Processing video request from user: c8992235-5976-4981-9b20-bb6521f2fc34, URL: https://www.youtube.com/watch?v=AHWVvFLLFig
+2025-10-27 00:46:42,548 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-10-27 00:46:42,666 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-10-27 00:46:42,707 - youtube_rag - INFO - [logger.py:38] - Using device: cuda
+2025-10-27 00:46:42,709 - youtube_rag - INFO - [logger.py:38] - GPU: NVIDIA GeForce RTX 2060 SUPER
+2025-10-27 00:46:48,083 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-10-27 00:46:48,083 - youtube_rag - DEBUG - [logger.py:44] - Extracting video IDs from URL
+2025-10-27 00:46:48,084 - youtube_rag - INFO - [logger.py:38] - Processing single video: AHWVvFLLFig
+2025-10-27 00:46:48,558 - youtube_rag - DEBUG - [logger.py:44] - Creating source entry in Supabase
+2025-10-27 00:46:48,759 - youtube_rag - INFO - [logger.py:38] - Created source: 25e634ab-302f-4f01-a3db-b9b2c0309db7
+2025-10-27 00:46:48,760 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch
+2025-10-27 00:46:48,760 - youtube_rag - INFO - [logger.py:38] - Starting batch transcript fetch for 1 videos
+2025-10-27 00:46:48,761 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch for video: AHWVvFLLFig
+2025-10-27 00:46:49,995 - youtube_rag - DEBUG - [logger.py:44] - Retrieved transcript list for AHWVvFLLFig
+2025-10-27 00:46:49,996 - youtube_rag - INFO - [logger.py:38] - Using auto-generated transcript for AHWVvFLLFig: English (auto-generated)
+2025-10-27 00:46:49,996 - youtube_rag - DEBUG - [logger.py:44] - Fetching transcript data for AHWVvFLLFig
+2025-10-27 00:46:50,135 - youtube_rag - INFO - [logger.py:38] - Successfully fetched 281 segments for AHWVvFLLFig
+2025-10-27 00:46:50,137 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully processed video AHWVvFLLFig
+2025-10-27 00:46:50,137 - youtube_rag - INFO - [logger.py:38] - Batch complete: 1 success, 0 errors
+2025-10-27 00:46:50,138 - youtube_rag - INFO - [logger.py:38] - Transcript fetch complete: 1 success, 0 errors
+2025-10-27 00:46:50,138 - youtube_rag - INFO - [logger.py:38] - Starting Pinecone storage
+2025-10-27 00:46:50,138 - youtube_rag - DEBUG - [logger.py:44] - Storing transcript for video: AHWVvFLLFig
+2025-10-27 00:46:50,138 - youtube_rag - INFO - [logger.py:38] - Starting to store transcript for video AHWVvFLLFig
+2025-10-27 00:46:53,057 - youtube_rag - DEBUG - [logger.py:44] - Video AHWVvFLLFig exists in Pinecone: True
+2025-10-27 00:46:53,058 - youtube_rag - INFO - [logger.py:38] - Video AHWVvFLLFig already exists in Pinecone, skipping
+2025-10-27 00:46:53,058 - youtube_rag - INFO - [logger.py:38] - Storage result for AHWVvFLLFig: exists
+2025-10-27 00:46:53,059 - youtube_rag - INFO - [logger.py:38] - Source 25e634ab-302f-4f01-a3db-b9b2c0309db7 processed successfully, marking as ready
+2025-10-27 00:46:53,195 - youtube_rag - INFO - [logger.py:38] - Processing complete: {'success': True, 'source_id': '25e634ab-302f-4f01-a3db-b9b2c0309db7', 'processed': 1, 'errors': [], 'storage_results': [{'status': 'exists', 'video_id': 'AHWVvFLLFig'}]}
