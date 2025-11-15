@@ -29,20 +29,22 @@ export default function LoginPage() {
     console.log('Login attempt:', { username });
 
     try {
-      const response = await authAPI.login(username, password);
-      console.log('Login successful:', response.data);
-      
-      authService.setTokens(response.data);
+      const data = await authAPI.login(username, password);
+      console.log('Login successful');
+
+      authService.setTokens(data);
+      authService.initializeAutoRefresh();
       console.log('Tokens stored, redirecting...');
-      
+
       // Force hard redirect
       setTimeout(() => {
         window.location.href = '/dashboard';
       }, 100);
-      
+
     } catch (err) {
       console.error('Login error:', err);
-      setError(err.response?.data?.error || 'Login failed. Check credentials.');
+      const errorMessage = err.response?.data?.message || err.response?.data?.error || 'Login failed. Please check your credentials.';
+      setError(errorMessage);
       setIsLoading(false);
     }
   };
