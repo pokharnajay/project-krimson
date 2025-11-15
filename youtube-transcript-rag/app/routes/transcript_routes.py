@@ -4,8 +4,9 @@ from app.services.youtube_service import YouTubeService
 from app.services.transcript_service import TranscriptService
 from app.services.pinecone_service import PineconeService
 from app.services.supabase_service import (
-    create_source, update_source_status, 
-    get_sources_by_user, get_source_by_id, delete_source
+    create_source, update_source_status,
+    get_sources_by_user, get_sources_count_by_user,
+    get_source_by_id, delete_source
 )
 from app.utils.helpers import extract_video_id
 from app.utils.logger import log_info, log_error, log_debug, log_warning
@@ -96,12 +97,32 @@ def process_videos():
 @transcript_bp.route('/sources', methods=['GET'])
 @jwt_required()
 def get_all_sources():
-    """Get all sources for current user"""
+    """Get all sources for current user with pagination"""
     user_id = get_jwt_identity()
-    
+
     try:
-        sources = get_sources_by_user(user_id)
-        
+        # Get pagination parameters
+        page = request.args.get('page', 1, type=int)
+        limit = request.args.get('limit', 20, type=int)
+
+        # Validate pagination parameters
+        if page < 1:
+            page = 1
+        if limit < 1:
+            limit = 1
+        elif limit > 100:
+            limit = 100
+
+        # Calculate offset
+        offset = (page - 1) * limit
+
+        # Get paginated sources
+        sources = get_sources_by_user(user_id, limit=limit, offset=offset)
+        total_count = get_sources_count_by_user(user_id)
+
+        # Calculate total pages
+        total_pages = (total_count + limit - 1) // limit if total_count > 0 else 0
+
         # Format for frontend
         formatted_sources = []
         for source in sources:
@@ -112,10 +133,19 @@ def get_all_sources():
                 'status': source['status'],
                 'created_at': source['created_at']
             })
-        
-        return jsonify({'sources': formatted_sources}), 200
-        
+
+        return jsonify({
+            'sources': formatted_sources,
+            'pagination': {
+                'page': page,
+                'limit': limit,
+                'total': total_count,
+                'pages': total_pages
+            }
+        }), 200
+
     except Exception as e:
+        log_error(f"Error fetching sources: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
 @transcript_bp.route('/sources/<source_id>', methods=['GET'])
