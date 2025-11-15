@@ -37,8 +37,8 @@ logger.addHandler(console_handler)
 def log_info(message):
     logger.info(message)
 
-def log_error(message):
-    logger.error(message)
+def log_error(message, exc_info=False):
+    logger.error(message, exc_info=exc_info)
 
 def log_debug(message):
     logger.debug(message)
