@@ -1,0 +1,88 @@
+version: '3.8'
+
+services:
+  # ============================================================================
+  # YouTube Transcript RAG API Service
+  # ============================================================================
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: youtube-transcript-rag-api
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      # Load from .env file
+      - SECRET_KEY=${SECRET_KEY}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - JWT_ACCESS_TOKEN_EXPIRES=${JWT_ACCESS_TOKEN_EXPIRES:-3600}
+      - JWT_REFRESH_TOKEN_EXPIRES=${JWT_REFRESH_TOKEN_EXPIRES:-2592000}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_SERVICE_KEY=${SUPABASE_SERVICE_KEY}
+      - ADMIN_API_KEY=${ADMIN_API_KEY}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - OPENROUTER_MODEL=${OPENROUTER_MODEL:-openai/gpt-4-turbo}
+      - PINECONE_API_KEY=${PINECONE_API_KEY}
+      - PINECONE_ENVIRONMENT=${PINECONE_ENVIRONMENT:-us-east-1}
+      - PINECONE_INDEX_NAME=${PINECONE_INDEX_NAME:-youtube-transcripts}
+      - MAX_THREADS=${MAX_THREADS:-5}
+      - VECTOR_SEARCH_TYPE=${VECTOR_SEARCH_TYPE:-similarity}
+      - TOP_K_RESULTS=${TOP_K_RESULTS:-5}
+      - RATELIMIT_ENABLED=${RATELIMIT_ENABLED:-True}
+      - RATELIMIT_STORAGE_URL=${RATELIMIT_STORAGE_URL:-memory://}
+      - RATELIMIT_DEFAULT=${RATELIMIT_DEFAULT:-100/hour}
+      - CORS_ORIGINS=${CORS_ORIGINS:-*}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - FLASK_DEBUG=False
+    volumes:
+      # Mount logs directory for persistence
+      - ./logs:/app/logs
+      # Mount .cache for ML models (optional, improves startup time)
+      - ml_models_cache:/home/appuser/.cache
+    networks:
+      - youtube-rag-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:5000/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      - redis
+
+  # ============================================================================
+  # Redis (for rate limiting and caching)
+  # ============================================================================
+  redis:
+    image: redis:7-alpine
+    container_name: youtube-transcript-rag-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - youtube-rag-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+
+# ============================================================================
+# Volumes
+# ============================================================================
+volumes:
+  redis_data:
+    driver: local
+  ml_models_cache:
+    driver: local
+
+# ============================================================================
+# Networks
+# ============================================================================
+networks:
+  youtube-rag-network:
+    driver: bridge

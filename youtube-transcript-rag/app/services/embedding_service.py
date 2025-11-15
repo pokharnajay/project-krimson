@@ -3,19 +3,40 @@ from config.settings import Config
 from app.utils.logger import log_info, log_error, log_debug
 import torch
 
-class EmbeddingService:
-    def __init__(self):
+# Global model instance (singleton pattern)
+_embedding_model = None
+_device = None
+
+
+def get_embedding_model():
+    """
+    Get or create the embedding model instance (singleton pattern).
+
+    Returns:
+        Tuple of (model, device, dimension)
+    """
+    global _embedding_model, _device
+
+    if _embedding_model is None:
         log_debug("Initializing EmbeddingService with sentence-transformers")
-        
+
         # Check GPU availability
-        device = 'cuda' if torch.cuda.is_available() else 'cpu'
-        log_info(f"Using device: {device}")
+        _device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        log_info(f"Using device: {_device}")
         if torch.cuda.is_available():
             log_info(f"GPU: {torch.cuda.get_device_name(0)}")
-        
+
         # Load model and move to GPU if available
-        self.model = SentenceTransformer('all-MiniLM-L6-v2', device=device)
-        self.dimension = 384
+        _embedding_model = SentenceTransformer('all-MiniLM-L6-v2', device=_device)
+        log_info("Embedding model loaded successfully")
+
+    return _embedding_model, _device, 384
+
+
+class EmbeddingService:
+    def __init__(self):
+        """Initialize embedding service (uses shared model instance)"""
+        self.model, self.device, self.dimension = get_embedding_model()
     
     def create_embeddings(self, texts):
         """Create embeddings for list of texts using sentence-transformers"""

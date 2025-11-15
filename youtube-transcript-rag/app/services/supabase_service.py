@@ -1,29 +1,64 @@
-import os
 import uuid
-from supabase import create_client
+from supabase import create_client, Client
 import bcrypt
+from config.settings import Config
+from app.utils.logger import log_error, log_debug
 
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_KEY")
-supabase = create_client(SUPABASE_URL, SUPABASE_SERVICE_KEY)
+# Lazy initialization of Supabase client
+_supabase_client = None
+
+
+def get_supabase_client() -> Client:
+    """
+    Get or create Supabase client instance (singleton pattern).
+
+    Returns:
+        Supabase client instance
+
+    Raises:
+        ValueError: If Supabase configuration is missing
+    """
+    global _supabase_client
+
+    if _supabase_client is None:
+        if not Config.SUPABASE_URL or not Config.SUPABASE_SERVICE_KEY:
+            raise ValueError(
+                "Supabase configuration missing. "
+                "Please set SUPABASE_URL and SUPABASE_SERVICE_KEY environment variables."
+            )
+
+        log_debug("Initializing Supabase client")
+        _supabase_client = create_client(Config.SUPABASE_URL, Config.SUPABASE_SERVICE_KEY)
+
+    return _supabase_client
 
 # User operations
 def get_user(username):
+    """Get user by username"""
+    supabase = get_supabase_client()
     res = supabase.table('users').select('*').eq('username', username).execute()
     if res.data:
         return res.data[0]
     return None
 
+
 def get_user_by_id(user_id):
+    """Get user by ID"""
+    supabase = get_supabase_client()
     res = supabase.table('users').select('*').eq('id', user_id).execute()
     if res.data:
         return res.data[0]
     return None
 
+
 def check_password(password, password_hash):
+    """Check if password matches hash"""
     return bcrypt.checkpw(password.encode(), password_hash.encode())
 
+
 def update_credits(username, delta):
+    """Update user credits (atomic operation)"""
+    supabase = get_supabase_client()
     user = get_user(username)
     if not user:
         return None
@@ -31,20 +66,24 @@ def update_credits(username, delta):
     supabase.table('users').update({'credits': new_credits}).eq('username', username).execute()
     return new_credits
 
-def create_user(username, password):
+
+def create_user(username, password, initial_credits=1000):
+    """Create a new user"""
+    supabase = get_supabase_client()
     password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
     result = supabase.table('users').insert({
         'username': username,
         'password_hash': password_hash,
-        'credits': 1000
+        'credits': initial_credits
     }).execute()
     return result.data[0] if result.data else None
 
 # Source operations
 def create_source(user_id, video_ids, title=None, pinecone_namespace=None, metadata=None):
     """Create a new source entry"""
+    supabase = get_supabase_client()
     source_id = str(uuid.uuid4())
-    
+
     # Auto-generate title if not provided
     if not title and metadata:
         if len(video_ids) == 1:
@@ -53,7 +92,7 @@ def create_source(user_id, video_ids, title=None, pinecone_namespace=None, metad
             title = f"Playlist ({len(video_ids)} videos)"
     elif not title:
         title = f"Source {len(video_ids)} videos"
-    
+
     result = supabase.table('sources').insert({
         'id': source_id,
         'user_id': user_id,
@@ -63,26 +102,57 @@ def create_source(user_id, video_ids, title=None, pinecone_namespace=None, metad
         'metadata': metadata,  # Store metadata as JSONB
         'status': 'processing'
     }).execute()
-    
+
     return result.data[0] if result.data else None
 
 
 def update_source_status(source_id, status):
     """Update source status"""
+    supabase = get_supabase_client()
     supabase.table('sources').update({
         'status': status
     }).eq('id', source_id).execute()
 
-def get_sources_by_user(user_id):
-    """Get all sources for a user"""
-    result = supabase.table('sources').select('*').eq('user_id', user_id).order('created_at', desc=True).execute()
+
+def get_sources_by_user(user_id, limit=None, offset=None):
+    """
+    Get all sources for a user with optional pagination
+
+    Args:
+        user_id: User ID
+        limit: Maximum number of results (optional)
+        offset: Number of results to skip (optional)
+
+    Returns:
+        List of sources
+    """
+    supabase = get_supabase_client()
+    query = supabase.table('sources').select('*').eq('user_id', user_id).order('created_at', desc=True)
+
+    if limit:
+        query = query.limit(limit)
+    if offset:
+        query = query.offset(offset)
+
+    result = query.execute()
     return result.data if result.data else []
+
+
+def get_sources_count_by_user(user_id):
+    """Get total count of sources for a user"""
+    supabase = get_supabase_client()
+    result = supabase.table('sources').select('id', count='exact').eq('user_id', user_id).execute()
+    return result.count if result.count is not None else 0
+
 
 def get_source_by_id(source_id):
     """Get a specific source"""
+    supabase = get_supabase_client()
     result = supabase.table('sources').select('*').eq('id', source_id).execute()
     return result.data[0] if result.data else None
 
+
 def delete_source(source_id):
     """Delete a source"""
+    supabase = get_supabase_client()
     supabase.table('sources').delete().eq('id', source_id).execute()
