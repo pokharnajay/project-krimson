@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, RefreshCw } from 'lucide-react';
+import { Plus, RefreshCw, Video } from 'lucide-react';
 import Header from '@/components/Header';
 import SourceCard from '@/components/SourceCard';
 import { transcriptAPI } from '@/lib/api';
@@ -120,7 +120,7 @@ export default function DashboardPage() {
         )}
 
         {/* Stats Section - Optional */}
-        {sources.length > 0 && (
+        {/* {sources.length > 0 && (
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 fade-in">
             <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
               <div className="flex items-center gap-3">
@@ -162,7 +162,7 @@ export default function DashboardPage() {
               </div>
             </div>
           </div>
-        )}
+        )} */}
       </main>
     </div>
   );

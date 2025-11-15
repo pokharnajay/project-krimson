@@ -68,7 +68,7 @@ export default function SourceCard({ source, onUpdate }) {
   };
 
   return (
-    <div className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-accent/30 flex flex-col h-[280px]">
+    <div className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-accent/30 flex flex-col h-full">
       {/* Card Header with Status Badge */}
       <div className="p-5 border-b border-gray-100 flex-shrink-0">
         <div className="flex items-start justify-between mb-3">
