@@ -57,21 +57,31 @@ class AIService:
                     'youtube_link': f"https://www.youtube.com/watch?v={video_id}&t={start_time}s"
                 })
             
-            # Create prompt that encourages citing sources
-            prompt = f"""Based on the following video transcripts, answer the question. 
-When referencing information, cite the source number and provide the YouTube link with timestamp.
+            # Create prompt for natural, conversational answers
+            prompt = f"""You are answering a question based on YouTube video transcript excerpts provided below.
 
-Context:
+IMPORTANT INSTRUCTIONS:
+- Provide a clear, natural, and conversational answer based on the context
+- DO NOT include source numbers (like [Source 1]) in your answer
+- DO NOT include YouTube links or timestamps in your answer text
+- DO NOT mention "in the video" or reference timestamps explicitly
+- Focus on delivering the information in a helpful, direct way
+- If the context doesn't fully answer the question, acknowledge what you can answer from the available information
+
+Context from video transcripts:
 {context_text}
 
 Question: {query}
 
-Answer the question and provide the YouTube link with timestamp for the most relevant source."""
-            
+Provide a helpful answer based solely on the information in the transcripts above. Keep your answer concise and natural."""
+
             response = self.client.chat.completions.create(
                 model=model,
                 messages=[
-                    {"role": "system", "content": "You are a helpful assistant that answers questions based on YouTube video transcripts. Always cite sources with timestamps."},
+                    {
+                        "role": "system",
+                        "content": "You are a knowledgeable assistant that provides clear, accurate answers based on YouTube video transcripts. Your answers should be natural and conversational, without any source citations, links, or timestamp references in the text itself. Answer questions directly and concisely."
+                    },
                     {"role": "user", "content": prompt}
                 ],
                 max_tokens=500,
