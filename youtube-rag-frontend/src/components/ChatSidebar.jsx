@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { MessageSquare, Search, X, Trash2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { MessageSquare, Search, X, Trash2, PanelRightOpen, PanelRight } from 'lucide-react';
 import { chatAPI } from '@/lib/api';
 
 export default function ChatSidebar({ isOpen, onToggle, currentChatId }) {
@@ -82,7 +82,7 @@ export default function ChatSidebar({ isOpen, onToggle, currentChatId }) {
             className="p-2 hover:bg-claude-bg rounded-lg transition-colors group relative"
             aria-label="Open sidebar"
           >
-            <ChevronRight size={20} className="text-claude-muted group-hover:text-claude-text transition-colors" />
+            <PanelRight size={20} className="text-claude-muted group-hover:text-claude-text transition-colors" />
 
             {/* Tooltip */}
             <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap pointer-events-none z-50 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -125,7 +125,7 @@ export default function ChatSidebar({ isOpen, onToggle, currentChatId }) {
                 className="p-2 hover:bg-claude-bg rounded-lg transition-colors group relative flex-shrink-0"
                 aria-label="Close sidebar"
               >
-                <ChevronLeft size={18} className="text-claude-muted group-hover:text-claude-text transition-colors" />
+                <PanelRightOpen size={18} className="text-claude-muted group-hover:text-claude-text transition-colors" />
 
                 {/* Tooltip */}
                 <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap pointer-events-none z-50 opacity-0 group-hover:opacity-100 transition-opacity">
