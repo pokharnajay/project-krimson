@@ -124,7 +124,7 @@ export default function ChatPage({ params }) {
 
       {/* Chat Messages Area */}
       <main className={`flex-1 overflow-y-auto transition-all duration-300 ${
-        sidebarOpen ? 'lg:ml-80' : ''
+        sidebarOpen ? 'ml-80' : 'ml-12'
       }`}>
         <div className="max-w-3xl mx-auto px-4 py-8">
           {messages.length === 0 && (
@@ -192,7 +192,7 @@ export default function ChatPage({ params }) {
 
       {/* Fixed Input at Bottom */}
       <div className={`border-t border-claude-border bg-white transition-all duration-300 ${
-        sidebarOpen ? 'lg:ml-80' : ''
+        sidebarOpen ? 'ml-80' : 'ml-12'
       }`}>
         <div className="max-w-3xl mx-auto px-4 py-4">
           <form onSubmit={handleSubmit} className="flex items-end gap-2">
