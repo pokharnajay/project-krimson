@@ -1167,3 +1167,50 @@ Exception: Failed to generate answer: Error code: 401 - {'error': {'message': 'U
 2025-11-16 18:43:36,938 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
 2025-11-16 18:44:36,935 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
 2025-11-16 18:44:36,935 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 18:52:55,396 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 18:53:00,968 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 18:53:01,315 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 18:53:05,481 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 18:53:36,949 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-16 18:53:36,952 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-16 19:02:36,275 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user c8992235-5976-4981-9b20-bb6521f2fc34 (search=, limit=50, offset=0)
+2025-11-16 19:02:41,975 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user c8992235-5976-4981-9b20-bb6521f2fc34 (search=, limit=50, offset=0)
+2025-11-16 19:02:45,904 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user c8992235-5976-4981-9b20-bb6521f2fc34 (search=, limit=50, offset=0)
+2025-11-16 19:05:33,247 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:17:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:18:36,940 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:19:36,938 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:20:36,936 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:21:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:22:36,935 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:23:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:24:36,935 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:25:36,939 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:26:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:27:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:28:36,939 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:29:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:30:36,933 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:31:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:32:36,938 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:33:36,938 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:34:36,938 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:35:36,939 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:36:36,935 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:37:36,938 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:38:36,935 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:39:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:40:36,934 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:41:36,936 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:42:36,940 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:43:36,939 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:44:36,938 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:45:36,936 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:46:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:47:36,941 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:48:36,936 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:49:36,939 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:50:36,936 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:51:36,939 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:52:36,941 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:53:36,938 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
