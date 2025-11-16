@@ -120,7 +120,7 @@ export default function ChatPage({ params }) {
         currentChatId={chatId}
       />
 
-      <Header sourceTitle={source.title} />
+      <Header sourceTitle={source.title} sidebarOpen={sidebarOpen} />
 
       {/* Chat Messages Area */}
       <main className={`flex-1 overflow-y-auto transition-all duration-300 ${
