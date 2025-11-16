@@ -9,6 +9,7 @@ import { queryAPI, chatAPI } from '@/lib/api';
 
 // OpenRouter models list
 const MODELS = [
+  { id: 'openai/gpt-oss-120b', name: 'GPT-OSS 120B' },
   { id: 'openai/gpt-4o', name: 'GPT-4o' },
   { id: 'anthropic/claude-3.5-sonnet', name: 'Claude 3.5 Sonnet' },
   { id: 'anthropic/claude-3-opus', name: 'Claude 3 Opus' },
