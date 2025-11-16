@@ -76,7 +76,7 @@ export default function ChatSidebar({ isOpen, onToggle, currentChatId }) {
 
       {/* Vertical Column when Closed */}
       {!isOpen && (
-        <div className="fixed top-0 left-0 h-full w-12 bg-white border-r border-claude-border z-[60] flex flex-col items-center pt-4">
+        <div className="fixed top-14 left-0 h-[calc(100vh-3.5rem)] w-12 bg-white border-r border-claude-border z-40 flex flex-col items-center pt-4">
           <button
             onClick={() => onToggle(true)}
             className="p-2 hover:bg-claude-bg rounded-lg transition-colors group relative"
@@ -95,15 +95,7 @@ export default function ChatSidebar({ isOpen, onToggle, currentChatId }) {
 
       {/* Sidebar Content when Open */}
       {isOpen && (
-        <div className="fixed top-0 left-0 h-full bg-white border-r border-claude-border z-[60] w-80 flex flex-col">
-          {/* Header with Close Button next to Search */}
-          <div className="h-14 border-b border-claude-border flex items-center justify-between px-4 flex-shrink-0">
-            <div className="flex items-center gap-2">
-              <MessageSquare size={18} className="text-claude-muted" />
-              <span className="text-sm font-medium text-claude-text">Chat History</span>
-            </div>
-          </div>
-
+        <div className="fixed top-14 left-0 h-[calc(100vh-3.5rem)] bg-white border-r border-claude-border z-40 w-80 flex flex-col">
           {/* Search with Close Button */}
           <div className="p-3 border-b border-claude-border flex-shrink-0">
             <div className="flex items-center gap-2">

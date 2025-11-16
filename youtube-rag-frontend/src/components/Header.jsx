@@ -6,7 +6,7 @@ import { LogOut } from 'lucide-react';
 import { authService } from '@/lib/auth';
 import { userAPI } from '@/lib/api';
 
-export default function Header({ sourceTitle, sidebarOpen = false }) {
+export default function Header({ sourceTitle }) {
   const router = useRouter();
   const [username, setUsername] = useState('User');
   const [credits, setCredits] = useState(0);
@@ -62,9 +62,7 @@ export default function Header({ sourceTitle, sidebarOpen = false }) {
   };
 
   return (
-    <header className={`border-b border-claude-border bg-white sticky top-0 z-50 transition-all duration-300 ${
-      sidebarOpen ? 'ml-80' : 'ml-12'
-    }`}>
+    <header className="border-b border-claude-border bg-white sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
         {/* Logo */}
         <button
