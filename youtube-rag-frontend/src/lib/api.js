@@ -198,12 +198,14 @@ export const queryAPI = {
    * Ask a question about processed videos using RAG
    * @param {string} sourceId - Source UUID
    * @param {string} question - Question to ask
+   * @param {string} model - OpenRouter model ID (optional)
    * @returns {Promise<{answer: string, sources: Array, credits_remaining: number}>}
    */
-  ask: async (sourceId, question) => {
+  ask: async (sourceId, question, model = null) => {
     const response = await apiClient.post('/api/query/ask', {
       source_id: sourceId,
       question,
+      ...(model && { model }),
     });
     return response.data;
   },

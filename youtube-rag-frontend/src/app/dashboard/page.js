@@ -48,33 +48,33 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50/30">
+    <div className="min-h-screen bg-white">
       <Header />
 
-      <main className="max-w-7xl mx-auto px-6 py-10">
+      <main className="max-w-6xl mx-auto px-6 py-8">
         {/* Page Header */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10">
-          <div className="fade-in">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">Dashboard</h1>
-            <p className="text-gray-600">
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h1 className="text-2xl font-medium text-claude-text">Your Sources</h1>
+            <p className="text-sm text-claude-muted mt-1">
               Manage and chat with your video sources
             </p>
           </div>
 
-          <div className="flex items-center gap-3 fade-in">
+          <div className="flex items-center gap-3">
             <button
               onClick={() => fetchSources()}
-              className="bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 hover:border-gray-300 rounded-xl px-5 py-2.5 flex items-center gap-2 font-medium transition-all duration-200 active:scale-95 shadow-sm"
+              className="px-4 py-2 text-sm text-claude-muted hover:text-claude-text border border-claude-border rounded-lg hover:bg-claude-bg transition-colors flex items-center gap-2"
             >
-              <RefreshCw size={18} />
+              <RefreshCw size={16} />
               <span>Refresh</span>
             </button>
 
             <button
               onClick={() => router.push('/add-source')}
-              className="bg-accent hover:bg-blue-600 text-white rounded-xl px-6 py-2.5 flex items-center gap-2 font-medium transition-all duration-200 active:scale-95 shadow-lg shadow-blue-500/30"
+              className="px-4 py-2 bg-accent hover:bg-accent/90 text-white rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
             >
-              <Plus size={20} />
+              <Plus size={18} />
               <span>Add Source</span>
             </button>
           </div>
@@ -82,85 +82,31 @@ export default function DashboardPage() {
 
         {/* Content */}
         {isLoading ? (
-          <div className="text-center py-20 fade-in">
-            <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-gray-200 border-t-accent mb-6"></div>
-            <p className="text-gray-500 font-medium">Loading your sources...</p>
+          <div className="text-center py-20">
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-2 border-claude-border border-t-accent mb-4"></div>
+            <p className="text-sm text-claude-muted">Loading sources...</p>
           </div>
         ) : sources.length === 0 ? (
-          <div className="text-center py-20 fade-in">
-            <div className="max-w-lg mx-auto">
-              <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl shadow-blue-500/30">
-                <Plus className="text-white" size={48} />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">No sources yet</h3>
-              <p className="text-gray-600 mb-8 leading-relaxed">
-                Get started by adding your first YouTube video or playlist.<br />
-                I'll process the transcripts and you can start asking questions!
+          <div className="text-center py-20">
+            <div className="max-w-md mx-auto">
+              <p className="text-lg text-claude-text mb-2">No sources yet</p>
+              <p className="text-sm text-claude-muted mb-8">
+                Add your first YouTube video or playlist to get started
               </p>
               <button
                 onClick={() => router.push('/add-source')}
-                className="bg-accent hover:bg-blue-600 text-white rounded-xl px-8 py-3 font-semibold transition-all duration-200 active:scale-95 shadow-lg shadow-blue-500/30"
+                className="px-6 py-2.5 bg-accent hover:bg-accent/90 text-white rounded-lg text-sm font-medium transition-colors inline-flex items-center gap-2"
               >
+                <Plus size={18} />
                 Add Your First Source
               </button>
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sources.map((source, index) => (
-              <div
-                key={source.id}
-                className="fade-in"
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                <SourceCard source={source} onUpdate={fetchSources} />
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {sources.map((source) => (
+              <SourceCard key={source.id} source={source} onUpdate={fetchSources} />
             ))}
-          </div>
-        )}
-
-        {/* Stats Section - Optional */}
-        {sources.length > 0 && (
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 fade-in">
-            <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
-                  <Video className="text-accent" size={24} />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Total Sources</p>
-                  <p className="text-2xl font-bold text-gray-900">{sources.length}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
-                  <RefreshCw className="text-green-600" size={24} />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Ready to Chat</p>
-                  <p className="text-2xl font-bold text-gray-900">
-                    {sources.filter(s => s.status === 'ready').length}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-yellow-50 rounded-lg flex items-center justify-center">
-                  <RefreshCw className="text-yellow-600 animate-pulse" size={24} />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Processing</p>
-                  <p className="text-2xl font-bold text-gray-900">
-                    {sources.filter(s => s.status === 'processing').length}
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
         )}
       </main>

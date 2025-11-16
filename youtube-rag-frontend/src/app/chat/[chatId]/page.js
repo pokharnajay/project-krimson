@@ -2,18 +2,32 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Send, Loader2, ExternalLink } from 'lucide-react';
+import { Send, Loader2, ChevronDown } from 'lucide-react';
 import Header from '@/components/Header';
 import { queryAPI, transcriptAPI } from '@/lib/api';
 
+// OpenRouter models list
+const MODELS = [
+  { id: 'openai/gpt-4o', name: 'GPT-4o' },
+  { id: 'anthropic/claude-3.5-sonnet', name: 'Claude 3.5 Sonnet' },
+  { id: 'anthropic/claude-3-opus', name: 'Claude 3 Opus' },
+  { id: 'google/gemini-pro-1.5', name: 'Gemini Pro 1.5' },
+  { id: 'meta-llama/llama-3.1-70b-instruct', name: 'Llama 3.1 70B' },
+  { id: 'mistralai/mistral-large', name: 'Mistral Large' },
+  { id: 'perplexity/llama-3.1-sonar-huge-128k-online', name: 'Sonar Huge' },
+  { id: 'cohere/command-r-plus', name: 'Command R+' },
+];
+
 export default function ChatPage({ params }) {
   const router = useRouter();
-  const sourceId = params.chatId; // Access chatId from params prop (Next.js uses camelCase)
-  
+  const sourceId = params.chatId;
+
   const [source, setSource] = useState(null);
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedModel, setSelectedModel] = useState(MODELS[0]);
+  const [showModelDropdown, setShowModelDropdown] = useState(false);
   const messagesEndRef = useRef(null);
 
   // Fetch source details
@@ -23,10 +37,9 @@ export default function ChatPage({ params }) {
     const fetchSource = async () => {
       try {
         const response = await transcriptAPI.getSource(sourceId);
-        setSource(response); // Backend returns object directly, not wrapped in .data
+        setSource(response);
       } catch (error) {
         console.error('Failed to fetch source:', error);
-        alert('Failed to load source');
         router.push('/dashboard');
       }
     };
@@ -54,7 +67,8 @@ export default function ChatPage({ params }) {
     setIsLoading(true);
 
     try {
-      const response = await queryAPI.ask(sourceId, userMessage);
+      // Pass the selected model to the backend
+      const response = await queryAPI.ask(sourceId, userMessage, selectedModel.id);
 
       // Add AI response with sources
       setMessages((prev) => [
@@ -62,7 +76,6 @@ export default function ChatPage({ params }) {
         {
           role: 'assistant',
           content: response.answer,
-          sources: response.sources,
           primarySource: response.primary_source,
         },
       ]);
@@ -71,7 +84,7 @@ export default function ChatPage({ params }) {
         ...prev,
         {
           role: 'error',
-          content: error.response?.data?.error || 'Failed to get response',
+          content: error.response?.data?.message || error.response?.data?.error || 'Failed to get response',
         },
       ]);
     } finally {
@@ -81,121 +94,63 @@ export default function ChatPage({ params }) {
 
   if (!source) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <Loader2 className="animate-spin text-accent" size={48} />
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <Loader2 className="animate-spin text-claude-muted" size={24} />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <Header />
-
-      {/* Chat Header with Source Info */}
-      <div className="bg-white border-b border-gray-200 sticky top-16 z-40 shadow-sm">
-        <div className="max-w-5xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={() => router.push('/dashboard')}
-              className="text-gray-600 hover:text-gray-900 transition-colors flex items-center gap-2"
-            >
-              <ArrowLeft size={18} />
-              <span className="text-sm font-medium">Dashboard</span>
-            </button>
-            <div className="flex-1 text-center px-6">
-              <h2 className="text-lg font-semibold text-gray-900 truncate">{source.title}</h2>
-              <p className="text-xs text-gray-500 mt-0.5">
-                {source.video_ids.length} video{source.video_ids.length > 1 ? 's' : ''}
-              </p>
-            </div>
-            <div className="w-24"></div> {/* Spacer for symmetry */}
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white flex flex-col">
+      <Header sourceTitle={source.title} />
 
       {/* Chat Messages Area */}
       <main className="flex-1 overflow-y-auto">
-        <div className="max-w-5xl mx-auto px-6 py-6">
+        <div className="max-w-3xl mx-auto px-4 py-8">
           {messages.length === 0 && (
-            <div className="flex flex-col items-center justify-center py-20 px-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-                <span className="text-white font-bold text-2xl">Y</span>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Ask me anything</h3>
-              <p className="text-gray-500 text-center max-w-md">
-                I'll search through the video transcripts and provide answers with timestamp links
+            <div className="text-center py-16">
+              <p className="text-claude-muted text-sm mb-8">
+                Ask questions about this source
               </p>
-              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-3 max-w-2xl w-full">
-                <div className="bg-white border border-gray-200 rounded-lg p-4 hover:border-accent transition-colors cursor-pointer">
-                  <p className="text-sm text-gray-700">💡 "Summarize the main points"</p>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-4 hover:border-accent transition-colors cursor-pointer">
-                  <p className="text-sm text-gray-700">🔍 "What was said about..."</p>
-                </div>
-              </div>
             </div>
           )}
 
           <div className="space-y-6">
             {messages.map((message, index) => (
-              <div key={index} className="fade-in">
+              <div key={index}>
                 {message.role === 'user' ? (
-                  <div className="flex justify-end">
-                    <div className="max-w-[85%] bg-accent text-white rounded-2xl px-5 py-3 shadow-sm">
-                      <p className="text-[15px] leading-relaxed">{message.content}</p>
+                  <div className="flex justify-end mb-4">
+                    <div className="max-w-[80%] bg-claude-bg rounded-lg px-4 py-3 border border-claude-border">
+                      <p className="text-[15px] leading-relaxed text-claude-text">{message.content}</p>
                     </div>
                   </div>
                 ) : message.role === 'error' ? (
-                  <div className="flex justify-start">
-                    <div className="max-w-[85%] bg-red-50 border border-red-200 text-red-700 rounded-2xl px-5 py-3">
+                  <div className="flex justify-start mb-4">
+                    <div className="max-w-[80%] bg-red-50 border border-red-200 text-red-700 rounded-lg px-4 py-3">
                       <p className="text-[15px] leading-relaxed">{message.content}</p>
                     </div>
                   </div>
                 ) : (
-                  <div className="flex justify-start">
-                    <div className="max-w-[85%]">
-                      <div className="bg-white border border-gray-200 rounded-2xl px-5 py-4 shadow-sm">
-                        <p className="text-[15px] leading-relaxed text-gray-800 whitespace-pre-wrap">
-                          {message.content}
-                        </p>
+                  <div className="flex justify-start mb-4">
+                    <div className="max-w-[80%]">
+                      <p className="text-[15px] leading-relaxed text-claude-text whitespace-pre-wrap mb-3">
+                        {message.content}
+                      </p>
 
-                        {/* Primary Source Link */}
-                        {message.primarySource && (
-                          <div className="mt-4 pt-3 border-t border-gray-100">
-                            <a
-                              href={message.primarySource.youtube_link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 text-sm text-accent hover:text-blue-700 font-medium transition-colors group"
-                            >
-                              <ExternalLink size={16} className="group-hover:translate-x-0.5 transition-transform" />
-                              <span>Watch at {Math.floor(message.primarySource.start_time)}s</span>
-                            </a>
-                          </div>
-                        )}
-
-                        {/* Additional Sources */}
-                        {message.sources && message.sources.length > 1 && (
-                          <details className="mt-3 pt-3 border-t border-gray-100">
-                            <summary className="text-sm text-gray-600 cursor-pointer hover:text-gray-900 transition-colors">
-                              View {message.sources.length - 1} more source{message.sources.length > 2 ? 's' : ''}
-                            </summary>
-                            <div className="mt-2 space-y-2">
-                              {message.sources.slice(1, 4).map((src, idx) => (
-                                <a
-                                  key={idx}
-                                  href={src.youtube_link}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="block text-sm text-blue-600 hover:text-blue-800 transition-colors"
-                                >
-                                  → {Math.floor(src.start_time)}s
-                                </a>
-                              ))}
-                            </div>
-                          </details>
-                        )}
-                      </div>
+                      {/* Primary Source Link */}
+                      {message.primarySource && (
+                        <a
+                          href={message.primarySource.youtube_link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs text-accent hover:underline"
+                        >
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                          <span>Watch at {Math.floor(message.primarySource.start_time)}s</span>
+                        </a>
+                      )}
                     </div>
                   </div>
                 )}
@@ -203,9 +158,9 @@ export default function ChatPage({ params }) {
             ))}
 
             {isLoading && (
-              <div className="flex justify-start fade-in">
-                <div className="bg-white border border-gray-200 rounded-2xl px-5 py-4 shadow-sm">
-                  <Loader2 className="animate-spin text-accent" size={20} />
+              <div className="flex justify-start mb-4">
+                <div className="px-4 py-3">
+                  <Loader2 className="animate-spin text-claude-muted" size={16} />
                 </div>
               </div>
             )}
@@ -216,34 +171,75 @@ export default function ChatPage({ params }) {
       </main>
 
       {/* Fixed Input at Bottom */}
-      <div className="bg-white border-t border-gray-200 sticky bottom-0 z-40 shadow-lg">
-        <div className="max-w-5xl mx-auto px-6 py-4">
-          <form onSubmit={handleSubmit}>
-            <div className="flex items-center gap-3 bg-gray-50 rounded-2xl px-4 py-2 border border-gray-200 focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/20 transition-all">
+      <div className="border-t border-claude-border bg-white">
+        <div className="max-w-3xl mx-auto px-4 py-4">
+          <form onSubmit={handleSubmit} className="flex items-end gap-2">
+            {/* Model Selector */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setShowModelDropdown(!showModelDropdown)}
+                className="h-10 px-3 text-xs text-claude-muted border border-claude-border rounded-lg hover:bg-claude-bg flex items-center gap-1.5 whitespace-nowrap"
+              >
+                <span>{selectedModel.name}</span>
+                <ChevronDown size={14} />
+              </button>
+
+              {showModelDropdown && (
+                <>
+                  <div
+                    className="fixed inset-0 z-10"
+                    onClick={() => setShowModelDropdown(false)}
+                  />
+                  <div className="absolute bottom-full left-0 mb-2 w-56 bg-white border border-claude-border rounded-lg shadow-lg overflow-hidden z-20">
+                    {MODELS.map((model) => (
+                      <button
+                        key={model.id}
+                        type="button"
+                        onClick={() => {
+                          setSelectedModel(model);
+                          setShowModelDropdown(false);
+                        }}
+                        className={`w-full text-left px-4 py-2.5 text-sm hover:bg-claude-bg transition-colors ${
+                          selectedModel.id === model.id ? 'bg-claude-bg text-claude-text font-medium' : 'text-claude-muted'
+                        }`}
+                      >
+                        {model.name}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Input Field */}
+            <div className="flex-1 border border-claude-border rounded-lg overflow-hidden focus-within:border-accent transition-colors">
               <input
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Ask a question..."
-                className="flex-1 bg-transparent outline-none text-[15px] text-gray-900 placeholder-gray-400"
+                className="w-full px-4 py-2.5 text-[15px] outline-none text-claude-text placeholder-claude-muted"
                 disabled={isLoading}
                 autoFocus
               />
-              <button
-                type="submit"
-                disabled={isLoading || !inputValue.trim()}
-                className="bg-accent hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white rounded-xl px-4 py-2 flex items-center gap-2 transition-all duration-200 active:scale-95"
-              >
-                {isLoading ? (
-                  <Loader2 className="animate-spin" size={18} />
-                ) : (
-                  <>
-                    <Send size={18} />
-                    <span className="text-sm font-medium">Send</span>
-                  </>
-                )}
-              </button>
             </div>
+
+            {/* Send Button */}
+            <button
+              type="submit"
+              disabled={isLoading || !inputValue.trim()}
+              className="h-10 px-4 bg-accent hover:bg-accent/90 disabled:bg-claude-border disabled:cursor-not-allowed text-white rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
+            >
+              {isLoading ? (
+                <Loader2 className="animate-spin" size={16} />
+              ) : (
+                <>
+                  <Send size={16} />
+                  <span>Send</span>
+                </>
+              )}
+            </button>
           </form>
         </div>
       </div>

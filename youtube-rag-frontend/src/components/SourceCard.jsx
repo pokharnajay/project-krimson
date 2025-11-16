@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Trash2, RefreshCw, Video, Clock, CheckCircle, XCircle, MessageCircle } from 'lucide-react';
+import { Trash2, RefreshCw, CheckCircle, XCircle, Clock, MessageCircle } from 'lucide-react';
 import { transcriptAPI } from '@/lib/api';
 
 export default function SourceCard({ source, onUpdate }) {
@@ -12,7 +12,7 @@ export default function SourceCard({ source, onUpdate }) {
 
   const handleDelete = async () => {
     if (!confirm('Are you sure you want to delete this source?')) return;
-    
+
     setIsDeleting(true);
     try {
       await transcriptAPI.deleteSource(source.id);
@@ -37,138 +37,102 @@ export default function SourceCard({ source, onUpdate }) {
   };
 
   const handleChat = () => {
-    // Navigate to dynamic chat page with source ID
     router.push(`/chat/${source.id}`);
   };
 
-  const getStatusIcon = () => {
+  const getStatusDisplay = () => {
     switch (source.status) {
       case 'ready':
-        return <CheckCircle className="text-green-500" size={20} />;
+        return (
+          <span className="inline-flex items-center gap-1.5 text-xs text-green-600">
+            <CheckCircle size={14} />
+            Ready
+          </span>
+        );
       case 'failed':
-        return <XCircle className="text-red-500" size={20} />;
+        return (
+          <span className="inline-flex items-center gap-1.5 text-xs text-red-600">
+            <XCircle size={14} />
+            Failed
+          </span>
+        );
       case 'processing':
-        return <Clock className="text-yellow-500 animate-pulse" size={20} />;
+        return (
+          <span className="inline-flex items-center gap-1.5 text-xs text-amber-600">
+            <Clock size={14} className="animate-spin" />
+            Processing
+          </span>
+        );
       default:
         return null;
     }
   };
 
-  const getStatusText = () => {
-    switch (source.status) {
-      case 'ready':
-        return 'Ready';
-      case 'failed':
-        return 'Failed';
-      case 'processing':
-        return 'Processing...';
-      default:
-        return 'Unknown';
-    }
-  };
-
   return (
-    <div className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-accent/30 flex flex-col h-[280px]">
-      {/* Card Header with Status Badge */}
-      <div className="p-5 border-b border-gray-100 flex-shrink-0">
-        <div className="flex items-start justify-between mb-3">
-          <div className="flex items-center gap-3 flex-1 min-w-0">
-            <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-sm">
-              <Video className="text-white" size={20} />
-            </div>
-            <div className="flex-1 min-w-0">
-              {/* Title with tooltip */}
-              <div className="group/title relative">
-                <h3
-                  className="font-semibold text-base text-gray-900 truncate cursor-default"
-                  title={source.title}
-                >
-                  {source.title}
-                </h3>
-                {/* Tooltip - shows on hover if title is truncated */}
-                {source.title.length > 30 && (
-                  <div className="absolute left-0 top-full mt-1 hidden group-hover/title:block z-50 bg-gray-900 text-white text-xs px-3 py-2 rounded-lg shadow-xl max-w-xs whitespace-normal">
-                    {source.title}
-                    <div className="absolute -top-1 left-4 w-2 h-2 bg-gray-900 transform rotate-45"></div>
-                  </div>
-                )}
-              </div>
-              <p className="text-xs text-gray-500 mt-1">
-                {source.video_ids.length} video{source.video_ids.length > 1 ? 's' : ''}
-              </p>
-            </div>
-          </div>
+    <div className="border border-claude-border rounded-lg p-4 hover:border-accent transition-colors bg-white">
+      {/* Header */}
+      <div className="flex items-start justify-between mb-3">
+        <div className="flex-1 min-w-0 mr-2">
+          <h3
+            className="text-sm font-medium text-claude-text truncate mb-1"
+            title={source.title}
+          >
+            {source.title}
+          </h3>
+          <p className="text-xs text-claude-muted">
+            {source.video_ids.length} video{source.video_ids.length > 1 ? 's' : ''}
+          </p>
         </div>
-
-        {/* Status Badge */}
-        <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium ${
-          source.status === 'ready'
-            ? 'bg-green-50 text-green-700 border border-green-200'
-            : source.status === 'failed'
-            ? 'bg-red-50 text-red-700 border border-red-200'
-            : 'bg-yellow-50 text-yellow-700 border border-yellow-200'
-        }`}>
-          {getStatusIcon()}
-          <span>{getStatusText()}</span>
-        </div>
+        {getStatusDisplay()}
       </div>
 
-      {/* Card Body */}
-      <div className="p-5 flex-1 flex flex-col justify-between">
-        <div className="text-xs text-gray-500 mb-4">
-          <div className="flex items-center gap-2">
-            <Clock size={14} />
-            <span>Created {new Date(source.created_at).toLocaleDateString('en-US', {
-              month: 'short',
-              day: 'numeric',
-              year: 'numeric'
-            })}</span>
-          </div>
-        </div>
+      {/* Date */}
+      <p className="text-xs text-claude-muted mb-4">
+        {new Date(source.created_at).toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        })}
+      </p>
 
-        {/* Action Buttons */}
-        <div className="flex flex-col gap-2">
-          {/* Chat Button - Only show when ready */}
-          {source.status === 'ready' && (
-            <button
-              onClick={handleChat}
-              className="w-full bg-accent hover:bg-blue-600 text-white rounded-lg px-4 py-2.5 flex items-center justify-center gap-2 font-medium transition-all duration-200 active:scale-95 shadow-sm"
-            >
-              <MessageCircle size={18} />
-              <span>Start Chat</span>
-            </button>
-          )}
-
-          {/* Retry Button - Only show when failed */}
-          {source.status === 'failed' && (
-            <button
-              onClick={handleRetry}
-              disabled={isRetrying}
-              className="w-full bg-yellow-500 hover:bg-yellow-600 disabled:bg-gray-300 text-white rounded-lg px-4 py-2.5 flex items-center justify-center gap-2 font-medium transition-all duration-200 active:scale-95 shadow-sm"
-            >
-              <RefreshCw size={18} className={isRetrying ? 'animate-spin' : ''} />
-              <span>{isRetrying ? 'Retrying...' : 'Retry Processing'}</span>
-            </button>
-          )}
-
-          {/* Processing State */}
-          {source.status === 'processing' && (
-            <div className="w-full bg-gray-100 text-gray-500 rounded-lg px-4 py-2.5 flex items-center justify-center gap-2 font-medium">
-              <RefreshCw size={18} className="animate-spin" />
-              <span>Processing...</span>
-            </div>
-          )}
-
-          {/* Delete Button - Always show */}
+      {/* Actions */}
+      <div className="flex gap-2">
+        {source.status === 'ready' && (
           <button
-            onClick={handleDelete}
-            disabled={isDeleting}
-            className="w-full bg-white hover:bg-red-50 text-red-600 border border-red-200 hover:border-red-300 rounded-lg px-4 py-2 flex items-center justify-center gap-2 font-medium transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+            onClick={handleChat}
+            className="flex-1 px-3 py-2 bg-accent hover:bg-accent/90 text-white rounded-lg text-xs font-medium transition-colors flex items-center justify-center gap-1.5"
           >
-            <Trash2 size={16} />
-            <span className="text-sm">{isDeleting ? 'Deleting...' : 'Delete'}</span>
+            <MessageCircle size={14} />
+            Chat
           </button>
-        </div>
+        )}
+
+        {source.status === 'failed' && (
+          <button
+            onClick={handleRetry}
+            disabled={isRetrying}
+            className="flex-1 px-3 py-2 border border-claude-border hover:bg-claude-bg text-claude-text rounded-lg text-xs font-medium transition-colors flex items-center justify-center gap-1.5 disabled:opacity-50"
+          >
+            <RefreshCw size={14} className={isRetrying ? 'animate-spin' : ''} />
+            Retry
+          </button>
+        )}
+
+        {source.status === 'processing' && (
+          <div className="flex-1 px-3 py-2 bg-claude-bg text-claude-muted rounded-lg text-xs font-medium flex items-center justify-center gap-1.5">
+            <RefreshCw size={14} className="animate-spin" />
+            Processing
+          </div>
+        )}
+
+        <button
+          onClick={handleDelete}
+          disabled={isDeleting}
+          className="px-3 py-2 border border-red-200 hover:bg-red-50 text-red-600 rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5 disabled:opacity-50"
+        >
+          <Trash2 size={14} />
+          {isDeleting ? 'Deleting...' : 'Delete'}
+        </button>
       </div>
     </div>
   );
