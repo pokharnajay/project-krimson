@@ -11,6 +11,7 @@ export default function Header({ sourceTitle }) {
   const [username, setUsername] = useState('User');
   const [credits, setCredits] = useState(0);
   const [showLogout, setShowLogout] = useState(false);
+  const [hideTimeout, setHideTimeout] = useState(null);
 
   useEffect(() => {
     fetchCredits();
@@ -45,6 +46,21 @@ export default function Header({ sourceTitle }) {
     router.push('/dashboard');
   };
 
+  const handleMouseEnter = () => {
+    if (hideTimeout) {
+      clearTimeout(hideTimeout);
+      setHideTimeout(null);
+    }
+    setShowLogout(true);
+  };
+
+  const handleMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setShowLogout(false);
+    }, 300); // Keep visible for 300ms after mouse leaves
+    setHideTimeout(timeout);
+  };
+
   return (
     <header className="border-b border-claude-border bg-white sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
@@ -76,8 +92,8 @@ export default function Header({ sourceTitle }) {
           {/* User Menu */}
           <div
             className="relative"
-            onMouseEnter={() => setShowLogout(true)}
-            onMouseLeave={() => setShowLogout(false)}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <button className="w-8 h-8 rounded-full bg-claude-bg text-claude-text font-medium flex items-center justify-center hover:bg-claude-border transition-colors text-sm">
               {username.charAt(0).toUpperCase()}
