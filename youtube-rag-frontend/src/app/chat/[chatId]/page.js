@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Send, Loader2, ChevronDown } from 'lucide-react';
 import Header from '@/components/Header';
-import { queryAPI, transcriptAPI } from '@/lib/api';
+import ChatSidebar from '@/components/ChatSidebar';
+import { queryAPI, chatAPI } from '@/lib/api';
 
 // OpenRouter models list
 const MODELS = [
@@ -20,32 +21,43 @@ const MODELS = [
 
 export default function ChatPage({ params }) {
   const router = useRouter();
-  const sourceId = params.chatId;
+  const chatId = params.chatId;
 
+  const [chat, setChat] = useState(null);
   const [source, setSource] = useState(null);
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [selectedModel, setSelectedModel] = useState(MODELS[0]);
   const [showModelDropdown, setShowModelDropdown] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const messagesEndRef = useRef(null);
 
-  // Fetch source details
+  // Load chat and messages
   useEffect(() => {
-    if (!sourceId) return;
+    if (!chatId) return;
 
-    const fetchSource = async () => {
+    const loadChat = async () => {
       try {
-        const response = await transcriptAPI.getSource(sourceId);
-        setSource(response);
+        const response = await chatAPI.getChat(chatId);
+        setChat(response);
+        setSource(response.sources);
+
+        // Convert database messages to UI format
+        const formattedMessages = (response.messages || []).map((msg) => ({
+          role: msg.role,
+          content: msg.content,
+          primarySource: msg.primary_source,
+        }));
+        setMessages(formattedMessages);
       } catch (error) {
-        console.error('Failed to fetch source:', error);
+        console.error('Failed to load chat:', error);
         router.push('/dashboard');
       }
     };
 
-    fetchSource();
-  }, [sourceId, router]);
+    loadChat();
+  }, [chatId, router]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -67,8 +79,8 @@ export default function ChatPage({ params }) {
     setIsLoading(true);
 
     try {
-      // Pass the selected model to the backend
-      const response = await queryAPI.ask(sourceId, userMessage, selectedModel.id);
+      // Pass the selected model and chatId to the backend
+      const response = await queryAPI.ask(source.id, userMessage, selectedModel.id, chatId);
 
       // Add AI response with sources
       setMessages((prev) => [
@@ -92,7 +104,7 @@ export default function ChatPage({ params }) {
     }
   };
 
-  if (!source) {
+  if (!source || !chat) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <Loader2 className="animate-spin text-claude-muted" size={24} />
@@ -102,10 +114,18 @@ export default function ChatPage({ params }) {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
+      <ChatSidebar
+        isOpen={sidebarOpen}
+        onToggle={setSidebarOpen}
+        currentChatId={chatId}
+      />
+
       <Header sourceTitle={source.title} />
 
       {/* Chat Messages Area */}
-      <main className="flex-1 overflow-y-auto">
+      <main className={`flex-1 overflow-y-auto transition-all duration-300 ${
+        sidebarOpen ? 'lg:ml-80' : ''
+      }`}>
         <div className="max-w-3xl mx-auto px-4 py-8">
           {messages.length === 0 && (
             <div className="text-center py-16">
@@ -171,7 +191,9 @@ export default function ChatPage({ params }) {
       </main>
 
       {/* Fixed Input at Bottom */}
-      <div className="border-t border-claude-border bg-white">
+      <div className={`border-t border-claude-border bg-white transition-all duration-300 ${
+        sidebarOpen ? 'lg:ml-80' : ''
+      }`}>
         <div className="max-w-3xl mx-auto px-4 py-4">
           <form onSubmit={handleSubmit} className="flex items-end gap-2">
             {/* Model Selector */}

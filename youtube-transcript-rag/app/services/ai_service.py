@@ -1,6 +1,34 @@
 from openai import OpenAI
 from config.settings import Config
 from app.utils.logger import log_info, log_error, log_warning
+import json
+import os
+
+def load_prompts():
+    """Load prompts from JSON configuration file"""
+    prompts_path = os.getenv('PROMPTS_CONFIG_PATH', 'config/prompts.json')
+
+    # Try to load from file
+    try:
+        # Get the absolute path relative to the project root
+        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+        full_path = os.path.join(base_dir, prompts_path)
+
+        with open(full_path, 'r') as f:
+            prompts = json.load(f)
+            log_info(f"Loaded prompts from {prompts_path}")
+            return prompts
+    except Exception as e:
+        log_warning(f"Failed to load prompts from {prompts_path}: {e}")
+        log_warning("Using default fallback prompts")
+
+        # Fallback to default prompts
+        return {
+            "system_prompt": "You are a knowledgeable assistant that provides clear, accurate answers based on YouTube video transcripts. Your answers should be natural and conversational, without any source citations, links, or timestamp references in the text itself. Answer questions directly and concisely.",
+            "user_prompt_template": "You are answering a question based on YouTube video transcript excerpts provided below.\n\nIMPORTANT INSTRUCTIONS:\n- Provide a clear, natural, and conversational answer based on the context\n- DO NOT include source numbers (like [Source 1]) in your answer\n- DO NOT include YouTube links or timestamps in your answer text\n- DO NOT mention \"in the video\" or reference timestamps explicitly\n- Focus on delivering the information in a helpful, direct way\n- If the context doesn't fully answer the question, acknowledge what you can answer from the available information\n\nContext from video transcripts:\n{context}\n\nQuestion: {query}\n\nProvide a helpful answer based solely on the information in the transcripts above. Keep your answer concise and natural.",
+            "max_tokens": 500,
+            "temperature": 0.7
+        }
 
 class AIService:
     def __init__(self):
@@ -34,6 +62,9 @@ class AIService:
                 "X-Title": "YouTube RAG Application"
             }
         )
+
+        # Load prompts from JSON
+        self.prompts = load_prompts()
     
     def generate_answer(self, query, context_chunks, model=None):
         """Generate answer using OpenRouter with video timestamps"""
@@ -57,35 +88,23 @@ class AIService:
                     'youtube_link': f"https://www.youtube.com/watch?v={video_id}&t={start_time}s"
                 })
             
-            # Create prompt for natural, conversational answers
-            prompt = f"""You are answering a question based on YouTube video transcript excerpts provided below.
-
-IMPORTANT INSTRUCTIONS:
-- Provide a clear, natural, and conversational answer based on the context
-- DO NOT include source numbers (like [Source 1]) in your answer
-- DO NOT include YouTube links or timestamps in your answer text
-- DO NOT mention "in the video" or reference timestamps explicitly
-- Focus on delivering the information in a helpful, direct way
-- If the context doesn't fully answer the question, acknowledge what you can answer from the available information
-
-Context from video transcripts:
-{context_text}
-
-Question: {query}
-
-Provide a helpful answer based solely on the information in the transcripts above. Keep your answer concise and natural."""
+            # Create prompt using loaded configuration
+            user_prompt = self.prompts['user_prompt_template'].format(
+                context=context_text,
+                query=query
+            )
 
             response = self.client.chat.completions.create(
                 model=model,
                 messages=[
                     {
                         "role": "system",
-                        "content": "You are a knowledgeable assistant that provides clear, accurate answers based on YouTube video transcripts. Your answers should be natural and conversational, without any source citations, links, or timestamp references in the text itself. Answer questions directly and concisely."
+                        "content": self.prompts['system_prompt']
                     },
-                    {"role": "user", "content": prompt}
+                    {"role": "user", "content": user_prompt}
                 ],
-                max_tokens=500,
-                temperature=0.7
+                max_tokens=self.prompts.get('max_tokens', 500),
+                temperature=self.prompts.get('temperature', 0.7)
             )
             
             answer = response.choices[0].message.content

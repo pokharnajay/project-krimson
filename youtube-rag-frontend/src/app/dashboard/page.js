@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Plus, RefreshCw } from 'lucide-react';
 import Header from '@/components/Header';
+import ChatSidebar from '@/components/ChatSidebar';
 import SourceCard from '@/components/SourceCard';
 import { transcriptAPI } from '@/lib/api';
 import { authService } from '@/lib/auth';
@@ -12,6 +13,7 @@ export default function DashboardPage() {
   const router = useRouter();
   const [sources, setSources] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     // Double check authentication
@@ -49,9 +51,17 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      <ChatSidebar
+        isOpen={sidebarOpen}
+        onToggle={setSidebarOpen}
+        currentChatId={null}
+      />
+
       <Header />
 
-      <main className="max-w-6xl mx-auto px-6 py-8">
+      <main className={`max-w-6xl mx-auto px-6 py-8 transition-all duration-300 ${
+        sidebarOpen ? 'lg:ml-80' : ''
+      }`}>
         {/* Page Header */}
         <div className="flex items-center justify-between mb-8">
           <div>

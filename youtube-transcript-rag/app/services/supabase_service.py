@@ -156,3 +156,98 @@ def delete_source(source_id):
     """Delete a source"""
     supabase = get_supabase_client()
     supabase.table('sources').delete().eq('id', source_id).execute()
+
+
+# Chat operations
+def create_chat(user_id, source_id, title):
+    """Create a new chat session"""
+    supabase = get_supabase_client()
+    chat_id = str(uuid.uuid4())
+
+    result = supabase.table('chats').insert({
+        'id': chat_id,
+        'user_id': user_id,
+        'source_id': source_id,
+        'title': title
+    }).execute()
+
+    return result.data[0] if result.data else None
+
+
+def get_chat_by_id(chat_id):
+    """Get specific chat details"""
+    supabase = get_supabase_client()
+    result = supabase.table('chats').select('*, sources(*)').eq('id', chat_id).execute()
+    return result.data[0] if result.data else None
+
+
+def get_chats_by_user(user_id, limit=50, offset=0, search=None):
+    """
+    Get all chats for a user with optional search
+    - Orders by updated_at DESC (most recent first)
+    - Supports text search on title
+    - Returns pagination info
+    """
+    supabase = get_supabase_client()
+    query = supabase.table('chats').select('*, sources(title)', count='exact').eq('user_id', user_id)
+
+    if search:
+        query = query.ilike('title', f'%{search}%')
+
+    query = query.order('updated_at', desc=True).limit(limit).offset(offset)
+    result = query.execute()
+
+    return {
+        'chats': result.data if result.data else [],
+        'total': result.count if result.count is not None else 0
+    }
+
+
+def update_chat_title(chat_id, title):
+    """Update chat title"""
+    supabase = get_supabase_client()
+    supabase.table('chats').update({'title': title}).eq('id', chat_id).execute()
+
+
+def delete_chat(chat_id):
+    """Delete chat and all messages (cascade)"""
+    supabase = get_supabase_client()
+    supabase.table('chats').delete().eq('id', chat_id).execute()
+
+
+# Message operations
+def create_message(chat_id, role, content, model_used=None, primary_source=None, metadata=None):
+    """Create a new message in a chat"""
+    supabase = get_supabase_client()
+    message_id = str(uuid.uuid4())
+
+    result = supabase.table('messages').insert({
+        'id': message_id,
+        'chat_id': chat_id,
+        'role': role,
+        'content': content,
+        'model_used': model_used,
+        'primary_source': primary_source,
+        'metadata': metadata
+    }).execute()
+
+    return result.data[0] if result.data else None
+
+
+def get_messages_by_chat(chat_id, limit=100, offset=0):
+    """Get all messages for a chat, ordered by created_at"""
+    supabase = get_supabase_client()
+    result = supabase.table('messages').select('*').eq('chat_id', chat_id).order('created_at').limit(limit).offset(offset).execute()
+    return result.data if result.data else []
+
+
+def get_chat_with_messages(chat_id):
+    """Get chat details and all messages in one call"""
+    chat = get_chat_by_id(chat_id)
+    if not chat:
+        return None
+
+    messages = get_messages_by_chat(chat_id)
+    chat['messages'] = messages
+
+    return chat

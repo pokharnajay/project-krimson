@@ -2,8 +2,16 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.services.pinecone_service import PineconeService
 from app.services.ai_service import AIService
-from app.services.supabase_service import update_credits, get_user_by_id, get_source_by_id
+from app.services.supabase_service import (
+    update_credits,
+    get_user_by_id,
+    get_source_by_id,
+    create_chat,
+    create_message,
+    update_chat_title
+)
 from app.utils.logger import log_info, log_error, log_warning, log_debug
+import os
 
 query_bp = Blueprint('query', __name__)
 
@@ -23,6 +31,7 @@ def ask_question():
         question = data.get('question') or data.get('query')  # Support both field names
         video_ids = data.get('video_ids')
         source_id = data.get('source_id')
+        chat_id = data.get('chat_id')  # Optional: existing chat ID
         model = data.get('model', 'openrouter/auto')
         top_k = data.get('top_k', 5)
 
@@ -79,6 +88,16 @@ def ask_question():
             video_ids = source.get('video_ids', [])
             log_debug(f"Retrieved {len(video_ids)} video IDs from source")
 
+            # Create or get chat for this conversation
+            if not chat_id:
+                # Create new chat with temporary title (will be updated after first message)
+                title = question[:50] + ("..." if len(question) > 50 else "")
+                log_info(f"Creating new chat for source {source_id}")
+                chat = create_chat(user_id, source_id, title)
+                chat_id = chat['id']
+            else:
+                log_debug(f"Using existing chat {chat_id}")
+
         elif video_ids:
             if not isinstance(video_ids, list) or len(video_ids) == 0:
                 log_warning(f"Invalid video_ids format from user {user_id}")
@@ -120,6 +139,15 @@ def ask_question():
 
         log_info(f"Found {len(context_chunks)} relevant chunks")
 
+        # Save user message to chat history
+        if chat_id:
+            try:
+                create_message(chat_id, 'user', question)
+                log_debug(f"Saved user message to chat {chat_id}")
+            except Exception as msg_error:
+                log_error(f"Failed to save user message: {str(msg_error)}")
+                # Continue even if message save fails
+
         # Generate answer
         try:
             log_debug(f"Generating answer with model: {model}")
@@ -128,16 +156,33 @@ def ask_question():
             log_error(f"AI generation failed: {str(ai_error)}", exc_info=True)
             return jsonify({'error': 'Failed to generate answer. Please try again.'}), 500
 
-        # Deduct credits
+        # Save assistant message to chat history
+        if chat_id:
+            try:
+                create_message(
+                    chat_id,
+                    'assistant',
+                    result.get('answer', ''),
+                    model_used=result.get('model_used', model),
+                    primary_source=result.get('primary_source')
+                )
+                log_debug(f"Saved assistant message to chat {chat_id}")
+            except Exception as msg_error:
+                log_error(f"Failed to save assistant message: {str(msg_error)}")
+                # Continue even if message save fails
+
+        # Deduct credits using ENV variable
         try:
-            credits_left = update_credits(user['username'], -1)
-            log_info(f"Credits deducted. User {user_id} has {credits_left} credits remaining")
+            credits_cost = int(os.getenv('CREDITS_PER_QUERY', 1))
+            credits_left = update_credits(user['username'], -credits_cost)
+            log_info(f"Credits deducted ({credits_cost}). User {user_id} has {credits_left} credits remaining")
         except Exception as credit_error:
             log_error(f"Failed to update credits for user {user_id}: {str(credit_error)}")
             # Don't fail the request if credit update fails, but log it
-            credits_left = user.get('credits', 0) - 1
+            credits_left = user.get('credits', 0) - int(os.getenv('CREDITS_PER_QUERY', 1))
 
         return jsonify({
+            'chat_id': chat_id,
             'answer': result.get('answer', ''),
             'sources': result.get('sources', []),
             'primary_source': result['sources'][0] if result.get('sources') else None,

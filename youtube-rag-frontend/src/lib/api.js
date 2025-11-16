@@ -199,14 +199,83 @@ export const queryAPI = {
    * @param {string} sourceId - Source UUID
    * @param {string} question - Question to ask
    * @param {string} model - OpenRouter model ID (optional)
-   * @returns {Promise<{answer: string, sources: Array, credits_remaining: number}>}
+   * @param {string} chatId - Existing chat ID (optional, creates new chat if not provided)
+   * @returns {Promise<{chat_id: string, answer: string, sources: Array, credits_remaining: number}>}
    */
-  ask: async (sourceId, question, model = null) => {
+  ask: async (sourceId, question, model = null, chatId = null) => {
     const response = await apiClient.post('/api/query/ask', {
       source_id: sourceId,
       question,
       ...(model && { model }),
+      ...(chatId && { chat_id: chatId }),
     });
+    return response.data;
+  },
+};
+
+// ============================================================================
+// CHAT HISTORY API
+// ============================================================================
+
+export const chatAPI = {
+  /**
+   * Get all chats for current user
+   * @param {string} search - Search keyword (optional)
+   * @param {number} limit - Items per page (default: 50)
+   * @param {number} offset - Offset for pagination (default: 0)
+   * @returns {Promise<{chats: Array, total: number, limit: number, offset: number}>}
+   */
+  getChats: async (search = '', limit = 50, offset = 0) => {
+    const params = new URLSearchParams({ limit: limit.toString(), offset: offset.toString() });
+    if (search) params.append('search', search);
+    const response = await apiClient.get(`/api/chats?${params}`);
+    return response.data;
+  },
+
+  /**
+   * Get specific chat with all messages
+   * @param {string} chatId - Chat UUID
+   * @returns {Promise<{id: string, title: string, messages: Array, source: Object}>}
+   */
+  getChat: async (chatId) => {
+    const response = await apiClient.get(`/api/chats/${chatId}`);
+    return response.data;
+  },
+
+  /**
+   * Create new chat
+   * @param {string} sourceId - Source UUID
+   * @param {string} title - Chat title (optional)
+   * @returns {Promise<{id: string, user_id: string, source_id: string, title: string}>}
+   */
+  createChat: async (sourceId, title = 'New Chat') => {
+    const response = await apiClient.post('/api/chats', {
+      source_id: sourceId,
+      title,
+    });
+    return response.data;
+  },
+
+  /**
+   * Delete a chat and all its messages
+   * @param {string} chatId - Chat UUID
+   * @returns {Promise<{message: string}>}
+   */
+  deleteChat: async (chatId) => {
+    const response = await apiClient.delete(`/api/chats/${chatId}`);
+    return response.data;
+  },
+
+  /**
+   * Get messages for a specific chat
+   * @param {string} chatId - Chat UUID
+   * @param {number} limit - Items per page (default: 100)
+   * @param {number} offset - Offset for pagination (default: 0)
+   * @returns {Promise<{messages: Array, chat_id: string}>}
+   */
+  getMessages: async (chatId, limit = 100, offset = 0) => {
+    const params = new URLSearchParams({ limit: limit.toString(), offset: offset.toString() });
+    const response = await apiClient.get(`/api/chats/${chatId}/messages?${params}`);
     return response.data;
   },
 };
