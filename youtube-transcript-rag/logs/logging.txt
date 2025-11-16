@@ -1214,3 +1214,8 @@ Exception: Failed to generate answer: Error code: 401 - {'error': {'message': 'U
 2025-11-16 19:51:36,939 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
 2025-11-16 19:52:36,941 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
 2025-11-16 19:53:36,938 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 20:08:11,404 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 20:08:14,375 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 20:08:14,520 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 20:08:16,626 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 20:08:32,855 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
