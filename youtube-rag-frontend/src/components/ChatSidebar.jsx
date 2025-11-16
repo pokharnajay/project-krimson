@@ -10,6 +10,7 @@ export default function ChatSidebar({ isOpen, onToggle, currentChatId }) {
   const [chats, setChats] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -74,25 +75,46 @@ export default function ChatSidebar({ isOpen, onToggle, currentChatId }) {
         />
       )}
 
-      {/* Sidebar */}
+      {/* Permanent Vertical Bar */}
+      <div className="fixed top-0 left-0 h-full w-12 bg-white border-r border-claude-border z-50 flex items-center justify-center">
+        {/* Toggle Button with Tooltip */}
+        <div className="relative">
+          <button
+            onClick={() => onToggle(!isOpen)}
+            onMouseEnter={() => setShowTooltip(true)}
+            onMouseLeave={() => setShowTooltip(false)}
+            className="p-2 hover:bg-claude-bg rounded-lg transition-colors group"
+            aria-label={isOpen ? 'Close sidebar' : 'Open sidebar'}
+          >
+            {isOpen ? (
+              <ChevronLeft size={20} className="text-claude-muted group-hover:text-claude-text transition-colors" />
+            ) : (
+              <ChevronRight size={20} className="text-claude-muted group-hover:text-claude-text transition-colors" />
+            )}
+          </button>
+
+          {/* Tooltip */}
+          {showTooltip && (
+            <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap pointer-events-none z-50">
+              {isOpen ? 'Close sidebar' : 'Open sidebar'}
+              <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900"></div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Sidebar Content */}
       <div
-        className={`fixed top-0 left-0 h-full bg-white border-r border-claude-border z-50 transition-transform duration-300 ${
+        className={`fixed top-0 left-12 h-full bg-white border-r border-claude-border z-50 transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } w-80 flex flex-col`}
       >
         {/* Header */}
-        <div className="h-14 border-b border-claude-border flex items-center justify-between px-4 flex-shrink-0">
+        <div className="h-14 border-b border-claude-border flex items-center px-4 flex-shrink-0">
           <div className="flex items-center gap-2">
             <MessageSquare size={18} className="text-claude-muted" />
             <span className="text-sm font-medium text-claude-text">Chat History</span>
           </div>
-          <button
-            onClick={() => onToggle(false)}
-            className="p-1 hover:bg-claude-bg rounded transition-colors"
-            aria-label="Close sidebar"
-          >
-            <ChevronLeft size={18} className="text-claude-muted" />
-          </button>
         </div>
 
         {/* Search */}
@@ -182,17 +204,6 @@ export default function ChatSidebar({ isOpen, onToggle, currentChatId }) {
           )}
         </div>
       </div>
-
-      {/* Toggle Button (when closed) */}
-      {!isOpen && (
-        <button
-          onClick={() => onToggle(true)}
-          className="fixed top-20 left-0 z-40 p-2 bg-white border border-l-0 border-claude-border rounded-r-lg hover:bg-claude-bg transition-colors shadow-sm"
-          aria-label="Open chat history"
-        >
-          <ChevronRight size={18} className="text-claude-muted" />
-        </button>
-      )}
     </>
   );
 }

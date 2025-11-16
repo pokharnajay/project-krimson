@@ -59,8 +59,8 @@ export default function DashboardPage() {
 
       <Header />
 
-      <main className={`max-w-6xl mx-auto px-6 py-8 transition-all duration-300 ${
-        sidebarOpen ? 'lg:ml-80' : ''
+      <main className={`max-w-6xl mx-auto px-6 py-8 transition-all duration-300 ml-12 ${
+        sidebarOpen ? 'lg:ml-92' : ''
       }`}>
         {/* Page Header */}
         <div className="flex items-center justify-between mb-8">
