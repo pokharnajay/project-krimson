@@ -187,6 +187,7 @@ def ask_question():
         return jsonify({
             'chat_id': chat_id,
             'answer': result.get('answer', ''),
+            'paragraphs': result.get('paragraphs', []),
             'sources': result.get('sources', []),
             'primary_source': result['sources'][0] if result.get('sources') else None,
             'model_used': result.get('model_used', model),

@@ -1,8 +1,9 @@
 from openai import OpenAI
 from config.settings import Config
-from app.utils.logger import log_info, log_error, log_warning
+from app.utils.logger import log_info, log_error, log_warning, log_debug
 import json
 import os
+import re
 
 def load_prompts():
     """Load prompts from JSON configuration file"""
@@ -67,33 +68,36 @@ class AIService:
         self.prompts = load_prompts()
     
     def generate_answer(self, query, context_chunks, model=None):
-        """Generate answer using OpenRouter with video timestamps"""
+        """Generate multi-paragraph answer with timestamp citations"""
         model = model or Config.OPENROUTER_MODEL
         log_info(f"Generating answer using model: {model}")
-        
+
         try:
-            # Format context with timestamps and video IDs
-            context_text = ""
-            sources = []
-            for i, chunk in enumerate(context_chunks):
+            # Format context grouped by video and chronologically ordered
+            context_text = self._format_context_grouped(context_chunks)
+
+            # Build sources map for citation resolution
+            sources_map = {}
+            for chunk in context_chunks:
                 video_id = chunk['metadata']['video_id']
                 start_time = int(chunk['metadata']['start_time'])
-                text = chunk['metadata']['text']
-                
-                context_text += f"\n[Source {i+1}] Video: {video_id}, Time: {start_time}s\n{text}\n"
-                sources.append({
-                    'video_id': video_id,
-                    'start_time': start_time,
-                    'text': text[:200],
-                    'youtube_link': f"https://www.youtube.com/watch?v={video_id}&t={start_time}s"
-                })
-            
+                key = f"{video_id}:{start_time}"
+
+                if key not in sources_map:
+                    sources_map[key] = {
+                        'video_id': video_id,
+                        'start_time': start_time,
+                        'text': chunk['metadata']['text'][:200],
+                        'youtube_link': f"https://www.youtube.com/watch?v={video_id}&t={start_time}s"
+                    }
+
             # Create prompt using loaded configuration
             user_prompt = self.prompts['user_prompt_template'].format(
                 context=context_text,
                 query=query
             )
 
+            log_debug(f"Calling AI with max_tokens={self.prompts.get('max_tokens', 1500)}")
             response = self.client.chat.completions.create(
                 model=model,
                 messages=[
@@ -103,19 +107,122 @@ class AIService:
                     },
                     {"role": "user", "content": user_prompt}
                 ],
-                max_tokens=self.prompts.get('max_tokens', 500),
+                max_tokens=self.prompts.get('max_tokens', 1500),
                 temperature=self.prompts.get('temperature', 0.7)
             )
-            
-            answer = response.choices[0].message.content
-            
+
+            answer_raw = response.choices[0].message.content
+            log_debug(f"Received AI response: {len(answer_raw)} characters")
+
+            # Parse paragraphs with citations
+            paragraphs = self._parse_paragraphs_with_citations(answer_raw, sources_map)
+
+            # Also keep plain answer text (with citations converted to readable format)
+            answer_text = self._convert_citations_to_text(answer_raw)
+
+            # Collect all unique sources used
+            all_sources = list(sources_map.values())
+
             return {
-                'answer': answer,
-                'sources': sources,
-                'primary_source': sources[0] if sources else None,
+                'answer': answer_text,
+                'paragraphs': paragraphs,
+                'sources': all_sources,
+                'primary_source': all_sources[0] if all_sources else None,
                 'model_used': model
             }
-            
+
         except Exception as e:
             log_error(f"AI generation failed: {str(e)}")
             raise Exception(f"Failed to generate answer: {str(e)}")
+
+    def _format_context_grouped(self, context_chunks):
+        """Format context chunks grouped by video and chronologically ordered"""
+        # Group by video_id
+        videos = {}
+        for chunk in context_chunks:
+            video_id = chunk['metadata']['video_id']
+            if video_id not in videos:
+                videos[video_id] = []
+            videos[video_id].append(chunk)
+
+        # Format output
+        context_text = ""
+        video_num = 1
+        for video_id, chunks in videos.items():
+            context_text += f"\n=== Video {video_num}: {video_id} ===\n"
+            for i, chunk in enumerate(chunks, 1):
+                start_time = int(chunk['metadata']['start_time'])
+                text = chunk['metadata']['text']
+                context_text += f"\n[Timestamp: {start_time}s]\n{text}\n"
+            video_num += 1
+
+        return context_text
+
+    def _parse_paragraphs_with_citations(self, answer_text, sources_map):
+        """
+        Parse AI response into paragraphs with citations.
+        Expected format: Each paragraph ends with [CITE:video_id:timestamp]
+        """
+        paragraphs = []
+
+        # Split by double newlines to get paragraphs
+        raw_paragraphs = [p.strip() for p in answer_text.split('\n\n') if p.strip()]
+
+        # Pattern to match citations: [CITE:video_id:timestamp]
+        citation_pattern = r'\[CITE:([^:]+):(\d+)\]'
+
+        for para_text in raw_paragraphs:
+            # Find citation in this paragraph
+            citation_match = re.search(citation_pattern, para_text)
+
+            if citation_match:
+                video_id = citation_match.group(1)
+                timestamp = int(citation_match.group(2))
+
+                # Remove citation marker from text
+                clean_text = re.sub(citation_pattern, '', para_text).strip()
+
+                # Create YouTube link
+                youtube_link = f"https://www.youtube.com/watch?v={video_id}&t={timestamp}s"
+
+                # Find source info
+                source_key = f"{video_id}:{timestamp}"
+                source_info = sources_map.get(source_key, {
+                    'video_id': video_id,
+                    'start_time': timestamp,
+                    'youtube_link': youtube_link
+                })
+
+                paragraphs.append({
+                    'text': clean_text,
+                    'citation': {
+                        'video_id': video_id,
+                        'timestamp': timestamp,
+                        'youtube_link': youtube_link,
+                        'display_text': '📺 Watch'
+                    },
+                    'source': source_info
+                })
+            else:
+                # Paragraph without citation - still include it
+                log_warning(f"Paragraph without citation: {para_text[:50]}...")
+                paragraphs.append({
+                    'text': para_text,
+                    'citation': None,
+                    'source': None
+                })
+
+        log_info(f"Parsed {len(paragraphs)} paragraphs with citations")
+        return paragraphs
+
+    def _convert_citations_to_text(self, answer_text):
+        """Convert citation markers to readable text format"""
+        # Replace [CITE:video_id:timestamp] with "📺 [Watch]"
+        citation_pattern = r'\[CITE:([^:]+):(\d+)\]'
+
+        def replace_citation(match):
+            video_id = match.group(1)
+            timestamp = match.group(2)
+            return f" 📺 [Watch]({video_id}@{timestamp}s)"
+
+        return re.sub(citation_pattern, replace_citation, answer_text)
