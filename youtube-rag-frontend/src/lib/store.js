@@ -1,12 +1,20 @@
 /**
  * Global State Management with Zustand
  * Manages user, sources, and app state
+ * Uses Supabase for direct database access (read operations)
  */
 
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
-import { userAPI, transcriptAPI } from './api';
+import { userAPI, transcriptAPI } from './api'; // Keep for mutations
 import { authService } from './auth';
+import {
+  fetchUserSources,
+  fetchUserSourcesCount,
+  fetchUserCredits,
+  fetchUserProfile,
+  fetchUserChats,
+} from './supabase';
 
 /**
  * User Store - Manages user authentication and profile
@@ -26,12 +34,17 @@ export const useUserStore = create(
       setCredits: (credits) => set({ credits }),
 
       /**
-       * Fetch user profile
+       * Fetch user profile (uses Supabase direct query)
        */
       fetchProfile: async () => {
         set({ isLoading: true, error: null });
         try {
-          const profile = await userAPI.getProfile();
+          const user = authService.getUser();
+          if (!user || !user.id) {
+            throw new Error('User ID not available');
+          }
+
+          const profile = await fetchUserProfile(user.id);
           set({ user: profile, credits: profile.credits, isLoading: false });
           authService.setUser(profile);
           return profile;
@@ -42,13 +55,18 @@ export const useUserStore = create(
       },
 
       /**
-       * Fetch user credits
+       * Fetch user credits (uses Supabase direct query)
        */
       fetchCredits: async () => {
         try {
-          const data = await userAPI.getCredits();
-          set({ credits: data.credits });
-          return data.credits;
+          const user = authService.getUser();
+          if (!user || !user.id) {
+            throw new Error('User ID not available');
+          }
+
+          const credits = await fetchUserCredits(user.id);
+          set({ credits });
+          return credits;
         } catch (error) {
           console.error('Failed to fetch credits:', error);
           throw error;
@@ -94,18 +112,28 @@ export const useSourcesStore = create(
 
       // Actions
       /**
-       * Fetch all sources with pagination
+       * Fetch all sources with pagination (uses Supabase direct query)
        */
       fetchSources: async (page = 1, limit = 20) => {
         set({ isLoading: true, error: null });
         try {
-          const data = await transcriptAPI.getAllSources(page, limit);
+          const user = authService.getUser();
+          if (!user || !user.id) {
+            throw new Error('User ID not available');
+          }
+
+          const offset = (page - 1) * limit;
+          const sources = await fetchUserSources(user.id, limit, offset);
+          const total = await fetchUserSourcesCount(user.id);
+          const pages = Math.ceil(total / limit);
+
           set({
-            sources: data.sources || [],
-            pagination: data.pagination || { page, limit, total: 0, pages: 0 },
+            sources: sources || [],
+            pagination: { page, limit, total, pages },
             isLoading: false,
           });
-          return data;
+
+          return { sources, pagination: { page, limit, total, pages } };
         } catch (error) {
           set({ error: error.message, isLoading: false });
           throw error;
@@ -113,12 +141,18 @@ export const useSourcesStore = create(
       },
 
       /**
-       * Fetch a specific source
+       * Fetch a specific source (uses Supabase direct query)
        */
       fetchSource: async (sourceId) => {
         set({ isLoading: true, error: null });
         try {
-          const source = await transcriptAPI.getSource(sourceId);
+          const user = authService.getUser();
+          if (!user || !user.id) {
+            throw new Error('User ID not available');
+          }
+
+          const { fetchSourceById } = await import('./supabase');
+          const source = await fetchSourceById(sourceId, user.id);
           set({ currentSource: source, isLoading: false });
           return source;
         } catch (error) {
@@ -321,7 +355,7 @@ export const useChatMetadataStore = create(
 
       // Actions
       /**
-       * Fetch chat metadata from backend
+       * Fetch chat metadata from Supabase (uses direct query)
        * Uses caching - only refetches if explicitly requested or stale
        */
       fetchChatMetadata: async (forceRefresh = false) => {
@@ -335,8 +369,12 @@ export const useChatMetadataStore = create(
 
         set({ isLoading: true, error: null });
         try {
-          const { chatAPI } = await import('./api');
-          const response = await chatAPI.getChats();
+          const user = authService.getUser();
+          if (!user || !user.id) {
+            throw new Error('User ID not available');
+          }
+
+          const response = await fetchUserChats(user.id);
           set({
             chatList: response.chats || [],
             isLoading: false,

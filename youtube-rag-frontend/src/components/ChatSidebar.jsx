@@ -3,8 +3,9 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { MessageSquare, Search, X, Trash2, PanelRightOpen, PanelRight } from 'lucide-react';
-import { chatAPI } from '@/lib/api';
 import { useChatMetadataStore } from '@/lib/store';
+import { authService } from '@/lib/auth';
+import { deleteChat } from '@/lib/supabase';
 
 export default function ChatSidebar({ isOpen, onToggle, currentChatId }) {
   const router = useRouter();
@@ -28,7 +29,13 @@ export default function ChatSidebar({ isOpen, onToggle, currentChatId }) {
     if (!confirm('Delete this chat?')) return;
 
     try {
-      await chatAPI.deleteChat(chatId);
+      const user = authService.getUser();
+      if (!user || !user.id) {
+        throw new Error('User not authenticated');
+      }
+
+      // Delete from Supabase directly
+      await deleteChat(chatId, user.id);
       deleteChatFromStore(chatId); // Update store
 
       // If currently viewing the deleted chat, redirect to dashboard

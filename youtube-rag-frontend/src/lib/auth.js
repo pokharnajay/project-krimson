@@ -28,7 +28,7 @@ export const authService = {
    * Set authentication tokens after successful login
    * @param {Object} data - {access_token, refresh_token}
    */
-  setTokens(data) {
+  async setTokens(data) {
     if (!isBrowser()) return;
 
     const { access_token, refresh_token } = data;
@@ -39,6 +39,14 @@ export const authService = {
       // Calculate and store token expiry time
       const expiryTime = Date.now() + DEFAULT_TOKEN_EXPIRY * 1000;
       localStorage.setItem(TOKEN_EXPIRY_KEY, expiryTime.toString());
+
+      // Also set token in Supabase client for direct database access
+      try {
+        const { setSupabaseAuth } = await import('./supabase');
+        setSupabaseAuth(access_token);
+      } catch (error) {
+        console.error('Failed to set Supabase auth:', error);
+      }
     }
 
     if (refresh_token) {
@@ -135,20 +143,28 @@ export const authService = {
   /**
    * Clear all authentication tokens and user data
    */
-  clearTokens() {
+  async clearTokens() {
     if (!isBrowser()) return;
 
     localStorage.removeItem(ACCESS_TOKEN_KEY);
     localStorage.removeItem(REFRESH_TOKEN_KEY);
     localStorage.removeItem(TOKEN_EXPIRY_KEY);
     localStorage.removeItem(USER_KEY);
+
+    // Also clear Supabase auth
+    try {
+      const { clearSupabaseAuth } = await import('./supabase');
+      await clearSupabaseAuth();
+    } catch (error) {
+      console.error('Failed to clear Supabase auth:', error);
+    }
   },
 
   /**
    * Logout user and redirect to login page
    */
-  logout() {
-    this.clearTokens();
+  async logout() {
+    await this.clearTokens();
     if (isBrowser()) {
       window.location.href = '/login';
     }
