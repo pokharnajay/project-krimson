@@ -59,7 +59,7 @@ export default function DashboardPage() {
 
       <Header />
 
-      <main className={`max-w-6xl mx-auto px-6 py-8 transition-all duration-300 ${
+      <main className={`max-w-full mx-auto px-6 py-8 transition-all duration-300 ${
         sidebarOpen ? 'ml-80' : 'ml-12'
       }`}>
         {/* Page Header */}
@@ -113,7 +113,7 @@ export default function DashboardPage() {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {sources.map((source) => (
               <SourceCard key={source.id} source={source} onUpdate={fetchSources} />
             ))}

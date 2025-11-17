@@ -1219,3 +1219,7 @@ Exception: Failed to generate answer: Error code: 401 - {'error': {'message': 'U
 2025-11-16 20:08:14,520 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
 2025-11-16 20:08:16,626 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
 2025-11-16 20:08:32,855 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-17 16:56:33,254 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-17 16:56:36,236 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-17 16:57:19,038 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-17 16:57:19,040 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
