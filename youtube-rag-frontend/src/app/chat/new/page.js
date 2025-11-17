@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Send, Loader2, ChevronDown } from 'lucide-react';
 import Header from '@/components/Header';
 import ChatSidebar from '@/components/ChatSidebar';
-import { queryAPI, chatAPI } from '@/lib/api';
+import { queryAPI, transcriptAPI } from '@/lib/api';
 
 // OpenRouter models list
 const MODELS = [
@@ -19,11 +19,11 @@ const MODELS = [
   { id: 'cohere/command-r-plus', name: 'Command R+' },
 ];
 
-export default function ChatPage({ params }) {
+export default function NewChatPage() {
   const router = useRouter();
-  const chatId = params.chatId;
+  const searchParams = useSearchParams();
+  const sourceId = searchParams.get('sourceId');
 
-  const [chat, setChat] = useState(null);
   const [source, setSource] = useState(null);
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
@@ -33,31 +33,39 @@ export default function ChatPage({ params }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Load chat and messages
+  // Load source information
   useEffect(() => {
-    if (!chatId) return;
+    if (!sourceId) {
+      router.push('/dashboard');
+      return;
+    }
 
-    const loadChat = async () => {
+    const loadSource = async () => {
       try {
-        const response = await chatAPI.getChat(chatId);
-        setChat(response);
-        setSource(response.sources);
+        const sources = await transcriptAPI.getAllSources();
+        const foundSource = sources.sources.find(s => s.id === sourceId);
 
-        // Convert database messages to UI format
-        const formattedMessages = (response.messages || []).map((msg) => ({
-          role: msg.role,
-          content: msg.content,
-          primarySource: msg.primary_source,
-        }));
-        setMessages(formattedMessages);
+        if (!foundSource) {
+          console.error('Source not found');
+          router.push('/dashboard');
+          return;
+        }
+
+        if (foundSource.status !== 'ready') {
+          alert('This source is not ready yet. Please wait until processing is complete.');
+          router.push('/dashboard');
+          return;
+        }
+
+        setSource(foundSource);
       } catch (error) {
-        console.error('Failed to load chat:', error);
+        console.error('Failed to load source:', error);
         router.push('/dashboard');
       }
     };
 
-    loadChat();
-  }, [chatId, router]);
+    loadSource();
+  }, [sourceId, router]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -79,8 +87,8 @@ export default function ChatPage({ params }) {
     setIsLoading(true);
 
     try {
-      // Pass the selected model and chatId to the backend
-      const response = await queryAPI.ask(source.id, userMessage, selectedModel.id, chatId);
+      // Send message WITHOUT chat_id - backend will create chat after getting response
+      const response = await queryAPI.ask(source.id, userMessage, selectedModel.id, null);
 
       // Add AI response with sources
       setMessages((prev) => [
@@ -91,6 +99,12 @@ export default function ChatPage({ params }) {
           primarySource: response.primary_source,
         },
       ]);
+
+      // If this was the first message, redirect to the created chat
+      if (response.chat_id && messages.length === 0) {
+        // Replace the URL with the new chat ID
+        router.replace(`/chat/${response.chat_id}`);
+      }
     } catch (error) {
       setMessages((prev) => [
         ...prev,
@@ -104,7 +118,7 @@ export default function ChatPage({ params }) {
     }
   };
 
-  if (!source || !chat) {
+  if (!source) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <Loader2 className="animate-spin text-claude-muted" size={24} />
@@ -117,7 +131,7 @@ export default function ChatPage({ params }) {
       <ChatSidebar
         isOpen={sidebarOpen}
         onToggle={setSidebarOpen}
-        currentChatId={chatId}
+        currentChatId={null}
       />
 
       <Header sourceTitle={source.title} />

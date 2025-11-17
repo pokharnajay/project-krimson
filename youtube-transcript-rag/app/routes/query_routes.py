@@ -88,14 +88,8 @@ def ask_question():
             video_ids = source.get('video_ids', [])
             log_debug(f"Retrieved {len(video_ids)} video IDs from source")
 
-            # Create or get chat for this conversation
-            if not chat_id:
-                # Create new chat with temporary title (will be updated after first message)
-                title = question[:50] + ("..." if len(question) > 50 else "")
-                log_info(f"Creating new chat for source {source_id}")
-                chat = create_chat(user_id, source_id, title)
-                chat_id = chat['id']
-            else:
+            # Note: Chat will be created after successful AI response if chat_id is not provided
+            if chat_id:
                 log_debug(f"Using existing chat {chat_id}")
 
         elif video_ids:
@@ -139,16 +133,7 @@ def ask_question():
 
         log_info(f"Found {len(context_chunks)} relevant chunks")
 
-        # Save user message to chat history
-        if chat_id:
-            try:
-                create_message(chat_id, 'user', question)
-                log_debug(f"Saved user message to chat {chat_id}")
-            except Exception as msg_error:
-                log_error(f"Failed to save user message: {str(msg_error)}")
-                # Continue even if message save fails
-
-        # Generate answer
+        # Generate answer BEFORE creating chat (if needed)
         try:
             log_debug(f"Generating answer with model: {model}")
             result = ai_service.generate_answer(question, context_chunks, model)
@@ -156,9 +141,27 @@ def ask_question():
             log_error(f"AI generation failed: {str(ai_error)}", exc_info=True)
             return jsonify({'error': 'Failed to generate answer. Please try again.'}), 500
 
-        # Save assistant message to chat history
+        # Create chat AFTER successful AI response (only if chat_id not provided)
+        if not chat_id and source_id:
+            try:
+                # Use first few words of question as title
+                title = question[:50] + ("..." if len(question) > 50 else "")
+                log_info(f"Creating new chat for source {source_id} after successful AI response")
+                chat = create_chat(user_id, source_id, title)
+                chat_id = chat['id']
+                log_debug(f"Created chat {chat_id}")
+            except Exception as chat_error:
+                log_error(f"Failed to create chat: {str(chat_error)}")
+                # Continue without saving messages if chat creation fails
+
+        # Save user message and assistant message to chat history
         if chat_id:
             try:
+                # Save user message
+                create_message(chat_id, 'user', question)
+                log_debug(f"Saved user message to chat {chat_id}")
+
+                # Save assistant message
                 create_message(
                     chat_id,
                     'assistant',
@@ -168,7 +171,7 @@ def ask_question():
                 )
                 log_debug(f"Saved assistant message to chat {chat_id}")
             except Exception as msg_error:
-                log_error(f"Failed to save assistant message: {str(msg_error)}")
+                log_error(f"Failed to save messages: {str(msg_error)}")
                 # Continue even if message save fails
 
         # Deduct credits using ENV variable

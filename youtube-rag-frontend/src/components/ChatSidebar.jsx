@@ -75,27 +75,31 @@ export default function ChatSidebar({ isOpen, onToggle, currentChatId }) {
       )}
 
       {/* Vertical Column when Closed */}
-      {!isOpen && (
-        <div className="fixed top-14 left-0 h-[calc(100vh-3.5rem)] w-12 bg-white border-r border-claude-border z-40 flex flex-col items-center pt-4">
-          <button
-            onClick={() => onToggle(true)}
-            className="p-2 hover:bg-claude-bg rounded-lg transition-colors group relative"
-            aria-label="Open sidebar"
-          >
-            <ChevronRight size={20} className="text-claude-muted group-hover:text-claude-text transition-colors" />
+      <div className={`fixed top-14 left-0 h-[calc(100vh-3.5rem)] bg-white border-r border-claude-border z-40 flex flex-col transition-all duration-300 ${
+        isOpen ? 'w-80' : 'w-12'
+      }`}>
+        {/* Open Button - Only visible when closed */}
+        {!isOpen && (
+          <div className="flex flex-col items-center pt-4">
+            <button
+              onClick={() => onToggle(true)}
+              className="p-2 hover:bg-claude-bg rounded-lg transition-colors group relative"
+              aria-label="Open sidebar"
+            >
+              <ChevronRight size={20} className="text-claude-muted group-hover:text-claude-text transition-colors" />
 
-            {/* Tooltip */}
-            <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap pointer-events-none z-50 opacity-0 group-hover:opacity-100 transition-opacity">
-              Open sidebar
-              <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900"></div>
-            </div>
-          </button>
-        </div>
-      )}
+              {/* Tooltip */}
+              <div className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap pointer-events-none z-50 opacity-0 group-hover:opacity-100 transition-opacity">
+                Open sidebar
+                <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900"></div>
+              </div>
+            </button>
+          </div>
+        )}
 
-      {/* Sidebar Content when Open */}
-      {isOpen && (
-        <div className="fixed top-14 left-0 h-[calc(100vh-3.5rem)] bg-white border-r border-claude-border z-40 w-80 flex flex-col">
+        {/* Sidebar Content - Only visible when open */}
+        {isOpen && (
+          <div className="flex flex-col h-full">
           {/* Search with Close Button */}
           <div className="p-3 border-b border-claude-border flex-shrink-0">
             <div className="flex items-center gap-2">
@@ -199,8 +203,9 @@ export default function ChatSidebar({ isOpen, onToggle, currentChatId }) {
               </div>
             )}
           </div>
-        </div>
-      )}
+          </div>
+        )}
+      </div>
     </>
   );
 }

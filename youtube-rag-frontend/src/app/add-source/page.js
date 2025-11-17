@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Loader2 } from 'lucide-react';
 import Header from '@/components/Header';
@@ -15,6 +15,41 @@ export default function AddSourcePage() {
   const [success, setSuccess] = useState(false);
   const [sourceId, setSourceId] = useState(null);
   const [countdown, setCountdown] = useState(5);
+  const [videoPreview, setVideoPreview] = useState(null);
+
+  // Extract video ID from YouTube URL
+  const extractVideoId = (url) => {
+    if (!url) return null;
+
+    // Handle different YouTube URL formats
+    const patterns = [
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/,
+      /youtube\.com\/embed\/([^&\n?#]+)/,
+      /youtube\.com\/v\/([^&\n?#]+)/,
+    ];
+
+    for (const pattern of patterns) {
+      const match = url.match(pattern);
+      if (match && match[1]) {
+        return match[1];
+      }
+    }
+
+    return null;
+  };
+
+  // Update video preview when URL changes
+  useEffect(() => {
+    const videoId = extractVideoId(url);
+    if (videoId) {
+      setVideoPreview({
+        id: videoId,
+        thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+      });
+    } else {
+      setVideoPreview(null);
+    }
+  }, [url]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -120,6 +155,30 @@ export default function AddSourcePage() {
             <p className="text-xs text-claude-muted mt-1.5">
               Supports both individual videos and playlists
             </p>
+
+            {/* Video Preview */}
+            {videoPreview && (
+              <div className="mt-4 border border-claude-border rounded-lg overflow-hidden bg-white">
+                <div className="flex items-start gap-3 p-3">
+                  <img
+                    src={videoPreview.thumbnail}
+                    alt="Video thumbnail"
+                    className="w-32 h-24 object-cover rounded"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                    }}
+                  />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs text-green-600 font-medium mb-1">
+                      ✓ Valid YouTube URL detected
+                    </p>
+                    <p className="text-xs text-claude-muted">
+                      Video ID: {videoPreview.id}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           <div>

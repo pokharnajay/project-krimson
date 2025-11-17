@@ -9,7 +9,6 @@ export default function SourceCard({ source, onUpdate }) {
   const router = useRouter();
   const [isDeleting, setIsDeleting] = useState(false);
   const [isRetrying, setIsRetrying] = useState(false);
-  const [isCreatingChat, setIsCreatingChat] = useState(false);
 
   const handleDelete = async () => {
     if (!confirm('Are you sure you want to delete this source?')) return;
@@ -37,18 +36,9 @@ export default function SourceCard({ source, onUpdate }) {
     }
   };
 
-  const handleChat = async () => {
-    setIsCreatingChat(true);
-    try {
-      // Create a new chat for this source
-      const chat = await chatAPI.createChat(source.id, 'New Chat');
-      router.push(`/chat/${chat.id}`);
-    } catch (error) {
-      console.error('Failed to create chat:', error);
-      alert('Failed to start chat. Please try again.');
-    } finally {
-      setIsCreatingChat(false);
-    }
+  const handleChat = () => {
+    // Navigate to new chat page with sourceId - chat will be created after first message
+    router.push(`/chat/new?sourceId=${source.id}`);
   };
 
   const getStatusDisplay = () => {
@@ -111,11 +101,10 @@ export default function SourceCard({ source, onUpdate }) {
         {source.status === 'ready' && (
           <button
             onClick={handleChat}
-            disabled={isCreatingChat}
-            className="flex-1 px-3 py-2 bg-accent hover:bg-accent/90 text-white rounded-lg text-xs font-medium transition-colors flex items-center justify-center gap-1.5 disabled:opacity-50"
+            className="flex-1 px-3 py-2 bg-accent hover:bg-accent/90 text-white rounded-lg text-xs font-medium transition-colors flex items-center justify-center gap-1.5"
           >
-            <MessageCircle size={14} className={isCreatingChat ? 'animate-spin' : ''} />
-            {isCreatingChat ? 'Starting...' : 'Chat'}
+            <MessageCircle size={14} />
+            Chat
           </button>
         )}
 
