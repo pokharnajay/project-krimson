@@ -11,6 +11,7 @@ from app.services.supabase_service import (
     update_chat_title
 )
 from app.utils.logger import log_info, log_error, log_warning, log_debug
+from config.settings import Config
 import os
 
 query_bp = Blueprint('query', __name__)
@@ -33,7 +34,8 @@ def ask_question():
         source_id = data.get('source_id')
         chat_id = data.get('chat_id')  # Optional: existing chat ID
         model = data.get('model', 'openrouter/auto')
-        top_k = data.get('top_k', 5)
+        # Use Config.TOP_K_RESULTS as default instead of hardcoded 5
+        top_k = data.get('top_k') or Config.TOP_K_RESULTS
 
         # Validate question
         if not question or not question.strip():
@@ -45,9 +47,9 @@ def ask_question():
             return jsonify({'error': 'Question must be less than 500 characters'}), 400
 
         # Validate top_k parameter
-        if not isinstance(top_k, int) or top_k < 1 or top_k > 20:
-            log_debug(f"Invalid top_k value {top_k}, defaulting to 5")
-            top_k = 5
+        if not isinstance(top_k, int) or top_k < 1 or top_k > 50:
+            log_debug(f"Invalid top_k value {top_k}, using config default: {Config.TOP_K_RESULTS}")
+            top_k = Config.TOP_K_RESULTS
 
         log_info(f"Query request from user {user_id}: '{question[:50]}...'")
 
@@ -127,7 +129,11 @@ def ask_question():
             return jsonify({
                 'error': 'No relevant content found',
                 'message': 'Could not find relevant information in the video transcripts for your question.',
-                'answer': "I couldn't find relevant information in the video transcripts to answer your question. Try rephrasing or asking something more specific.",
+                'response': [{
+                    'text': "I couldn't find relevant information in the video transcripts to answer your question. Try rephrasing or asking something more specific.",
+                    'timestamp': None,
+                    'video_id': None
+                }],
                 'sources': []
             }), 200  # Return 200 with explanation instead of 404
 
@@ -161,13 +167,16 @@ def ask_question():
                 create_message(chat_id, 'user', question)
                 log_debug(f"Saved user message to chat {chat_id}")
 
+                # Create a plain text version of the response for storage
+                response_text = '\n\n'.join([segment['text'] for segment in result.get('response', [])])
+
                 # Save assistant message
                 create_message(
                     chat_id,
                     'assistant',
-                    result.get('answer', ''),
+                    response_text,
                     model_used=result.get('model_used', model),
-                    primary_source=result.get('primary_source')
+                    primary_source=result.get('sources', [{}])[0] if result.get('sources') else None
                 )
                 log_debug(f"Saved assistant message to chat {chat_id}")
             except Exception as msg_error:
@@ -186,9 +195,8 @@ def ask_question():
 
         return jsonify({
             'chat_id': chat_id,
-            'answer': result.get('answer', ''),
+            'response': result.get('response', []),
             'sources': result.get('sources', []),
-            'primary_source': result['sources'][0] if result.get('sources') else None,
             'model_used': result.get('model_used', model),
             'credits_remaining': credits_left
         }), 200

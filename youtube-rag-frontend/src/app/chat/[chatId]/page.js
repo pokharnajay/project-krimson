@@ -152,25 +152,63 @@ export default function ChatPage({ params }) {
                   </div>
                 ) : (
                   <div className="flex justify-start mb-4">
-                    <div className="max-w-[80%]">
-                      <p className="text-[15px] leading-relaxed text-claude-text whitespace-pre-wrap mb-3">
-                        {message.content}
-                      </p>
+                    <div className="max-w-[80%] space-y-4">
+                      {(() => {
+                        // Try to parse content as JSON with response array
+                        try {
+                          const parsed = typeof message.content === 'string'
+                            ? JSON.parse(message.content)
+                            : message.content;
 
-                      {/* Primary Source Link */}
-                      {message.primarySource && (
-                        <a
-                          href={message.primarySource.youtube_link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-xs text-accent hover:underline"
-                        >
-                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                          <span>Watch at {Math.floor(message.primarySource.start_time)}s</span>
-                        </a>
-                      )}
+                          if (parsed.response && Array.isArray(parsed.response)) {
+                            // Display each response item separately
+                            return parsed.response.map((item, idx) => (
+                              <div key={idx} className="space-y-2">
+                                <p className="text-[15px] leading-relaxed text-claude-text whitespace-pre-wrap">
+                                  {item.text}
+                                </p>
+                                {item.youtube_link && (
+                                  <a
+                                    href={item.youtube_link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1.5 text-xs text-accent hover:underline"
+                                  >
+                                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
+                                    <span>Watch at {item.timestamp}s</span>
+                                  </a>
+                                )}
+                              </div>
+                            ));
+                          }
+                        } catch (e) {
+                          // Not JSON or doesn't have response array, fall through to default
+                        }
+
+                        // Default: display as plain text with optional primarySource
+                        return (
+                          <>
+                            <p className="text-[15px] leading-relaxed text-claude-text whitespace-pre-wrap">
+                              {message.content}
+                            </p>
+                            {message.primarySource && (
+                              <a
+                                href={message.primarySource.youtube_link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 text-xs text-accent hover:underline"
+                              >
+                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                                <span>Watch at {Math.floor(message.primarySource.start_time)}s</span>
+                              </a>
+                            )}
+                          </>
+                        );
+                      })()}
                     </div>
                   </div>
                 )}

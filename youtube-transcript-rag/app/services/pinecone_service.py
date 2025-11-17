@@ -1,7 +1,7 @@
 from pinecone import Pinecone, ServerlessSpec
 from config.settings import Config
 from app.services.embedding_service import EmbeddingService
-from app.utils.logger import log_info, log_error, log_debug
+from app.utils.logger import log_info, log_error, log_debug, log_warning
 import time
 
 class PineconeService:
@@ -110,23 +110,27 @@ class PineconeService:
             raise
     
     def query_videos(self, query_text, video_ids=None, source_id=None, top_k=None):
-        """Query vector store with optional filters"""
+        """Query vector store with enhanced deduplication and grouping"""
         log_info(f"Querying videos with: video_ids={video_ids}, source_id={source_id}")
-        top_k = top_k or Config.TOP_K_RESULTS
-        
+        # Use provided top_k or config value (respect env variable)
+        if top_k is None:
+            top_k = Config.TOP_K_RESULTS
+
+        log_info(f"Using top_k={top_k} for vector search (Config.TOP_K_RESULTS={Config.TOP_K_RESULTS})")
+
         try:
             # Create query embedding
             query_embedding = self.embedding_service.create_embeddings([query_text])[0]
-            
+
             # Build filter
             filter_dict = {}
             if video_ids:
                 filter_dict['video_id'] = {'$in': video_ids}
             elif source_id:
                 filter_dict['source_id'] = {'$eq': source_id}
-            
+
             log_debug(f"Using filter: {filter_dict}")
-            
+
             # Query
             index = self.get_index()
             results = index.query(
@@ -135,10 +139,140 @@ class PineconeService:
                 top_k=top_k,
                 include_metadata=True
             )
-            
-            log_info(f"Query returned {len(results['matches'])} results")
-            return results['matches']
-            
+
+            log_info(f"Query returned {len(results['matches'])} raw results")
+
+            # Enhanced processing: deduplicate and group
+            chunks = results['matches']
+            chunks = self._deduplicate_chunks(chunks)
+            chunks = self._group_and_sort_chunks(chunks)
+
+            log_info(f"After deduplication and sorting: {len(chunks)} results")
+            return chunks
+
         except Exception as e:
             log_error(f"Error querying videos: {str(e)}")
             raise
+
+    def _calculate_overlap(self, chunk1, chunk2):
+        """
+        Calculate percentage of timestamp overlap between two chunks.
+
+        Args:
+            chunk1: First chunk with metadata containing start_time and end_time
+            chunk2: Second chunk with metadata containing start_time and end_time
+
+        Returns:
+            float: Overlap percentage (0.0 to 1.0)
+        """
+        start1 = chunk1['metadata']['start_time']
+        end1 = chunk1['metadata']['end_time']
+        start2 = chunk2['metadata']['start_time']
+        end2 = chunk2['metadata']['end_time']
+
+        # Calculate overlap duration
+        overlap_start = max(start1, start2)
+        overlap_end = min(end1, end2)
+
+        # No overlap
+        if overlap_start >= overlap_end:
+            return 0.0
+
+        overlap_duration = overlap_end - overlap_start
+
+        # Calculate overlap as percentage of shorter chunk
+        duration1 = end1 - start1
+        duration2 = end2 - start2
+        min_duration = min(duration1, duration2)
+
+        if min_duration == 0:
+            return 0.0
+
+        return overlap_duration / min_duration
+
+    def _deduplicate_chunks(self, chunks):
+        """
+        Remove chunks with overlapping timestamps (>80% overlap).
+        Keeps chunks with higher similarity scores.
+
+        Args:
+            chunks: List of chunk matches from Pinecone
+
+        Returns:
+            List of deduplicated chunks
+        """
+        if not chunks:
+            return []
+
+        # Sort by score (highest first)
+        sorted_chunks = sorted(chunks, key=lambda x: x.get('score', 0), reverse=True)
+
+        deduplicated = []
+        overlap_threshold = 0.8  # 80% overlap threshold
+
+        for chunk in sorted_chunks:
+            # Check if this chunk overlaps significantly with any kept chunk
+            has_significant_overlap = False
+
+            for kept_chunk in deduplicated:
+                # Only check overlap for chunks from the same video
+                if chunk['metadata']['video_id'] == kept_chunk['metadata']['video_id']:
+                    overlap = self._calculate_overlap(chunk, kept_chunk)
+
+                    if overlap > overlap_threshold:
+                        log_debug(f"Removing chunk due to {overlap:.0%} overlap with higher-scored chunk")
+                        has_significant_overlap = True
+                        break
+
+            if not has_significant_overlap:
+                deduplicated.append(chunk)
+
+        # Ensure we keep at least 3 chunks even if there's high overlap
+        # This handles edge cases where deduplication is too aggressive
+        if len(deduplicated) < 3 and len(sorted_chunks) >= 3:
+            log_warning("Deduplication too aggressive, keeping top 3 chunks")
+            deduplicated = sorted_chunks[:3]
+
+        log_info(f"Deduplicated {len(chunks)} chunks to {len(deduplicated)} chunks")
+        return deduplicated
+
+    def _group_and_sort_chunks(self, chunks):
+        """
+        Group chunks by video_id and sort chronologically within each video.
+        Then flatten back to a single list while maintaining video grouping.
+
+        Args:
+            chunks: List of deduplicated chunks
+
+        Returns:
+            List of chunks grouped by video and sorted chronologically
+        """
+        if not chunks:
+            return []
+
+        # Group by video_id
+        videos_dict = {}
+        for chunk in chunks:
+            video_id = chunk['metadata']['video_id']
+            if video_id not in videos_dict:
+                videos_dict[video_id] = []
+            videos_dict[video_id].append(chunk)
+
+        # Sort each video's chunks chronologically
+        for video_id in videos_dict:
+            videos_dict[video_id].sort(key=lambda x: x['metadata']['start_time'])
+
+        # Flatten back to single list (maintains video grouping)
+        # Videos are ordered by relevance (first chunk's score)
+        sorted_videos = sorted(
+            videos_dict.items(),
+            key=lambda x: max(chunk.get('score', 0) for chunk in x[1]),
+            reverse=True
+        )
+
+        result = []
+        for video_id, video_chunks in sorted_videos:
+            result.extend(video_chunks)
+            log_debug(f"Video {video_id}: {len(video_chunks)} chunks sorted chronologically")
+
+        return result

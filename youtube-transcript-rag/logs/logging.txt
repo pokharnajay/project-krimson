@@ -1948,3 +1948,730 @@ httpx.ReadError: [Errno 35] Resource temporarily unavailable
 2025-11-18 00:12:32,047 - youtube_rag - INFO - [logger.py:38] - Credits deducted (2). User 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 has 998 credits remaining
 2025-11-18 00:12:32,588 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 50ea2668-b4e8-4120-9408-9496f0bd0a2a for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
 2025-11-18 00:12:32,845 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 50ea2668-b4e8-4120-9408-9496f0bd0a2a for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 01:35:34,010 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 01:35:34,011 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 01:35:34,011 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 01:35:34,011 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 01:35:34,011 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 01:35:34,011 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 01:35:34,011 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 01:35:39,340 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 01:35:46,519 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 01:35:46,520 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 01:35:46,520 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 01:35:46,520 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 01:35:46,520 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 01:35:46,520 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 01:35:46,520 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 01:35:51,321 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 01:35:51,387 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 01:35:55,364 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 01:35:55,365 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 01:35:55,365 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 01:35:55,365 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 01:35:55,365 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 01:35:55,365 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 01:35:55,365 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 01:35:59,196 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 01:36:49,233 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 01:37:10,140 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 01:37:10,141 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 01:37:10,141 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 01:37:10,141 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 01:37:10,141 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 01:37:10,141 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 01:37:10,141 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 01:37:13,945 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 01:37:38,216 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 01:37:38,216 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 01:37:38,216 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 01:37:38,216 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 01:37:38,216 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 01:37:38,216 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 01:37:38,217 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 01:37:42,102 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 01:37:49,234 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 01:37:58,349 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 01:37:58,350 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 01:37:58,350 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 01:37:58,350 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 01:37:58,350 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 01:37:58,350 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 01:37:58,350 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 01:38:02,329 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 01:38:49,230 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 02:54:12,763 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 (search=, limit=50, offset=0)
+2025-11-18 02:54:13,155 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 (search=, limit=50, offset=0)
+2025-11-18 02:54:19,083 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 0eb83af6-18bd-4081-974f-ae93a0fe3e71 for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 02:54:19,456 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 0eb83af6-18bd-4081-974f-ae93a0fe3e71 for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 02:54:23,413 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 9fe9993d-6398-4f67-a4e0-28a62aff9e28 for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 02:54:23,662 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 9fe9993d-6398-4f67-a4e0-28a62aff9e28 for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 02:54:25,898 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 0eb83af6-18bd-4081-974f-ae93a0fe3e71 for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 02:54:26,142 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 0eb83af6-18bd-4081-974f-ae93a0fe3e71 for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 02:54:27,444 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 50ea2668-b4e8-4120-9408-9496f0bd0a2a for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 02:54:27,669 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 50ea2668-b4e8-4120-9408-9496f0bd0a2a for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 02:54:32,533 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 9fe9993d-6398-4f67-a4e0-28a62aff9e28 for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 02:54:32,747 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 9fe9993d-6398-4f67-a4e0-28a62aff9e28 for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 02:54:37,851 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 0eb83af6-18bd-4081-974f-ae93a0fe3e71 for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 02:54:38,068 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 0eb83af6-18bd-4081-974f-ae93a0fe3e71 for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 02:54:39,401 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 9fe9993d-6398-4f67-a4e0-28a62aff9e28 for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 02:54:39,615 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 9fe9993d-6398-4f67-a4e0-28a62aff9e28 for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 02:54:43,363 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 0eb83af6-18bd-4081-974f-ae93a0fe3e71 for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 02:54:43,572 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 0eb83af6-18bd-4081-974f-ae93a0fe3e71 for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 02:54:52,206 - youtube_rag - INFO - [logger.py:38] - Query request from user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318: 'What are the daniel's thoughts about china...'
+2025-11-18 02:54:52,311 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: 82d12674-cc29-4a0a-9ebf-d10fdc345581
+2025-11-18 02:54:52,422 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-18 02:54:52,423 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-18 02:54:52,425 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-11-18 02:54:52,425 - youtube_rag - INFO - [logger.py:38] - Using device: cpu
+2025-11-18 02:54:55,693 - youtube_rag - INFO - [logger.py:38] - Embedding model loaded successfully
+2025-11-18 02:54:57,316 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-18 02:54:57,316 - youtube_rag - INFO - [logger.py:38] - Initializing AIService with API key: sk-or-v1-e...18b9
+2025-11-18 02:54:57,343 - youtube_rag - INFO - [logger.py:38] - Loaded prompts from config/prompts.json
+2025-11-18 02:54:57,343 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=20
+2025-11-18 02:54:57,343 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['AmlQhjXo22c'], source_id=82d12674-cc29-4a0a-9ebf-d10fdc345581
+2025-11-18 02:54:57,343 - youtube_rag - INFO - [logger.py:38] - Using top_k=20 for vector search (Config.TOP_K_RESULTS=20)
+2025-11-18 02:54:57,343 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-18 02:54:57,449 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-18 02:54:57,449 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['AmlQhjXo22c']}}
+2025-11-18 02:54:59,817 - youtube_rag - INFO - [logger.py:38] - Query returned 20 raw results
+2025-11-18 02:54:59,819 - youtube_rag - INFO - [logger.py:38] - Deduplicated 20 chunks to 20 chunks
+2025-11-18 02:54:59,819 - youtube_rag - DEBUG - [logger.py:44] - Video AmlQhjXo22c: 20 chunks sorted chronologically
+2025-11-18 02:54:59,819 - youtube_rag - INFO - [logger.py:38] - After deduplication and sorting: 20 results
+2025-11-18 02:54:59,821 - youtube_rag - INFO - [logger.py:38] - Found 20 relevant chunks
+2025-11-18 02:54:59,821 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-oss-120b
+2025-11-18 02:54:59,821 - youtube_rag - INFO - [logger.py:38] - Generating structured answer using model: openai/gpt-oss-120b
+2025-11-18 02:54:59,821 - youtube_rag - ERROR - [logger.py:41] - AI generation failed: '\n  "sections"'
+2025-11-18 02:54:59,821 - youtube_rag - ERROR - [logger.py:41] - AI generation failed: Failed to generate answer: '\n  "sections"'
+Traceback (most recent call last):
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/services/ai_service.py", line 96, in generate_answer
+    user_prompt = self.prompts['user_prompt_template'].format(
+        context=context_text,
+        query=query
+    )
+KeyError: '\n  "sections"'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/routes/query_routes.py", line 141, in ask_question
+    result = ai_service.generate_answer(question, context_chunks, model)
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/services/ai_service.py", line 131, in generate_answer
+    raise Exception(f"Failed to generate answer: {str(e)}")
+Exception: Failed to generate answer: '\n  "sections"'
+2025-11-18 02:56:32,937 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 02:56:32,938 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 02:56:32,939 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 02:56:32,939 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 02:56:32,939 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 02:56:32,939 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 02:56:32,939 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 02:56:38,690 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 02:56:39,052 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 02:56:39,053 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 02:56:39,053 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 02:56:39,053 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 02:56:39,053 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 02:56:39,053 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 02:56:39,053 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 02:56:43,603 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 02:56:50,229 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 02:57:32,771 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 (search=, limit=50, offset=0)
+2025-11-18 02:57:33,007 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 (search=, limit=50, offset=0)
+2025-11-18 02:57:37,229 - youtube_rag - INFO - [logger.py:38] - Query request from user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318: 'What are the daniel's thoughts about china...'
+2025-11-18 02:57:37,336 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: 82d12674-cc29-4a0a-9ebf-d10fdc345581
+2025-11-18 02:57:37,440 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-18 02:57:37,441 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-18 02:57:37,442 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-11-18 02:57:37,442 - youtube_rag - INFO - [logger.py:38] - Using device: cpu
+2025-11-18 02:57:41,119 - youtube_rag - INFO - [logger.py:38] - Embedding model loaded successfully
+2025-11-18 02:57:42,612 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-18 02:57:42,613 - youtube_rag - INFO - [logger.py:38] - Initializing AIService with API key: sk-or-v1-e...18b9
+2025-11-18 02:57:42,634 - youtube_rag - INFO - [logger.py:38] - Loaded prompts from config/prompts.json
+2025-11-18 02:57:42,634 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=20
+2025-11-18 02:57:42,634 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['AmlQhjXo22c'], source_id=82d12674-cc29-4a0a-9ebf-d10fdc345581
+2025-11-18 02:57:42,634 - youtube_rag - INFO - [logger.py:38] - Using top_k=20 for vector search (Config.TOP_K_RESULTS=20)
+2025-11-18 02:57:42,634 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-18 02:57:42,725 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-18 02:57:42,725 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['AmlQhjXo22c']}}
+2025-11-18 02:57:45,240 - youtube_rag - INFO - [logger.py:38] - Query returned 20 raw results
+2025-11-18 02:57:45,241 - youtube_rag - INFO - [logger.py:38] - Deduplicated 20 chunks to 20 chunks
+2025-11-18 02:57:45,241 - youtube_rag - DEBUG - [logger.py:44] - Video AmlQhjXo22c: 20 chunks sorted chronologically
+2025-11-18 02:57:45,241 - youtube_rag - INFO - [logger.py:38] - After deduplication and sorting: 20 results
+2025-11-18 02:57:45,243 - youtube_rag - INFO - [logger.py:38] - Found 20 relevant chunks
+2025-11-18 02:57:45,243 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-oss-120b
+2025-11-18 02:57:45,243 - youtube_rag - INFO - [logger.py:38] - Generating structured answer using model: openai/gpt-oss-120b
+2025-11-18 02:57:45,243 - youtube_rag - ERROR - [logger.py:41] - AI generation failed: '\n  "sections"'
+2025-11-18 02:57:45,243 - youtube_rag - ERROR - [logger.py:41] - AI generation failed: Failed to generate answer: '\n  "sections"'
+Traceback (most recent call last):
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/services/ai_service.py", line 96, in generate_answer
+    user_prompt = self.prompts['user_prompt_template'].format(
+        context=context_text,
+        query=query
+    )
+KeyError: '\n  "sections"'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/routes/query_routes.py", line 141, in ask_question
+    result = ai_service.generate_answer(question, context_chunks, model)
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/services/ai_service.py", line 131, in generate_answer
+    raise Exception(f"Failed to generate answer: {str(e)}")
+Exception: Failed to generate answer: '\n  "sections"'
+2025-11-18 03:06:44,542 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 (search=, limit=50, offset=0)
+2025-11-18 03:06:44,741 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 (search=, limit=50, offset=0)
+2025-11-18 03:06:48,273 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 9fe9993d-6398-4f67-a4e0-28a62aff9e28 for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 03:06:48,480 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 9fe9993d-6398-4f67-a4e0-28a62aff9e28 for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 03:06:57,443 - youtube_rag - INFO - [logger.py:38] - Query request from user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318: 'Tell me about all the daniel's thoughts about chin...'
+2025-11-18 03:06:57,554 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: 82d12674-cc29-4a0a-9ebf-d10fdc345581
+2025-11-18 03:06:57,657 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-18 03:06:57,658 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-18 03:06:58,988 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-18 03:06:58,989 - youtube_rag - INFO - [logger.py:38] - Initializing AIService with API key: sk-or-v1-e...18b9
+2025-11-18 03:06:59,013 - youtube_rag - INFO - [logger.py:38] - Loaded prompts from config/prompts.json
+2025-11-18 03:06:59,013 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=20
+2025-11-18 03:06:59,013 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['AmlQhjXo22c'], source_id=82d12674-cc29-4a0a-9ebf-d10fdc345581
+2025-11-18 03:06:59,013 - youtube_rag - INFO - [logger.py:38] - Using top_k=20 for vector search (Config.TOP_K_RESULTS=20)
+2025-11-18 03:06:59,013 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-18 03:06:59,028 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-18 03:06:59,029 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['AmlQhjXo22c']}}
+2025-11-18 03:07:00,408 - youtube_rag - INFO - [logger.py:38] - Query returned 20 raw results
+2025-11-18 03:07:00,409 - youtube_rag - INFO - [logger.py:38] - Deduplicated 20 chunks to 20 chunks
+2025-11-18 03:07:00,409 - youtube_rag - DEBUG - [logger.py:44] - Video AmlQhjXo22c: 20 chunks sorted chronologically
+2025-11-18 03:07:00,409 - youtube_rag - INFO - [logger.py:38] - After deduplication and sorting: 20 results
+2025-11-18 03:07:00,410 - youtube_rag - INFO - [logger.py:38] - Found 20 relevant chunks
+2025-11-18 03:07:00,410 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-oss-120b
+2025-11-18 03:07:00,410 - youtube_rag - INFO - [logger.py:38] - Generating structured answer using model: openai/gpt-oss-120b
+2025-11-18 03:07:00,411 - youtube_rag - DEBUG - [logger.py:44] - Calling AI with JSON mode, max_tokens=2000
+2025-11-18 03:08:04,788 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 03:08:04,789 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 03:08:04,789 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 03:08:04,789 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 03:08:04,789 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 03:08:04,789 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 03:08:04,789 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 03:08:09,823 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 03:08:10,081 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 03:08:10,081 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 03:08:10,082 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 03:08:10,082 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 03:08:10,082 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 03:08:10,082 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 03:08:10,082 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 03:08:14,032 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 03:08:14,114 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 03:08:14,115 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 03:08:22,519 - youtube_rag - INFO - [logger.py:38] - Query request from user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318: 'Tell me about all the daniel's thoughts about chin...'
+2025-11-18 03:08:22,697 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: 82d12674-cc29-4a0a-9ebf-d10fdc345581
+2025-11-18 03:08:22,803 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-18 03:08:22,803 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-18 03:08:22,805 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-11-18 03:08:22,805 - youtube_rag - INFO - [logger.py:38] - Using device: cpu
+2025-11-18 03:08:26,042 - youtube_rag - INFO - [logger.py:38] - Embedding model loaded successfully
+2025-11-18 03:08:27,776 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-18 03:08:27,776 - youtube_rag - INFO - [logger.py:38] - Initializing AIService with API key: sk-or-v1-e...18b9
+2025-11-18 03:08:27,803 - youtube_rag - INFO - [logger.py:38] - Loaded prompts from config/prompts.json
+2025-11-18 03:08:27,803 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=20
+2025-11-18 03:08:27,803 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['AmlQhjXo22c'], source_id=82d12674-cc29-4a0a-9ebf-d10fdc345581
+2025-11-18 03:08:27,803 - youtube_rag - INFO - [logger.py:38] - Using top_k=20 for vector search (Config.TOP_K_RESULTS=20)
+2025-11-18 03:08:27,803 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-18 03:08:27,877 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-18 03:08:27,877 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['AmlQhjXo22c']}}
+2025-11-18 03:08:29,797 - youtube_rag - INFO - [logger.py:38] - Query returned 20 raw results
+2025-11-18 03:08:29,799 - youtube_rag - INFO - [logger.py:38] - Deduplicated 20 chunks to 20 chunks
+2025-11-18 03:08:29,799 - youtube_rag - DEBUG - [logger.py:44] - Video AmlQhjXo22c: 20 chunks sorted chronologically
+2025-11-18 03:08:29,799 - youtube_rag - INFO - [logger.py:38] - After deduplication and sorting: 20 results
+2025-11-18 03:08:29,800 - youtube_rag - INFO - [logger.py:38] - Found 20 relevant chunks
+2025-11-18 03:08:29,800 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-oss-120b
+2025-11-18 03:08:29,800 - youtube_rag - INFO - [logger.py:38] - Generating structured answer using model: openai/gpt-oss-120b
+2025-11-18 03:08:29,801 - youtube_rag - DEBUG - [logger.py:44] - Calling AI with JSON mode, max_tokens=2000
+2025-11-18 03:08:40,593 - youtube_rag - DEBUG - [logger.py:44] - Received AI response: 2329 characters
+2025-11-18 03:08:40,593 - youtube_rag - INFO - [logger.py:38] - Parsed 3 sections with 5 unique sources
+2025-11-18 03:08:40,594 - youtube_rag - INFO - [logger.py:38] - Creating new chat for source 82d12674-cc29-4a0a-9ebf-d10fdc345581 after successful AI response
+2025-11-18 03:08:41,006 - youtube_rag - DEBUG - [logger.py:44] - Created chat d85325b8-a8eb-41f5-8ba2-038e1842441b
+2025-11-18 03:08:41,146 - youtube_rag - DEBUG - [logger.py:44] - Saved user message to chat d85325b8-a8eb-41f5-8ba2-038e1842441b
+2025-11-18 03:08:41,278 - youtube_rag - DEBUG - [logger.py:44] - Saved assistant message to chat d85325b8-a8eb-41f5-8ba2-038e1842441b
+2025-11-18 03:08:41,521 - youtube_rag - INFO - [logger.py:38] - Credits deducted (20). User 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 has 956 credits remaining
+2025-11-18 03:08:41,598 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat d85325b8-a8eb-41f5-8ba2-038e1842441b for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 03:08:41,816 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat d85325b8-a8eb-41f5-8ba2-038e1842441b for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 03:15:39,104 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 03:15:39,105 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 03:15:39,105 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 03:15:39,105 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 03:15:39,105 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 03:15:39,106 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 03:15:39,106 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 03:15:44,428 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 03:15:49,226 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 03:16:12,101 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 03:16:12,101 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 03:16:12,102 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 03:16:12,102 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 03:16:12,102 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 03:16:12,102 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 03:16:12,102 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 03:16:16,867 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 03:16:36,346 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 03:16:36,347 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 03:16:36,347 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 03:16:36,347 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 03:16:36,347 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 03:16:36,347 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 03:16:36,347 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 03:16:41,109 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 03:16:44,415 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 03:16:44,416 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 03:16:44,416 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 03:16:44,416 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 03:16:44,416 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 03:16:44,416 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 03:16:44,416 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 03:16:49,649 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 03:16:49,747 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 03:22:20,070 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat d85325b8-a8eb-41f5-8ba2-038e1842441b for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 03:22:20,433 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat d85325b8-a8eb-41f5-8ba2-038e1842441b for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 03:22:20,454 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 (search=, limit=50, offset=0)
+2025-11-18 03:22:20,678 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 (search=, limit=50, offset=0)
+2025-11-18 03:22:25,642 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 03:22:25,642 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 03:22:25,643 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 03:22:25,643 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 03:22:25,643 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 03:22:25,643 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 03:22:25,643 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 03:22:30,535 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 03:22:30,866 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 03:22:30,867 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 03:22:30,867 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 03:22:30,867 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 03:22:30,867 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 03:22:30,867 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 03:22:30,867 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 03:22:39,412 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 03:22:39,967 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat d85325b8-a8eb-41f5-8ba2-038e1842441b for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 03:22:39,968 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 03:22:40,996 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat d85325b8-a8eb-41f5-8ba2-038e1842441b for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 03:22:41,013 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 (search=, limit=50, offset=0)
+2025-11-18 03:22:41,130 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 (search=, limit=50, offset=0)
+2025-11-18 03:22:47,877 - youtube_rag - INFO - [logger.py:38] - Query request from user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318: 'Tell me about all the daniel's thoughts about chin...'
+2025-11-18 03:22:47,983 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: 82d12674-cc29-4a0a-9ebf-d10fdc345581
+2025-11-18 03:22:48,086 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-18 03:22:48,086 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-18 03:22:48,088 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-11-18 03:22:48,088 - youtube_rag - INFO - [logger.py:38] - Using device: cpu
+2025-11-18 03:22:51,481 - youtube_rag - INFO - [logger.py:38] - Embedding model loaded successfully
+2025-11-18 03:22:53,080 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-18 03:22:53,080 - youtube_rag - INFO - [logger.py:38] - Initializing AIService with API key: sk-or-v1-e...18b9
+2025-11-18 03:22:53,108 - youtube_rag - INFO - [logger.py:38] - Loaded prompts from config/prompts.json
+2025-11-18 03:22:53,108 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=20
+2025-11-18 03:22:53,108 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['AmlQhjXo22c'], source_id=82d12674-cc29-4a0a-9ebf-d10fdc345581
+2025-11-18 03:22:53,108 - youtube_rag - INFO - [logger.py:38] - Using top_k=20 for vector search (Config.TOP_K_RESULTS=20)
+2025-11-18 03:22:53,108 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-18 03:22:53,213 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-18 03:22:53,214 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['AmlQhjXo22c']}}
+2025-11-18 03:22:55,089 - youtube_rag - INFO - [logger.py:38] - Query returned 20 raw results
+2025-11-18 03:22:55,090 - youtube_rag - INFO - [logger.py:38] - Deduplicated 20 chunks to 20 chunks
+2025-11-18 03:22:55,090 - youtube_rag - DEBUG - [logger.py:44] - Video AmlQhjXo22c: 20 chunks sorted chronologically
+2025-11-18 03:22:55,091 - youtube_rag - INFO - [logger.py:38] - After deduplication and sorting: 20 results
+2025-11-18 03:22:55,093 - youtube_rag - INFO - [logger.py:38] - Found 20 relevant chunks
+2025-11-18 03:22:55,093 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-oss-120b
+2025-11-18 03:22:55,093 - youtube_rag - INFO - [logger.py:38] - Generating structured answer using model: openai/gpt-oss-120b
+2025-11-18 03:22:55,093 - youtube_rag - DEBUG - [logger.py:44] - Calling AI with JSON mode, max_tokens=2000
+2025-11-18 03:23:10,731 - youtube_rag - DEBUG - [logger.py:44] - Received AI response: 1065 characters
+2025-11-18 03:23:10,732 - youtube_rag - INFO - [logger.py:38] - Parsed 4 response segments with 4 unique sources
+2025-11-18 03:23:10,732 - youtube_rag - INFO - [logger.py:38] - Creating new chat for source 82d12674-cc29-4a0a-9ebf-d10fdc345581 after successful AI response
+2025-11-18 03:23:11,058 - youtube_rag - DEBUG - [logger.py:44] - Created chat 5228f814-5e91-4972-b91d-a3a03324f69b
+2025-11-18 03:23:11,199 - youtube_rag - DEBUG - [logger.py:44] - Saved user message to chat 5228f814-5e91-4972-b91d-a3a03324f69b
+2025-11-18 03:23:11,343 - youtube_rag - DEBUG - [logger.py:44] - Saved assistant message to chat 5228f814-5e91-4972-b91d-a3a03324f69b
+2025-11-18 03:23:11,567 - youtube_rag - INFO - [logger.py:38] - Credits deducted (20). User 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 has 936 credits remaining
+2025-11-18 03:23:11,652 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 5228f814-5e91-4972-b91d-a3a03324f69b for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 03:23:11,864 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 5228f814-5e91-4972-b91d-a3a03324f69b for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 03:25:00,033 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 03:25:00,034 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 03:25:00,034 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 03:25:00,034 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 03:25:00,034 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 03:25:00,034 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 03:25:00,035 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 03:25:05,225 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 03:25:12,226 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 03:25:23,822 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 03:25:23,822 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 03:25:23,823 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 03:25:23,823 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 03:25:23,823 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 03:25:23,823 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 03:25:23,823 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 03:25:29,857 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 03:25:35,369 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 03:25:35,370 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 03:25:35,370 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 03:25:35,370 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 03:25:35,371 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 03:25:35,371 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 03:25:35,371 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 03:25:41,005 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 03:25:42,223 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 03:26:18,281 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 03:26:18,282 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 03:26:18,282 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 03:26:18,282 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 03:26:18,282 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 03:26:18,282 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 03:26:18,282 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 03:26:24,866 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 03:26:25,199 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 03:26:25,200 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 03:26:25,200 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 03:26:25,200 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 03:26:25,201 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 03:26:25,201 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 03:26:25,201 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 03:26:32,275 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 03:26:42,222 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 03:27:43,408 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 (search=, limit=50, offset=0)
+2025-11-18 03:27:43,654 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 (search=, limit=50, offset=0)
+2025-11-18 03:27:45,740 - youtube_rag - ERROR - [logger.py:41] - Error fetching sources: [Errno 35] Resource temporarily unavailable
+2025-11-18 03:27:45,741 - youtube_rag - ERROR - [logger.py:41] - Unexpected error: [Errno 35] Resource temporarily unavailable
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 187, in handle_request
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 150, in handle_request
+    status, headers = self._receive_response(
+                      ~~~~~~~~~~~~~~~~~~~~~~^
+        request=request, stream_id=stream_id
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 294, in _receive_response
+    event = self._receive_stream_event(request, stream_id)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 336, in _receive_stream_event
+    self._receive_events(request, stream_id)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 364, in _receive_events
+    events = self._read_incoming_data(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 438, in _read_incoming_data
+    raise self._read_exception  # pragma: nocover
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 187, in handle_request
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 150, in handle_request
+    status, headers = self._receive_response(
+                      ~~~~~~~~~~~~~~~~~~~~~~^
+        request=request, stream_id=stream_id
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 294, in _receive_response
+    event = self._receive_stream_event(request, stream_id)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 336, in _receive_stream_event
+    self._receive_events(request, stream_id)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 364, in _receive_events
+    events = self._read_incoming_data(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 455, in _read_incoming_data
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 441, in _read_incoming_data
+    data = self._network_stream.read(self.READ_NUM_BYTES, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_backends/sync.py", line 126, in read
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadError: [Errno 35] Resource temporarily unavailable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/routes/user_routes.py", line 12, in get_credits
+    user = get_user_by_id(user_id)
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/services/supabase_service.py", line 48, in get_user_by_id
+    res = supabase.table('users').select('*').eq('id', user_id).execute()
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/postgrest/_sync/request_builder.py", line 47, in execute
+    r = self.request.send()
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/postgrest/base_request_builder.py", line 81, in send
+    return self.session.request(
+           ~~~~~~~~~~~~~~~~~~~~^
+        self.http_method,
+        ^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        auth=self.auth,
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadError: [Errno 35] Resource temporarily unavailable
+2025-11-18 03:28:00,510 - youtube_rag - INFO - [logger.py:38] - Query request from user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318: 'tell me about all the business plans daniel have...'
+2025-11-18 03:28:00,710 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: 82d12674-cc29-4a0a-9ebf-d10fdc345581
+2025-11-18 03:28:00,870 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-18 03:28:00,871 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-18 03:28:00,872 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-11-18 03:28:00,872 - youtube_rag - INFO - [logger.py:38] - Using device: cpu
+2025-11-18 03:28:04,106 - youtube_rag - INFO - [logger.py:38] - Embedding model loaded successfully
+2025-11-18 03:28:05,538 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-18 03:28:05,538 - youtube_rag - INFO - [logger.py:38] - Initializing AIService with API key: sk-or-v1-e...18b9
+2025-11-18 03:28:05,564 - youtube_rag - INFO - [logger.py:38] - Loaded prompts from config/prompts.json
+2025-11-18 03:28:05,565 - youtube_rag - INFO - [logger.py:38] - AI responses will be logged to: /Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/logs/ai_responses.log
+2025-11-18 03:28:05,565 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=20
+2025-11-18 03:28:05,565 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['AmlQhjXo22c'], source_id=82d12674-cc29-4a0a-9ebf-d10fdc345581
+2025-11-18 03:28:05,565 - youtube_rag - INFO - [logger.py:38] - Using top_k=20 for vector search (Config.TOP_K_RESULTS=20)
+2025-11-18 03:28:05,565 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-18 03:28:05,644 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-18 03:28:05,645 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['AmlQhjXo22c']}}
+2025-11-18 03:28:08,148 - youtube_rag - INFO - [logger.py:38] - Query returned 20 raw results
+2025-11-18 03:28:08,150 - youtube_rag - INFO - [logger.py:38] - Deduplicated 20 chunks to 20 chunks
+2025-11-18 03:28:08,150 - youtube_rag - DEBUG - [logger.py:44] - Video AmlQhjXo22c: 20 chunks sorted chronologically
+2025-11-18 03:28:08,150 - youtube_rag - INFO - [logger.py:38] - After deduplication and sorting: 20 results
+2025-11-18 03:28:08,151 - youtube_rag - INFO - [logger.py:38] - Found 20 relevant chunks
+2025-11-18 03:28:08,152 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-oss-120b
+2025-11-18 03:28:08,152 - youtube_rag - INFO - [logger.py:38] - Generating structured answer using model: openai/gpt-oss-120b
+2025-11-18 03:28:08,152 - youtube_rag - DEBUG - [logger.py:44] - Calling AI with JSON mode, max_tokens=2000
+2025-11-18 03:28:18,033 - youtube_rag - DEBUG - [logger.py:44] - Received AI response: 1480 characters
+2025-11-18 03:28:18,034 - youtube_rag - INFO - [logger.py:38] - Parsed 5 response segments with 5 unique sources
+2025-11-18 03:28:18,036 - youtube_rag - INFO - [logger.py:38] - Creating new chat for source 82d12674-cc29-4a0a-9ebf-d10fdc345581 after successful AI response
+2025-11-18 03:28:18,336 - youtube_rag - DEBUG - [logger.py:44] - Created chat 7325b796-545e-437a-b021-d19d660936ec
+2025-11-18 03:28:18,447 - youtube_rag - DEBUG - [logger.py:44] - Saved user message to chat 7325b796-545e-437a-b021-d19d660936ec
+2025-11-18 03:28:18,570 - youtube_rag - DEBUG - [logger.py:44] - Saved assistant message to chat 7325b796-545e-437a-b021-d19d660936ec
+2025-11-18 03:28:18,809 - youtube_rag - INFO - [logger.py:38] - Credits deducted (20). User 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 has 916 credits remaining
+2025-11-18 03:28:19,347 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 7325b796-545e-437a-b021-d19d660936ec for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 03:28:19,570 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 7325b796-545e-437a-b021-d19d660936ec for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 03:28:44,632 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 03:28:44,633 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 03:28:44,634 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 03:28:44,634 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 03:28:44,634 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 03:28:44,634 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 03:28:44,634 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 03:28:50,280 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 03:28:50,369 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 04:01:51,505 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 04:01:51,506 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 04:01:51,506 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 04:01:51,506 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 04:01:51,506 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 04:01:51,506 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 04:01:51,506 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 04:01:56,614 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 04:01:56,861 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 04:01:56,861 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 04:01:56,861 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 04:01:56,861 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 04:01:56,862 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 04:01:56,862 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 04:01:56,862 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 04:02:00,667 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 04:02:10,451 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 04:02:12,350 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 (search=, limit=50, offset=0)
+2025-11-18 04:02:12,620 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 (search=, limit=50, offset=0)
+2025-11-18 04:02:16,061 - youtube_rag - INFO - [logger.py:38] - Query request from user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318: 'tell me about all the business plans daniel have...'
+2025-11-18 04:02:16,168 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: 82d12674-cc29-4a0a-9ebf-d10fdc345581
+2025-11-18 04:02:16,273 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-18 04:02:16,273 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-18 04:02:16,275 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-11-18 04:02:16,275 - youtube_rag - INFO - [logger.py:38] - Using device: cpu
+2025-11-18 04:02:20,110 - youtube_rag - INFO - [logger.py:38] - Embedding model loaded successfully
+2025-11-18 04:02:21,884 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-18 04:02:21,884 - youtube_rag - INFO - [logger.py:38] - Initializing AIService with API key: sk-or-v1-e...18b9
+2025-11-18 04:02:21,911 - youtube_rag - INFO - [logger.py:38] - Loaded prompts from config/prompts.json
+2025-11-18 04:02:21,912 - youtube_rag - INFO - [logger.py:38] - AI responses will be logged to: /Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/logs/ai_responses.json
+2025-11-18 04:02:21,912 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=20
+2025-11-18 04:02:21,912 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['AmlQhjXo22c'], source_id=82d12674-cc29-4a0a-9ebf-d10fdc345581
+2025-11-18 04:02:21,912 - youtube_rag - INFO - [logger.py:38] - Using top_k=20 for vector search (Config.TOP_K_RESULTS=20)
+2025-11-18 04:02:21,912 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-18 04:02:21,981 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-18 04:02:21,981 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['AmlQhjXo22c']}}
+2025-11-18 04:02:24,856 - youtube_rag - INFO - [logger.py:38] - Query returned 20 raw results
+2025-11-18 04:02:24,857 - youtube_rag - INFO - [logger.py:38] - Deduplicated 20 chunks to 20 chunks
+2025-11-18 04:02:24,857 - youtube_rag - DEBUG - [logger.py:44] - Video AmlQhjXo22c: 20 chunks sorted chronologically
+2025-11-18 04:02:24,857 - youtube_rag - INFO - [logger.py:38] - After deduplication and sorting: 20 results
+2025-11-18 04:02:24,858 - youtube_rag - INFO - [logger.py:38] - Found 20 relevant chunks
+2025-11-18 04:02:24,858 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-oss-120b
+2025-11-18 04:02:24,858 - youtube_rag - INFO - [logger.py:38] - Generating structured answer using model: openai/gpt-oss-120b
+2025-11-18 04:02:24,858 - youtube_rag - DEBUG - [logger.py:44] - Calling AI with JSON mode, max_tokens=2000
+2025-11-18 04:02:30,442 - youtube_rag - DEBUG - [logger.py:44] - Received AI response: 1244 characters
+2025-11-18 04:02:30,442 - youtube_rag - INFO - [logger.py:38] - Parsed 5 response segments with 5 unique sources
+2025-11-18 04:02:30,444 - youtube_rag - INFO - [logger.py:38] - Creating new chat for source 82d12674-cc29-4a0a-9ebf-d10fdc345581 after successful AI response
+2025-11-18 04:02:30,778 - youtube_rag - DEBUG - [logger.py:44] - Created chat 97162b78-38ab-4854-865d-ece9fa331d1e
+2025-11-18 04:02:30,996 - youtube_rag - DEBUG - [logger.py:44] - Saved user message to chat 97162b78-38ab-4854-865d-ece9fa331d1e
+2025-11-18 04:02:31,114 - youtube_rag - DEBUG - [logger.py:44] - Saved assistant message to chat 97162b78-38ab-4854-865d-ece9fa331d1e
+2025-11-18 04:02:31,341 - youtube_rag - INFO - [logger.py:38] - Credits deducted (20). User 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 has 896 credits remaining
+2025-11-18 04:02:31,844 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 97162b78-38ab-4854-865d-ece9fa331d1e for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 04:02:32,065 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 97162b78-38ab-4854-865d-ece9fa331d1e for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318
+2025-11-18 04:38:22,223 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 04:38:22,224 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 04:38:22,225 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 04:38:22,225 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 04:38:22,225 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 04:38:22,225 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 04:38:22,225 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 04:38:34,108 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 04:38:34,390 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 04:38:34,390 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 04:38:34,391 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 04:38:34,391 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 04:38:34,391 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 04:38:34,391 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 04:38:34,391 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 04:38:38,301 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 04:38:38,373 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 (search=, limit=50, offset=0)
+2025-11-18 04:38:38,373 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 04:38:38,374 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 04:38:38,375 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 04:38:39,389 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user 7cd847ad-4ef0-456a-afbe-f6fe9cde6318 (search=, limit=50, offset=0)
+2025-11-18 04:38:43,606 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user c8992235-5976-4981-9b20-bb6521f2fc34 (search=, limit=50, offset=0)
+2025-11-18 04:38:43,859 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user c8992235-5976-4981-9b20-bb6521f2fc34 (search=, limit=50, offset=0)
+2025-11-18 04:38:53,625 - youtube_rag - INFO - [logger.py:38] - Query request from user c8992235-5976-4981-9b20-bb6521f2fc34: 'tell me about all the business plans daniel have...'
+2025-11-18 04:38:53,741 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: a39dcc59-70a5-4c59-9061-9707d55bddfb
+2025-11-18 04:38:53,850 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-18 04:38:53,850 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-18 04:38:53,852 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-11-18 04:38:53,852 - youtube_rag - INFO - [logger.py:38] - Using device: cpu
+2025-11-18 04:38:57,547 - youtube_rag - INFO - [logger.py:38] - Embedding model loaded successfully
+2025-11-18 04:38:59,105 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-18 04:38:59,106 - youtube_rag - INFO - [logger.py:38] - Initializing AIService with API key: sk-or-v1-e...18b9
+2025-11-18 04:38:59,133 - youtube_rag - INFO - [logger.py:38] - Loaded prompts from config/prompts.json
+2025-11-18 04:38:59,133 - youtube_rag - INFO - [logger.py:38] - AI responses will be logged to: /Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/logs/ai_responses.json
+2025-11-18 04:38:59,133 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=20
+2025-11-18 04:38:59,133 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['AmlQhjXo22c'], source_id=a39dcc59-70a5-4c59-9061-9707d55bddfb
+2025-11-18 04:38:59,133 - youtube_rag - INFO - [logger.py:38] - Using top_k=20 for vector search (Config.TOP_K_RESULTS=20)
+2025-11-18 04:38:59,133 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-18 04:38:59,202 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-18 04:38:59,202 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['AmlQhjXo22c']}}
+2025-11-18 04:39:01,868 - youtube_rag - INFO - [logger.py:38] - Query returned 20 raw results
+2025-11-18 04:39:01,869 - youtube_rag - INFO - [logger.py:38] - Deduplicated 20 chunks to 20 chunks
+2025-11-18 04:39:01,869 - youtube_rag - DEBUG - [logger.py:44] - Video AmlQhjXo22c: 20 chunks sorted chronologically
+2025-11-18 04:39:01,869 - youtube_rag - INFO - [logger.py:38] - After deduplication and sorting: 20 results
+2025-11-18 04:39:01,870 - youtube_rag - INFO - [logger.py:38] - Found 20 relevant chunks
+2025-11-18 04:39:01,870 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-oss-120b
+2025-11-18 04:39:01,870 - youtube_rag - INFO - [logger.py:38] - Generating structured answer using model: openai/gpt-oss-120b
+2025-11-18 04:39:01,870 - youtube_rag - DEBUG - [logger.py:44] - Calling AI with JSON mode, max_tokens=2000
+2025-11-18 04:39:12,938 - youtube_rag - DEBUG - [logger.py:44] - Received AI response: 1293 characters
+2025-11-18 04:39:12,938 - youtube_rag - INFO - [logger.py:38] - Parsed 5 response segments with 5 unique sources
+2025-11-18 04:39:12,940 - youtube_rag - INFO - [logger.py:38] - Creating new chat for source a39dcc59-70a5-4c59-9061-9707d55bddfb after successful AI response
+2025-11-18 04:39:13,161 - youtube_rag - DEBUG - [logger.py:44] - Created chat 2b3fdd48-c251-4ce6-922a-ae639a1b3a14
+2025-11-18 04:39:13,293 - youtube_rag - DEBUG - [logger.py:44] - Saved user message to chat 2b3fdd48-c251-4ce6-922a-ae639a1b3a14
+2025-11-18 04:39:13,412 - youtube_rag - DEBUG - [logger.py:44] - Saved assistant message to chat 2b3fdd48-c251-4ce6-922a-ae639a1b3a14
+2025-11-18 04:39:13,637 - youtube_rag - INFO - [logger.py:38] - Credits deducted (20). User c8992235-5976-4981-9b20-bb6521f2fc34 has 970 credits remaining
+2025-11-18 04:39:14,134 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 2b3fdd48-c251-4ce6-922a-ae639a1b3a14 for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-18 04:39:14,360 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 2b3fdd48-c251-4ce6-922a-ae639a1b3a14 for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-18 05:04:27,023 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user c8992235-5976-4981-9b20-bb6521f2fc34 (search=, limit=50, offset=0)
+2025-11-18 05:04:27,265 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user c8992235-5976-4981-9b20-bb6521f2fc34 (search=, limit=50, offset=0)
+2025-11-18 05:09:10,028 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 05:09:10,029 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 05:09:10,029 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 05:09:10,029 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 05:09:10,029 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 05:09:10,030 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 05:09:10,030 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 05:09:15,419 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 05:09:15,751 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 05:09:15,752 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 05:09:15,752 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 05:09:15,752 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 05:09:15,752 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 05:09:15,752 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 05:09:15,752 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 05:09:19,807 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 05:09:27,227 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 05:10:32,311 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user c8992235-5976-4981-9b20-bb6521f2fc34 (search=, limit=50, offset=0)
+2025-11-18 05:10:32,424 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user c8992235-5976-4981-9b20-bb6521f2fc34 (search=, limit=50, offset=0)
+2025-11-18 05:10:34,839 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 2b3fdd48-c251-4ce6-922a-ae639a1b3a14 for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-18 05:10:35,078 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 2b3fdd48-c251-4ce6-922a-ae639a1b3a14 for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-18 05:11:02,917 - youtube_rag - INFO - [logger.py:38] - Query request from user c8992235-5976-4981-9b20-bb6521f2fc34: 'tell me about all the business plans daniel have...'
+2025-11-18 05:11:03,115 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: a39dcc59-70a5-4c59-9061-9707d55bddfb
+2025-11-18 05:11:03,221 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-18 05:11:03,222 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-18 05:11:03,223 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-11-18 05:11:03,224 - youtube_rag - INFO - [logger.py:38] - Using device: cpu
+2025-11-18 05:11:06,679 - youtube_rag - INFO - [logger.py:38] - Embedding model loaded successfully
+2025-11-18 05:11:08,441 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-18 05:11:08,441 - youtube_rag - INFO - [logger.py:38] - Initializing AIService with API key: sk-or-v1-e...18b9
+2025-11-18 05:11:08,468 - youtube_rag - INFO - [logger.py:38] - Loaded prompts from config/prompts.json
+2025-11-18 05:11:08,468 - youtube_rag - INFO - [logger.py:38] - AI responses will be logged to: /Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/logs/ai_responses.json
+2025-11-18 05:11:08,468 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=20
+2025-11-18 05:11:08,468 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['AmlQhjXo22c'], source_id=a39dcc59-70a5-4c59-9061-9707d55bddfb
+2025-11-18 05:11:08,468 - youtube_rag - INFO - [logger.py:38] - Using top_k=20 for vector search (Config.TOP_K_RESULTS=20)
+2025-11-18 05:11:08,468 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-18 05:11:08,542 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-18 05:11:08,542 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['AmlQhjXo22c']}}
+2025-11-18 05:11:11,546 - youtube_rag - INFO - [logger.py:38] - Query returned 20 raw results
+2025-11-18 05:11:11,547 - youtube_rag - INFO - [logger.py:38] - Deduplicated 20 chunks to 20 chunks
+2025-11-18 05:11:11,547 - youtube_rag - DEBUG - [logger.py:44] - Video AmlQhjXo22c: 20 chunks sorted chronologically
+2025-11-18 05:11:11,547 - youtube_rag - INFO - [logger.py:38] - After deduplication and sorting: 20 results
+2025-11-18 05:11:11,549 - youtube_rag - INFO - [logger.py:38] - Found 20 relevant chunks
+2025-11-18 05:11:11,549 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-oss-120b
+2025-11-18 05:11:11,549 - youtube_rag - INFO - [logger.py:38] - Generating structured answer using model: openai/gpt-oss-120b
+2025-11-18 05:11:11,549 - youtube_rag - DEBUG - [logger.py:44] - Calling AI with JSON mode, max_tokens=2000
+2025-11-18 05:11:18,114 - youtube_rag - DEBUG - [logger.py:44] - Received AI response: 1021 characters
+2025-11-18 05:11:18,115 - youtube_rag - INFO - [logger.py:38] - Parsed 4 response segments with 4 unique sources
+2025-11-18 05:11:18,116 - youtube_rag - INFO - [logger.py:38] - Creating new chat for source a39dcc59-70a5-4c59-9061-9707d55bddfb after successful AI response
+2025-11-18 05:11:18,576 - youtube_rag - DEBUG - [logger.py:44] - Created chat 301e7e0f-0975-4402-a7e3-f5b0eb1848d7
+2025-11-18 05:11:18,708 - youtube_rag - DEBUG - [logger.py:44] - Saved user message to chat 301e7e0f-0975-4402-a7e3-f5b0eb1848d7
+2025-11-18 05:11:18,822 - youtube_rag - DEBUG - [logger.py:44] - Saved assistant message to chat 301e7e0f-0975-4402-a7e3-f5b0eb1848d7
+2025-11-18 05:11:19,042 - youtube_rag - INFO - [logger.py:38] - Credits deducted (20). User c8992235-5976-4981-9b20-bb6521f2fc34 has 950 credits remaining
+2025-11-18 05:11:19,112 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 301e7e0f-0975-4402-a7e3-f5b0eb1848d7 for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-18 05:11:19,336 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 301e7e0f-0975-4402-a7e3-f5b0eb1848d7 for user c8992235-5976-4981-9b20-bb6521f2fc34

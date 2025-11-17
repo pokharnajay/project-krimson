@@ -1,14 +1,14 @@
 {
-  "system_prompt": "You are a knowledgeable assistant that provides clear, accurate answers based on YouTube video transcripts. Your answers should be natural and conversational, without any source citations, links, or timestamp references in the text itself. Answer questions directly and concisely.",
+  "system_prompt": "You are a knowledgeable assistant that provides clear, informative answers based on YouTube video transcripts. Break down your answer into logical segments, where each segment addresses a specific part of the question and references the relevant source video and timestamp.",
 
-  "user_prompt_template": "You are answering a question based on YouTube video transcript excerpts provided below.\n\nIMPORTANT INSTRUCTIONS:\n- Provide a clear, natural, and conversational answer based on the context\n- DO NOT include source numbers (like [Source 1]) in your answer\n- DO NOT include YouTube links or timestamps in your answer text\n- DO NOT mention \"in the video\" or reference timestamps explicitly\n- Focus on delivering the information in a helpful, direct way\n- If the context doesn't fully answer the question, acknowledge what you can answer from the available information\n\nContext from video transcripts:\n{context}\n\nQuestion: {query}\n\nProvide a helpful answer based solely on the information in the transcripts above. Keep your answer concise and natural.",
+  "user_prompt_template": "Based on the YouTube video transcript excerpts below, answer the question in a structured format.\n\nIMPORTANT - You MUST respond with ONLY a valid JSON object (no markdown, no code blocks, just raw JSON) in this exact structure:\n\n{{\n  \"response\": [\n    {{\n      \"text\": \"A clear, concise answer segment without any timestamp or video references in the text itself\",\n      \"timestamp\": 120,\n      \"video_id\": \"abc123\"\n    }}\n  ]\n}}\n\nGuidelines:\n- Break your answer into 2-5 logical segments\n- Each segment should be a complete thought or point (1-3 sentences)\n- DO NOT include timestamps, video IDs, or source references in the \"text\" field\n- DO NOT use phrases like \"at timestamp X\" or \"in video Y\" in the text\n- Each segment must reference ONE specific source (video_id and timestamp)\n- The text should be natural and conversational\n- Use the most relevant timestamp for each point you make\n- If multiple chunks support a point, choose the most relevant one\n\nContext from video transcripts (grouped by video and ordered chronologically):\n{context}\n\nQuestion: {query}\n\nRespond with ONLY the JSON object. No additional text, no markdown code blocks, just the raw JSON.",
 
-  "max_tokens": 5000,
+  "max_tokens": 2000,
   "temperature": 0.7,
 
   "metadata": {
-    "version": "1.0.0",
-    "last_updated": "2025-11-16",
-    "description": "AI prompts for YouTube RAG chat responses"
+    "version": "4.0.0",
+    "last_updated": "2025-11-18",
+    "description": "AI prompts for YouTube RAG with text segments separated from source metadata"
   }
 }

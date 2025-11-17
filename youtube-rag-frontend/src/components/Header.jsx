@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, forwardRef, useImperativeHandle } from 'react';
 import { useRouter } from 'next/navigation';
 import { LogOut } from 'lucide-react';
 import { authService } from '@/lib/auth';
 import { userAPI } from '@/lib/api';
 
-export default function Header({ sourceTitle }) {
+const Header = forwardRef(({ sourceTitle }, ref) => {
   const router = useRouter();
   const [username, setUsername] = useState('User');
   const [credits, setCredits] = useState(0);
@@ -15,7 +15,7 @@ export default function Header({ sourceTitle }) {
 
   useEffect(() => {
     fetchCredits();
-    const interval = setInterval(fetchCredits, 30000); // Refresh every 30s
+    const interval = setInterval(fetchCredits, 60000); // Refresh every 60s (1 minute)
     return () => clearInterval(interval);
   }, []);
 
@@ -36,6 +36,14 @@ export default function Header({ sourceTitle }) {
       console.error('Failed to fetch credits:', error);
     }
   };
+
+  // Expose updateCredits method to parent components via ref
+  useImperativeHandle(ref, () => ({
+    updateCredits: (newCredits) => {
+      setCredits(newCredits);
+    },
+    refreshCredits: fetchCredits
+  }));
 
   const handleLogout = () => {
     authService.clearTokens();
@@ -119,4 +127,8 @@ export default function Header({ sourceTitle }) {
       </div>
     </header>
   );
-}
+});
+
+Header.displayName = 'Header';
+
+export default Header;
