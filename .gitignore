@@ -84,3 +84,5 @@ Thumbs.db
 .vercel
 *.pem
 *.logging.txt
+*.logging.txt
+youtube-transcript-rag/logs/logging.txt
