@@ -85,3 +85,4 @@ Thumbs.db
 *.logging.txt
 *.logging.txt
 youtube-transcript-rag/logs/logging.txt
+/youtube-transcript-rag/logs

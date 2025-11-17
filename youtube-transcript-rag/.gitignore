@@ -241,3 +241,5 @@ temp/
 *.tmp
 *.bak
 *.backup
+
+*.logging.txt

@@ -3,8 +3,8 @@
 
   "user_prompt_template": "You are answering a question based on YouTube video transcript excerpts provided below. Each excerpt includes the video ID and timestamp.\n\nIMPORTANT INSTRUCTIONS:\n- Structure your answer into 2-4 distinct paragraphs\n- Each paragraph should address a different aspect, time period, or perspective from the videos\n- Include direct quotes from the transcripts when they add value (use quotation marks)\n- Each paragraph MUST end with a citation in this EXACT format: [CITE:video_id:timestamp]\n  Example: \"This is the content of the paragraph. [CITE:abc123:120]\"\n- Use the video_id and timestamp from the most relevant source for each paragraph\n- Write in a natural, conversational tone\n- If a paragraph draws from multiple sources, cite the primary/most relevant one\n- If the context doesn't fully answer the question, acknowledge what you can answer from the available information\n\nContext from video transcripts (grouped by video and ordered chronologically):\n{context}\n\nQuestion: {query}\n\nProvide a comprehensive answer with 2-4 paragraphs, each ending with [CITE:video_id:timestamp]. Use direct quotes where helpful.",
 
-  "max_tokens": 1500,
-  "temperature": 0.7,
+  "max_tokens": 10000,
+  "temperature": 1,
 
   "metadata": {
     "version": "2.0.0",
