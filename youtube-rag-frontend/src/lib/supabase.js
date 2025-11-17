@@ -35,14 +35,18 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
  * Set authentication token for Supabase client
  * Call this after user login to enable RLS-protected queries
  *
+ * IMPORTANT: This sets the JWT token in the headers for Supabase requests.
+ * Since we use custom backend JWT (not Supabase Auth), we need to manually
+ * include the token in request headers.
+ *
  * @param {string} accessToken - JWT access token from backend auth
  */
 export const setSupabaseAuth = (accessToken) => {
   if (accessToken) {
-    supabase.auth.setSession({
-      access_token: accessToken,
-      refresh_token: '', // Not needed for our use case
-    });
+    // Store token for use in requests
+    if (typeof window !== 'undefined') {
+      window.__supabase_token = accessToken;
+    }
   }
 };
 
@@ -51,7 +55,26 @@ export const setSupabaseAuth = (accessToken) => {
  * Call this on logout
  */
 export const clearSupabaseAuth = async () => {
-  await supabase.auth.signOut();
+  if (typeof window !== 'undefined') {
+    delete window.__supabase_token;
+  }
+};
+
+/**
+ * Get authentication headers for Supabase requests
+ * @returns {Object} Headers object with authorization
+ */
+const getAuthHeaders = () => {
+  const token = typeof window !== 'undefined' ? window.__supabase_token : null;
+  if (token) {
+    return {
+      Authorization: `Bearer ${token}`,
+      apikey: supabaseAnonKey,
+    };
+  }
+  return {
+    apikey: supabaseAnonKey,
+  };
 };
 
 /**

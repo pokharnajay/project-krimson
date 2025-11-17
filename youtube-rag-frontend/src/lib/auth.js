@@ -28,7 +28,7 @@ export const authService = {
    * Set authentication tokens after successful login
    * @param {Object} data - {access_token, refresh_token}
    */
-  async setTokens(data) {
+  setTokens(data) {
     if (!isBrowser()) return;
 
     const { access_token, refresh_token } = data;
@@ -40,12 +40,10 @@ export const authService = {
       const expiryTime = Date.now() + DEFAULT_TOKEN_EXPIRY * 1000;
       localStorage.setItem(TOKEN_EXPIRY_KEY, expiryTime.toString());
 
-      // Also set token in Supabase client for direct database access
-      try {
-        const { setSupabaseAuth } = await import('./supabase');
-        setSupabaseAuth(access_token);
-      } catch (error) {
-        console.error('Failed to set Supabase auth:', error);
+      // Store token for Supabase client (for direct database access)
+      // Note: This won't work with RLS until backend JWT is Supabase-compatible
+      if (typeof window !== 'undefined') {
+        window.__supabase_token = access_token;
       }
     }
 
@@ -143,7 +141,7 @@ export const authService = {
   /**
    * Clear all authentication tokens and user data
    */
-  async clearTokens() {
+  clearTokens() {
     if (!isBrowser()) return;
 
     localStorage.removeItem(ACCESS_TOKEN_KEY);
@@ -151,20 +149,17 @@ export const authService = {
     localStorage.removeItem(TOKEN_EXPIRY_KEY);
     localStorage.removeItem(USER_KEY);
 
-    // Also clear Supabase auth
-    try {
-      const { clearSupabaseAuth } = await import('./supabase');
-      await clearSupabaseAuth();
-    } catch (error) {
-      console.error('Failed to clear Supabase auth:', error);
+    // Clear Supabase token
+    if (typeof window !== 'undefined') {
+      delete window.__supabase_token;
     }
   },
 
   /**
    * Logout user and redirect to login page
    */
-  async logout() {
-    await this.clearTokens();
+  logout() {
+    this.clearTokens();
     if (isBrowser()) {
       window.location.href = '/login';
     }
