@@ -9,14 +9,14 @@ import { queryAPI, transcriptAPI } from '@/lib/api';
 
 // OpenRouter models list
 const MODELS = [
-  { id: 'openai/gpt-4o', name: 'GPT-4o' },
-  { id: 'anthropic/claude-3.5-sonnet', name: 'Claude 3.5 Sonnet' },
-  { id: 'anthropic/claude-3-opus', name: 'Claude 3 Opus' },
-  { id: 'google/gemini-pro-1.5', name: 'Gemini Pro 1.5' },
-  { id: 'meta-llama/llama-3.1-70b-instruct', name: 'Llama 3.1 70B' },
-  { id: 'mistralai/mistral-large', name: 'Mistral Large' },
-  { id: 'perplexity/llama-3.1-sonar-huge-128k-online', name: 'Sonar Huge' },
-  { id: 'cohere/command-r-plus', name: 'Command R+' },
+  { id: 'openai/gpt-oss-120b', name: 'GPT OSS 120B - Paid' },
+  { id: 'openrouter/sherlock-dash-alpha', name: 'Sherlock Dash Alpha⚡️' },
+  { id: 'openrouter/sherlock-think-alpha', name: 'Sherlock Think Alpha🧠' },
+  { id: 'kwaipilot/kat-coder-pro:free', name: 'Kwaipilot: KAT-Coder-Pro V1 (free)' },
+  { id: 'qwen/qwen3-coder:free', name: 'Llama 3.1 70B' },
+  { id: 'google/gemini-2.0-flash-exp:free', name: 'Google: Gemini 2.0 Flash Experimental (free)' },
+  { id: 'nvidia/nemotron-nano-9b-v2:free', name: 'NVIDIA: Nemotron Nano 9B V2 (free)' },
+  { id: 'deepseek/deepseek-chat-v3.1:free', name: 'DeepSeek: DeepSeek V3.1 (free)' },
 ];
 
 export default function NewChatPage() {
