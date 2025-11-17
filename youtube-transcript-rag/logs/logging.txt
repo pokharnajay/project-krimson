@@ -325,3 +325,897 @@ HTTP response body: {"code":3,"message":"Vector dimension 384 does not match the
 2025-10-27 00:46:53,058 - youtube_rag - INFO - [logger.py:38] - Storage result for AHWVvFLLFig: exists
 2025-10-27 00:46:53,059 - youtube_rag - INFO - [logger.py:38] - Source 25e634ab-302f-4f01-a3db-b9b2c0309db7 processed successfully, marking as ready
 2025-10-27 00:46:53,195 - youtube_rag - INFO - [logger.py:38] - Processing complete: {'success': True, 'source_id': '25e634ab-302f-4f01-a3db-b9b2c0309db7', 'processed': 1, 'errors': [], 'storage_results': [{'status': 'exists', 'video_id': 'AHWVvFLLFig'}]}
+2025-11-16 01:02:45,896 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-16 01:03:04,426 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 01:03:28,681 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 01:03:55,587 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 03:07:06,950 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 03:07:13,314 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 03:07:32,637 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 03:07:35,276 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 03:07:38,803 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 03:07:41,147 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 03:08:12,029 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-16 03:09:13,940 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 03:09:16,433 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 03:09:16,576 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 03:09:18,472 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 03:09:21,483 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-16 03:30:42,925 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 03:30:45,846 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 03:30:45,997 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 03:30:47,919 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 03:31:48,382 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 03:31:50,308 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 03:31:50,434 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 03:31:52,373 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 03:32:14,487 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-16 03:32:22,982 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 03:32:25,358 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 03:32:25,495 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 03:32:27,429 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 03:32:29,470 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-16 03:33:22,038 - youtube_rag - INFO - [logger.py:38] - Processing video request from user: c8992235-5976-4981-9b20-bb6521f2fc34, URL: https://youtu.be/_diCfeZbH3I?si=7Lu388jmPvXaKqlF
+2025-11-16 03:33:22,038 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-16 03:33:22,039 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-11-16 03:33:22,039 - youtube_rag - INFO - [logger.py:38] - Using device: cpu
+2025-11-16 03:33:52,141 - youtube_rag - INFO - [logger.py:38] - Embedding model loaded successfully
+2025-11-16 03:33:53,511 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-16 03:33:53,512 - youtube_rag - DEBUG - [logger.py:44] - Extracting video IDs from URL
+2025-11-16 03:33:53,512 - youtube_rag - INFO - [logger.py:38] - Processing single video: _diCfeZbH3I
+2025-11-16 03:33:53,512 - youtube_rag - DEBUG - [logger.py:44] - Creating source entry in Supabase
+2025-11-16 03:33:53,831 - youtube_rag - INFO - [logger.py:38] - Created source: de92255f-b58f-49d9-9f7d-3ae583073e29
+2025-11-16 03:33:53,832 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch
+2025-11-16 03:33:53,832 - youtube_rag - INFO - [logger.py:38] - Starting batch transcript fetch for 1 videos
+2025-11-16 03:33:53,832 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch for video: _diCfeZbH3I
+2025-11-16 03:33:54,658 - youtube_rag - DEBUG - [logger.py:44] - Retrieved transcript list for _diCfeZbH3I
+2025-11-16 03:33:54,658 - youtube_rag - INFO - [logger.py:38] - Using manually created transcript for _diCfeZbH3I: English
+2025-11-16 03:33:54,658 - youtube_rag - DEBUG - [logger.py:44] - Fetching transcript data for _diCfeZbH3I
+2025-11-16 03:33:54,836 - youtube_rag - INFO - [logger.py:38] - Successfully fetched 751 segments for _diCfeZbH3I
+2025-11-16 03:33:54,838 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully processed video _diCfeZbH3I
+2025-11-16 03:33:54,839 - youtube_rag - INFO - [logger.py:38] - Batch complete: 1 success, 0 errors
+2025-11-16 03:33:54,839 - youtube_rag - INFO - [logger.py:38] - Transcript fetch complete: 1 success, 0 errors
+2025-11-16 03:33:54,839 - youtube_rag - INFO - [logger.py:38] - Starting Pinecone storage
+2025-11-16 03:33:54,839 - youtube_rag - DEBUG - [logger.py:44] - Storing transcript for video: _diCfeZbH3I
+2025-11-16 03:33:54,839 - youtube_rag - INFO - [logger.py:38] - Starting to store transcript for video _diCfeZbH3I
+2025-11-16 03:33:57,068 - youtube_rag - DEBUG - [logger.py:44] - Video _diCfeZbH3I exists in Pinecone: False
+2025-11-16 03:33:57,070 - youtube_rag - DEBUG - [logger.py:44] - Chunking transcript with 751 segments
+2025-11-16 03:33:57,070 - youtube_rag - DEBUG - [logger.py:44] - Chunking 751 segments with chunk_size=1000
+2025-11-16 03:33:57,071 - youtube_rag - DEBUG - [logger.py:44] - Created 76 chunks
+2025-11-16 03:33:57,071 - youtube_rag - INFO - [logger.py:38] - Created 76 chunks for video _diCfeZbH3I
+2025-11-16 03:33:57,071 - youtube_rag - DEBUG - [logger.py:44] - Creating embeddings for 76 text chunks
+2025-11-16 03:33:57,071 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 76 texts
+2025-11-16 03:33:57,890 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 76 embeddings
+2025-11-16 03:33:57,890 - youtube_rag - INFO - [logger.py:38] - Created 76 embeddings
+2025-11-16 03:33:57,890 - youtube_rag - DEBUG - [logger.py:44] - Prepared 76 vectors for upsert
+2025-11-16 03:34:01,376 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully stored 76 vectors for video _diCfeZbH3I
+2025-11-16 03:34:01,379 - youtube_rag - INFO - [logger.py:38] - Storage result for _diCfeZbH3I: stored
+2025-11-16 03:34:01,379 - youtube_rag - INFO - [logger.py:38] - Source de92255f-b58f-49d9-9f7d-3ae583073e29 processed successfully, marking as ready
+2025-11-16 03:34:01,786 - youtube_rag - INFO - [logger.py:38] - Processing complete: {'success': True, 'source_id': 'de92255f-b58f-49d9-9f7d-3ae583073e29', 'processed': 1, 'errors': [], 'storage_results': [{'status': 'stored', 'video_id': '_diCfeZbH3I', 'chunks': 76}]}
+2025-11-16 03:48:50,293 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 03:48:58,292 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 03:49:06,289 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 03:49:14,292 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 03:49:40,407 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 03:49:43,037 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 03:49:43,168 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 03:49:45,146 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 03:49:51,889 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-16 03:51:05,131 - youtube_rag - INFO - [logger.py:38] - Processing video request from user: c8992235-5976-4981-9b20-bb6521f2fc34, URL: https://youtu.be/_diCfeZbH3I?si=r8pcSFtGClbIkv-l
+2025-11-16 03:51:05,132 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-16 03:51:05,133 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-11-16 03:51:05,133 - youtube_rag - INFO - [logger.py:38] - Using device: cpu
+2025-11-16 03:51:08,462 - youtube_rag - INFO - [logger.py:38] - Embedding model loaded successfully
+2025-11-16 03:51:10,470 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-16 03:51:10,471 - youtube_rag - DEBUG - [logger.py:44] - Extracting video IDs from URL
+2025-11-16 03:51:10,471 - youtube_rag - INFO - [logger.py:38] - Processing single video: _diCfeZbH3I
+2025-11-16 03:51:10,471 - youtube_rag - DEBUG - [logger.py:44] - Creating source entry in Supabase
+2025-11-16 03:51:10,710 - youtube_rag - INFO - [logger.py:38] - Created source: a7b26676-4f1c-456a-b18f-2dcdd2db0942
+2025-11-16 03:51:10,710 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch
+2025-11-16 03:51:10,710 - youtube_rag - INFO - [logger.py:38] - Starting batch transcript fetch for 1 videos
+2025-11-16 03:51:10,710 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch for video: _diCfeZbH3I
+2025-11-16 03:51:11,733 - youtube_rag - DEBUG - [logger.py:44] - Retrieved transcript list for _diCfeZbH3I
+2025-11-16 03:51:11,733 - youtube_rag - INFO - [logger.py:38] - Using manually created transcript for _diCfeZbH3I: English
+2025-11-16 03:51:11,733 - youtube_rag - DEBUG - [logger.py:44] - Fetching transcript data for _diCfeZbH3I
+2025-11-16 03:51:11,916 - youtube_rag - INFO - [logger.py:38] - Successfully fetched 751 segments for _diCfeZbH3I
+2025-11-16 03:51:11,917 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully processed video _diCfeZbH3I
+2025-11-16 03:51:11,917 - youtube_rag - INFO - [logger.py:38] - Batch complete: 1 success, 0 errors
+2025-11-16 03:51:11,917 - youtube_rag - INFO - [logger.py:38] - Transcript fetch complete: 1 success, 0 errors
+2025-11-16 03:51:11,917 - youtube_rag - INFO - [logger.py:38] - Starting Pinecone storage
+2025-11-16 03:51:11,917 - youtube_rag - DEBUG - [logger.py:44] - Storing transcript for video: _diCfeZbH3I
+2025-11-16 03:51:11,917 - youtube_rag - INFO - [logger.py:38] - Starting to store transcript for video _diCfeZbH3I
+2025-11-16 03:51:14,702 - youtube_rag - DEBUG - [logger.py:44] - Video _diCfeZbH3I exists in Pinecone: True
+2025-11-16 03:51:14,704 - youtube_rag - INFO - [logger.py:38] - Video _diCfeZbH3I already exists in Pinecone, skipping
+2025-11-16 03:51:14,704 - youtube_rag - INFO - [logger.py:38] - Storage result for _diCfeZbH3I: exists
+2025-11-16 03:51:14,704 - youtube_rag - INFO - [logger.py:38] - Source a7b26676-4f1c-456a-b18f-2dcdd2db0942 processed successfully, marking as ready
+2025-11-16 03:51:14,813 - youtube_rag - INFO - [logger.py:38] - Processing complete: {'success': True, 'source_id': 'a7b26676-4f1c-456a-b18f-2dcdd2db0942', 'processed': 1, 'errors': [], 'storage_results': [{'status': 'exists', 'video_id': '_diCfeZbH3I'}]}
+2025-11-16 03:52:32,816 - youtube_rag - INFO - [logger.py:38] - Processing video request from user: c8992235-5976-4981-9b20-bb6521f2fc34, URL: https://www.youtube.com/watch?v=_diCfeZbH3I
+2025-11-16 03:52:32,817 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-16 03:52:34,144 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-16 03:52:34,145 - youtube_rag - DEBUG - [logger.py:44] - Extracting video IDs from URL
+2025-11-16 03:52:34,145 - youtube_rag - INFO - [logger.py:38] - Processing single video: _diCfeZbH3I
+2025-11-16 03:52:34,145 - youtube_rag - DEBUG - [logger.py:44] - Creating source entry in Supabase
+2025-11-16 03:52:34,483 - youtube_rag - INFO - [logger.py:38] - Created source: bcf417b9-20bb-4dc0-9408-754302802862
+2025-11-16 03:52:34,483 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch
+2025-11-16 03:52:34,483 - youtube_rag - INFO - [logger.py:38] - Starting batch transcript fetch for 1 videos
+2025-11-16 03:52:34,483 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch for video: _diCfeZbH3I
+2025-11-16 03:52:35,294 - youtube_rag - DEBUG - [logger.py:44] - Retrieved transcript list for _diCfeZbH3I
+2025-11-16 03:52:35,295 - youtube_rag - INFO - [logger.py:38] - Using manually created transcript for _diCfeZbH3I: English
+2025-11-16 03:52:35,295 - youtube_rag - DEBUG - [logger.py:44] - Fetching transcript data for _diCfeZbH3I
+2025-11-16 03:52:35,561 - youtube_rag - INFO - [logger.py:38] - Successfully fetched 751 segments for _diCfeZbH3I
+2025-11-16 03:52:35,563 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully processed video _diCfeZbH3I
+2025-11-16 03:52:35,563 - youtube_rag - INFO - [logger.py:38] - Batch complete: 1 success, 0 errors
+2025-11-16 03:52:35,563 - youtube_rag - INFO - [logger.py:38] - Transcript fetch complete: 1 success, 0 errors
+2025-11-16 03:52:35,563 - youtube_rag - INFO - [logger.py:38] - Starting Pinecone storage
+2025-11-16 03:52:35,563 - youtube_rag - DEBUG - [logger.py:44] - Storing transcript for video: _diCfeZbH3I
+2025-11-16 03:52:35,563 - youtube_rag - INFO - [logger.py:38] - Starting to store transcript for video _diCfeZbH3I
+2025-11-16 03:52:36,821 - youtube_rag - DEBUG - [logger.py:44] - Video _diCfeZbH3I exists in Pinecone: True
+2025-11-16 03:52:36,823 - youtube_rag - INFO - [logger.py:38] - Video _diCfeZbH3I already exists in Pinecone, skipping
+2025-11-16 03:52:36,823 - youtube_rag - INFO - [logger.py:38] - Storage result for _diCfeZbH3I: exists
+2025-11-16 03:52:36,823 - youtube_rag - INFO - [logger.py:38] - Source bcf417b9-20bb-4dc0-9408-754302802862 processed successfully, marking as ready
+2025-11-16 03:52:36,949 - youtube_rag - INFO - [logger.py:38] - Processing complete: {'success': True, 'source_id': 'bcf417b9-20bb-4dc0-9408-754302802862', 'processed': 1, 'errors': [], 'storage_results': [{'status': 'exists', 'video_id': '_diCfeZbH3I'}]}
+2025-11-16 04:00:39,294 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 04:00:47,294 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 04:00:55,295 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 04:01:03,295 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 04:01:11,295 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 04:01:19,294 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 04:01:27,296 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 04:01:35,295 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 04:02:06,298 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 04:02:29,132 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 04:02:30,403 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 04:02:31,161 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 04:02:31,162 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 04:02:32,145 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 04:02:32,147 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 04:17:05,078 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 04:17:16,666 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 04:17:16,998 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 04:17:21,200 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 04:17:28,979 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-16 04:18:25,245 - youtube_rag - ERROR - [logger.py:41] - Unexpected error: [Errno 35] Resource temporarily unavailable
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 187, in handle_request
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 150, in handle_request
+    status, headers = self._receive_response(
+                      ~~~~~~~~~~~~~~~~~~~~~~^
+        request=request, stream_id=stream_id
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 294, in _receive_response
+    event = self._receive_stream_event(request, stream_id)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 336, in _receive_stream_event
+    self._receive_events(request, stream_id)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 364, in _receive_events
+    events = self._read_incoming_data(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 438, in _read_incoming_data
+    raise self._read_exception  # pragma: nocover
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 187, in handle_request
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 150, in handle_request
+    status, headers = self._receive_response(
+                      ~~~~~~~~~~~~~~~~~~~~~~^
+        request=request, stream_id=stream_id
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 294, in _receive_response
+    event = self._receive_stream_event(request, stream_id)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 336, in _receive_stream_event
+    self._receive_events(request, stream_id)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 364, in _receive_events
+    events = self._read_incoming_data(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 455, in _read_incoming_data
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 441, in _read_incoming_data
+    data = self._network_stream.read(self.READ_NUM_BYTES, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_backends/sync.py", line 126, in read
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadError: [Errno 35] Resource temporarily unavailable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/routes/user_routes.py", line 12, in get_credits
+    user = get_user_by_id(user_id)
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/services/supabase_service.py", line 48, in get_user_by_id
+    res = supabase.table('users').select('*').eq('id', user_id).execute()
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/postgrest/_sync/request_builder.py", line 47, in execute
+    r = self.request.send()
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/postgrest/base_request_builder.py", line 81, in send
+    return self.session.request(
+           ~~~~~~~~~~~~~~~~~~~~^
+        self.http_method,
+        ^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        auth=self.auth,
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadError: [Errno 35] Resource temporarily unavailable
+2025-11-16 04:18:25,246 - youtube_rag - ERROR - [logger.py:41] - Error fetching sources: [Errno 35] Resource temporarily unavailable
+2025-11-16 04:18:41,608 - youtube_rag - ERROR - [logger.py:41] - Error fetching sources: [Errno 35] Resource temporarily unavailable
+2025-11-16 04:18:41,609 - youtube_rag - ERROR - [logger.py:41] - Unexpected error: [Errno 35] Resource temporarily unavailable
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 187, in handle_request
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 150, in handle_request
+    status, headers = self._receive_response(
+                      ~~~~~~~~~~~~~~~~~~~~~~^
+        request=request, stream_id=stream_id
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 294, in _receive_response
+    event = self._receive_stream_event(request, stream_id)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 336, in _receive_stream_event
+    self._receive_events(request, stream_id)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 364, in _receive_events
+    events = self._read_incoming_data(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 438, in _read_incoming_data
+    raise self._read_exception  # pragma: nocover
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 187, in handle_request
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 150, in handle_request
+    status, headers = self._receive_response(
+                      ~~~~~~~~~~~~~~~~~~~~~~^
+        request=request, stream_id=stream_id
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 294, in _receive_response
+    event = self._receive_stream_event(request, stream_id)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 336, in _receive_stream_event
+    self._receive_events(request, stream_id)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 364, in _receive_events
+    events = self._read_incoming_data(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 455, in _read_incoming_data
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/http2.py", line 441, in _read_incoming_data
+    data = self._network_stream.read(self.READ_NUM_BYTES, timeout)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_backends/sync.py", line 126, in read
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadError: [Errno 35] Resource temporarily unavailable
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/routes/user_routes.py", line 12, in get_credits
+    user = get_user_by_id(user_id)
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/services/supabase_service.py", line 48, in get_user_by_id
+    res = supabase.table('users').select('*').eq('id', user_id).execute()
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/postgrest/_sync/request_builder.py", line 47, in execute
+    r = self.request.send()
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/postgrest/base_request_builder.py", line 81, in send
+    return self.session.request(
+           ~~~~~~~~~~~~~~~~~~~~^
+        self.http_method,
+        ^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        auth=self.auth,
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadError: [Errno 35] Resource temporarily unavailable
+2025-11-16 04:21:27,587 - youtube_rag - INFO - [logger.py:38] - Processing video request from user c8992235-5976-4981-9b20-bb6521f2fc34, URL: https://youtu.be/_diCfeZbH3I?si=7Tbb5NYmEyeyDGrQ
+2025-11-16 04:21:27,588 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-16 04:21:27,589 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-11-16 04:21:27,590 - youtube_rag - INFO - [logger.py:38] - Using device: cpu
+2025-11-16 04:21:30,854 - youtube_rag - INFO - [logger.py:38] - Embedding model loaded successfully
+2025-11-16 04:21:32,698 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-16 04:21:32,698 - youtube_rag - DEBUG - [logger.py:44] - Extracting video IDs from URL
+2025-11-16 04:21:32,698 - youtube_rag - INFO - [logger.py:38] - Processing single video: _diCfeZbH3I
+2025-11-16 04:21:32,698 - youtube_rag - DEBUG - [logger.py:44] - No custom title provided, fetching from YouTube
+2025-11-16 04:21:33,023 - youtube_rag - INFO - [logger.py:38] - Auto-fetched title: The Philosophy of Success: Motivation, Family & Future | PGX Ideas #1 @VALUETAINMENT @PBDPodcast
+2025-11-16 04:21:33,023 - youtube_rag - DEBUG - [logger.py:44] - Creating source entry in Supabase
+2025-11-16 04:21:33,292 - youtube_rag - INFO - [logger.py:38] - Created source: 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 04:21:33,292 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch
+2025-11-16 04:21:33,292 - youtube_rag - INFO - [logger.py:38] - Starting batch transcript fetch for 1 videos
+2025-11-16 04:21:33,292 - youtube_rag - INFO - [logger.py:38] - Starting transcript fetch for video: _diCfeZbH3I
+2025-11-16 04:21:34,187 - youtube_rag - DEBUG - [logger.py:44] - Retrieved transcript list for _diCfeZbH3I
+2025-11-16 04:21:34,188 - youtube_rag - INFO - [logger.py:38] - Using manually created transcript for _diCfeZbH3I: English
+2025-11-16 04:21:34,188 - youtube_rag - DEBUG - [logger.py:44] - Fetching transcript data for _diCfeZbH3I
+2025-11-16 04:21:34,314 - youtube_rag - INFO - [logger.py:38] - Successfully fetched 751 segments for _diCfeZbH3I
+2025-11-16 04:21:34,316 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully processed video _diCfeZbH3I
+2025-11-16 04:21:34,316 - youtube_rag - INFO - [logger.py:38] - Batch complete: 1 success, 0 errors
+2025-11-16 04:21:34,316 - youtube_rag - INFO - [logger.py:38] - Transcript fetch complete: 1 success, 0 errors
+2025-11-16 04:21:34,316 - youtube_rag - INFO - [logger.py:38] - Starting Pinecone storage
+2025-11-16 04:21:34,316 - youtube_rag - DEBUG - [logger.py:44] - Storing transcript for video: _diCfeZbH3I
+2025-11-16 04:21:34,316 - youtube_rag - INFO - [logger.py:38] - Starting to store transcript for video _diCfeZbH3I
+2025-11-16 04:21:36,132 - youtube_rag - DEBUG - [logger.py:44] - Video _diCfeZbH3I exists in Pinecone: True
+2025-11-16 04:21:36,136 - youtube_rag - INFO - [logger.py:38] - Video _diCfeZbH3I already exists in Pinecone, skipping
+2025-11-16 04:21:36,136 - youtube_rag - INFO - [logger.py:38] - Storage result for _diCfeZbH3I: exists
+2025-11-16 04:21:36,136 - youtube_rag - INFO - [logger.py:38] - Source 904a22af-381d-4c3d-8908-bf50afcca64e processed successfully, marking as ready
+2025-11-16 04:21:36,275 - youtube_rag - INFO - [logger.py:38] - Processing complete: {'success': True, 'source_id': '904a22af-381d-4c3d-8908-bf50afcca64e', 'title': 'The Philosophy of Success: Motivation, Family & Future | PGX Ideas #1 @VALUETAINMENT @PBDPodcast', 'processed': 1, 'total_videos': 1, 'transcript_errors': [], 'storage_errors': []}
+2025-11-16 04:22:04,140 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 04:22:04,320 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 04:22:04,322 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 04:22:04,445 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 04:22:40,240 - youtube_rag - INFO - [logger.py:38] - Query request from user c8992235-5976-4981-9b20-bb6521f2fc34: 'tell me the 10 points to keep your husband happy...'
+2025-11-16 04:22:40,503 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 04:22:40,619 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-16 04:22:40,620 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-16 04:22:41,939 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-16 04:22:41,963 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=5
+2025-11-16 04:22:41,964 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['_diCfeZbH3I'], source_id=904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 04:22:41,964 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-16 04:22:42,048 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-16 04:22:42,048 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['_diCfeZbH3I']}}
+2025-11-16 04:22:43,170 - youtube_rag - INFO - [logger.py:38] - Query returned 5 results
+2025-11-16 04:22:43,171 - youtube_rag - INFO - [logger.py:38] - Found 5 relevant chunks
+2025-11-16 04:22:43,172 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openrouter/auto
+2025-11-16 04:22:43,172 - youtube_rag - INFO - [logger.py:38] - Generating answer using model: openrouter/auto
+2025-11-16 04:23:07,361 - youtube_rag - INFO - [logger.py:38] - Credits deducted. User c8992235-5976-4981-9b20-bb6521f2fc34 has 998 credits remaining
+2025-11-16 04:28:55,489 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 04:28:55,590 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 04:28:55,592 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 04:28:55,701 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:14:33,653 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 16:14:45,580 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 16:14:45,896 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 16:14:50,444 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 16:14:52,394 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 16:14:52,395 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 16:14:52,395 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 16:14:52,396 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 16:14:56,986 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-16 16:15:32,017 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:15:32,172 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:15:32,174 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:15:32,326 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:16:09,972 - youtube_rag - INFO - [logger.py:38] - Query request from user c8992235-5976-4981-9b20-bb6521f2fc34: 'what is prakhar talking about his friend, how patr...'
+2025-11-16 16:16:10,235 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:16:10,438 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-16 16:16:10,438 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-16 16:16:10,439 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-11-16 16:16:10,440 - youtube_rag - INFO - [logger.py:38] - Using device: cpu
+2025-11-16 16:16:14,173 - youtube_rag - INFO - [logger.py:38] - Embedding model loaded successfully
+2025-11-16 16:16:15,838 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-16 16:16:15,863 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=5
+2025-11-16 16:16:15,863 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['_diCfeZbH3I'], source_id=904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:16:15,863 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-16 16:16:15,938 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-16 16:16:15,939 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['_diCfeZbH3I']}}
+2025-11-16 16:16:18,705 - youtube_rag - INFO - [logger.py:38] - Query returned 5 results
+2025-11-16 16:16:18,706 - youtube_rag - INFO - [logger.py:38] - Found 5 relevant chunks
+2025-11-16 16:16:18,706 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-4o
+2025-11-16 16:16:18,706 - youtube_rag - INFO - [logger.py:38] - Generating answer using model: openai/gpt-4o
+2025-11-16 16:16:19,727 - youtube_rag - ERROR - [logger.py:41] - AI generation failed: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+2025-11-16 16:16:19,728 - youtube_rag - ERROR - [logger.py:41] - AI generation failed: Failed to generate answer: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+Traceback (most recent call last):
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/services/ai_service.py", line 45, in generate_answer
+    response = self.client.chat.completions.create(
+        model=model,
+    ...<5 lines>...
+        temperature=0.7
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 1147, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<46 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/openai/_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/routes/query_routes.py", line 126, in ask_question
+    result = ai_service.generate_answer(question, context_chunks, model)
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/services/ai_service.py", line 66, in generate_answer
+    raise Exception(f"Failed to generate answer: {str(e)}")
+Exception: Failed to generate answer: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+2025-11-16 16:25:27,438 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 16:25:32,309 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 16:25:32,559 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 16:25:36,372 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 16:25:49,866 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-16 16:35:54,638 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:35:54,779 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:35:54,781 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:35:54,914 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:36:01,549 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:36:01,789 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:36:01,793 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:36:02,034 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:36:08,171 - youtube_rag - INFO - [logger.py:38] - Query request from user c8992235-5976-4981-9b20-bb6521f2fc34: 'what is prakhar talking about his friend, how patr...'
+2025-11-16 16:36:08,480 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:36:08,610 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-16 16:36:08,610 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-16 16:36:08,612 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-11-16 16:36:08,612 - youtube_rag - INFO - [logger.py:38] - Using device: cpu
+2025-11-16 16:36:12,036 - youtube_rag - INFO - [logger.py:38] - Embedding model loaded successfully
+2025-11-16 16:36:13,578 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-16 16:36:13,600 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=5
+2025-11-16 16:36:13,600 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['_diCfeZbH3I'], source_id=904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:36:13,600 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-16 16:36:13,664 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-16 16:36:13,664 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['_diCfeZbH3I']}}
+2025-11-16 16:36:15,978 - youtube_rag - INFO - [logger.py:38] - Query returned 5 results
+2025-11-16 16:36:15,980 - youtube_rag - INFO - [logger.py:38] - Found 5 relevant chunks
+2025-11-16 16:36:15,980 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-4o
+2025-11-16 16:36:15,980 - youtube_rag - INFO - [logger.py:38] - Generating answer using model: openai/gpt-4o
+2025-11-16 16:36:18,125 - youtube_rag - ERROR - [logger.py:41] - AI generation failed: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+2025-11-16 16:36:18,125 - youtube_rag - ERROR - [logger.py:41] - AI generation failed: Failed to generate answer: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+Traceback (most recent call last):
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/services/ai_service.py", line 45, in generate_answer
+    response = self.client.chat.completions.create(
+        model=model,
+    ...<5 lines>...
+        temperature=0.7
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 1147, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<46 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/openai/_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/routes/query_routes.py", line 126, in ask_question
+    result = ai_service.generate_answer(question, context_chunks, model)
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/services/ai_service.py", line 66, in generate_answer
+    raise Exception(f"Failed to generate answer: {str(e)}")
+Exception: Failed to generate answer: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+2025-11-16 16:36:31,406 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:36:31,536 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:36:31,539 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:36:31,657 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:36:32,934 - youtube_rag - INFO - [logger.py:38] - Query request from user c8992235-5976-4981-9b20-bb6521f2fc34: 'what is prakhar talking about his friend, how patr...'
+2025-11-16 16:36:33,054 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:36:33,192 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-16 16:36:33,193 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-16 16:36:34,537 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-16 16:36:34,565 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=5
+2025-11-16 16:36:34,566 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['_diCfeZbH3I'], source_id=904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:36:34,566 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-16 16:36:34,578 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-16 16:36:34,578 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['_diCfeZbH3I']}}
+2025-11-16 16:36:36,878 - youtube_rag - INFO - [logger.py:38] - Query returned 5 results
+2025-11-16 16:36:36,880 - youtube_rag - INFO - [logger.py:38] - Found 5 relevant chunks
+2025-11-16 16:36:36,880 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-4o
+2025-11-16 16:36:36,880 - youtube_rag - INFO - [logger.py:38] - Generating answer using model: openai/gpt-4o
+2025-11-16 16:36:37,711 - youtube_rag - ERROR - [logger.py:41] - AI generation failed: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+2025-11-16 16:36:37,712 - youtube_rag - ERROR - [logger.py:41] - AI generation failed: Failed to generate answer: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+Traceback (most recent call last):
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/services/ai_service.py", line 45, in generate_answer
+    response = self.client.chat.completions.create(
+        model=model,
+    ...<5 lines>...
+        temperature=0.7
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 1147, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<46 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/openai/_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/routes/query_routes.py", line 126, in ask_question
+    result = ai_service.generate_answer(question, context_chunks, model)
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/services/ai_service.py", line 66, in generate_answer
+    raise Exception(f"Failed to generate answer: {str(e)}")
+Exception: Failed to generate answer: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}
+2025-11-16 16:43:59,752 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 16:44:04,849 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 16:44:14,509 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 16:44:18,582 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 16:44:18,837 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 16:44:22,768 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 16:44:36,885 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-16 16:45:19,449 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:45:19,671 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:45:19,675 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:45:19,839 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:45:24,010 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:45:24,213 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:45:24,218 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:45:24,372 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:45:34,479 - youtube_rag - INFO - [logger.py:38] - Query request from user c8992235-5976-4981-9b20-bb6521f2fc34: 'what is prakhar talking about his friend, how patr...'
+2025-11-16 16:45:34,702 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:45:34,854 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-16 16:45:34,854 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-16 16:45:34,856 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-11-16 16:45:34,856 - youtube_rag - INFO - [logger.py:38] - Using device: cpu
+2025-11-16 16:45:38,758 - youtube_rag - INFO - [logger.py:38] - Embedding model loaded successfully
+2025-11-16 16:45:40,254 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-16 16:45:40,255 - youtube_rag - INFO - [logger.py:38] - Initializing AIService with API key: sk-or-v1-e...18b9
+2025-11-16 16:45:40,284 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=5
+2025-11-16 16:45:40,285 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['_diCfeZbH3I'], source_id=904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:45:40,285 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-16 16:45:40,352 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-16 16:45:40,352 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['_diCfeZbH3I']}}
+2025-11-16 16:45:42,940 - youtube_rag - INFO - [logger.py:38] - Query returned 5 results
+2025-11-16 16:45:42,942 - youtube_rag - INFO - [logger.py:38] - Found 5 relevant chunks
+2025-11-16 16:45:42,943 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-4o
+2025-11-16 16:45:42,943 - youtube_rag - INFO - [logger.py:38] - Generating answer using model: openai/gpt-4o
+2025-11-16 16:45:46,763 - youtube_rag - INFO - [logger.py:38] - Credits deducted. User c8992235-5976-4981-9b20-bb6521f2fc34 has 997 credits remaining
+2025-11-16 16:46:12,218 - youtube_rag - INFO - [logger.py:38] - Query request from user c8992235-5976-4981-9b20-bb6521f2fc34: 'tell me the 10 things to keep your husband happy...'
+2025-11-16 16:46:12,459 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:46:12,582 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-16 16:46:12,582 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-16 16:46:13,942 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-16 16:46:13,942 - youtube_rag - INFO - [logger.py:38] - Initializing AIService with API key: sk-or-v1-e...18b9
+2025-11-16 16:46:13,970 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=5
+2025-11-16 16:46:13,970 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['_diCfeZbH3I'], source_id=904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:46:13,970 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-16 16:46:13,983 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-16 16:46:13,983 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['_diCfeZbH3I']}}
+2025-11-16 16:46:15,129 - youtube_rag - INFO - [logger.py:38] - Query returned 5 results
+2025-11-16 16:46:15,132 - youtube_rag - INFO - [logger.py:38] - Found 5 relevant chunks
+2025-11-16 16:46:15,132 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-4o
+2025-11-16 16:46:15,132 - youtube_rag - INFO - [logger.py:38] - Generating answer using model: openai/gpt-4o
+2025-11-16 16:46:20,161 - youtube_rag - INFO - [logger.py:38] - Credits deducted. User c8992235-5976-4981-9b20-bb6521f2fc34 has 996 credits remaining
+2025-11-16 16:52:51,461 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:52:51,705 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:52:51,708 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:52:51,853 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:55:00,444 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:55:00,746 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:55:00,751 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:55:01,023 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:56:37,515 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 16:56:42,533 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 16:56:56,175 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 16:57:00,406 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 16:57:00,656 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 16:57:04,628 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 16:57:04,706 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-16 16:57:06,259 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:57:06,462 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:57:06,466 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:57:06,614 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:57:10,234 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:57:10,421 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:57:10,425 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 16:57:10,584 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:57:18,535 - youtube_rag - INFO - [logger.py:38] - Query request from user c8992235-5976-4981-9b20-bb6521f2fc34: 'Prakhar mentioned that his very best friend from c...'
+2025-11-16 16:57:18,932 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:57:19,062 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-16 16:57:19,063 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-16 16:57:19,064 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-11-16 16:57:19,064 - youtube_rag - INFO - [logger.py:38] - Using device: cpu
+2025-11-16 16:57:23,303 - youtube_rag - INFO - [logger.py:38] - Embedding model loaded successfully
+2025-11-16 16:57:24,980 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-16 16:57:24,980 - youtube_rag - INFO - [logger.py:38] - Initializing AIService with API key: sk-or-v1-e...18b9
+2025-11-16 16:57:25,002 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=5
+2025-11-16 16:57:25,002 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['_diCfeZbH3I'], source_id=904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:57:25,002 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-16 16:57:25,070 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-16 16:57:25,070 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['_diCfeZbH3I']}}
+2025-11-16 16:57:26,518 - youtube_rag - INFO - [logger.py:38] - Query returned 5 results
+2025-11-16 16:57:26,520 - youtube_rag - INFO - [logger.py:38] - Found 5 relevant chunks
+2025-11-16 16:57:26,521 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-oss-120b
+2025-11-16 16:57:26,521 - youtube_rag - INFO - [logger.py:38] - Generating answer using model: openai/gpt-oss-120b
+2025-11-16 16:57:32,079 - youtube_rag - INFO - [logger.py:38] - Credits deducted. User c8992235-5976-4981-9b20-bb6521f2fc34 has 995 credits remaining
+2025-11-16 16:58:17,397 - youtube_rag - INFO - [logger.py:38] - Query request from user c8992235-5976-4981-9b20-bb6521f2fc34: 'what did patrik tell about sharing things from you...'
+2025-11-16 16:58:17,638 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:58:17,766 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-16 16:58:17,767 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-16 16:58:19,444 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-16 16:58:19,444 - youtube_rag - INFO - [logger.py:38] - Initializing AIService with API key: sk-or-v1-e...18b9
+2025-11-16 16:58:19,472 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=5
+2025-11-16 16:58:19,472 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['_diCfeZbH3I'], source_id=904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 16:58:19,472 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-16 16:58:19,491 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-16 16:58:19,492 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['_diCfeZbH3I']}}
+2025-11-16 16:58:20,594 - youtube_rag - INFO - [logger.py:38] - Query returned 5 results
+2025-11-16 16:58:20,596 - youtube_rag - INFO - [logger.py:38] - Found 5 relevant chunks
+2025-11-16 16:58:20,596 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-oss-120b
+2025-11-16 16:58:20,596 - youtube_rag - INFO - [logger.py:38] - Generating answer using model: openai/gpt-oss-120b
+2025-11-16 16:58:25,474 - youtube_rag - INFO - [logger.py:38] - Credits deducted. User c8992235-5976-4981-9b20-bb6521f2fc34 has 994 credits remaining
+2025-11-16 17:01:09,132 - youtube_rag - INFO - [logger.py:38] - Query request from user c8992235-5976-4981-9b20-bb6521f2fc34: 'what did prakhar say about fake news...'
+2025-11-16 17:01:10,228 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 17:01:10,604 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-16 17:01:10,604 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-16 17:01:12,274 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-16 17:01:12,274 - youtube_rag - INFO - [logger.py:38] - Initializing AIService with API key: sk-or-v1-e...18b9
+2025-11-16 17:01:12,300 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=5
+2025-11-16 17:01:12,300 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['_diCfeZbH3I'], source_id=904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 17:01:12,300 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-16 17:01:12,308 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-16 17:01:12,308 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['_diCfeZbH3I']}}
+2025-11-16 17:01:13,551 - youtube_rag - INFO - [logger.py:38] - Query returned 5 results
+2025-11-16 17:01:13,553 - youtube_rag - INFO - [logger.py:38] - Found 5 relevant chunks
+2025-11-16 17:01:13,553 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-oss-120b
+2025-11-16 17:01:13,553 - youtube_rag - INFO - [logger.py:38] - Generating answer using model: openai/gpt-oss-120b
+2025-11-16 17:01:19,326 - youtube_rag - INFO - [logger.py:38] - Credits deducted. User c8992235-5976-4981-9b20-bb6521f2fc34 has 993 credits remaining
+2025-11-16 17:01:25,618 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 17:01:25,908 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 17:01:25,911 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 17:01:26,106 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 17:34:36,914 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:35:36,916 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:36:36,916 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:37:36,917 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:38:36,917 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:39:36,919 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:40:36,918 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:41:36,919 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:42:36,918 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:43:36,919 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:44:36,920 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:45:36,919 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:46:36,920 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:47:36,920 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:48:36,920 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:49:36,928 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:50:36,921 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:51:36,921 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:52:36,922 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:53:36,922 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:54:36,926 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:55:36,923 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:56:36,923 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 17:57:26,231 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 17:57:31,594 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 17:57:31,892 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 17:57:37,095 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 18:05:10,752 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 18:05:17,194 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 18:05:17,852 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 18:05:25,542 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 18:05:25,633 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-16 18:05:45,336 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 18:05:45,542 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 18:05:45,545 - youtube_rag - INFO - [logger.py:38] - Fetching source 904a22af-381d-4c3d-8908-bf50afcca64e for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-16 18:05:45,783 - youtube_rag - INFO - [logger.py:38] - Successfully fetched source 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 18:05:57,971 - youtube_rag - INFO - [logger.py:38] - Query request from user c8992235-5976-4981-9b20-bb6521f2fc34: 'what is prakhar talking about his friend, how patr...'
+2025-11-16 18:05:58,240 - youtube_rag - DEBUG - [logger.py:44] - Using source_id: 904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 18:05:58,373 - youtube_rag - DEBUG - [logger.py:44] - Retrieved 1 video IDs from source
+2025-11-16 18:05:58,373 - youtube_rag - INFO - [logger.py:38] - Initializing PineconeService
+2025-11-16 18:05:58,375 - youtube_rag - DEBUG - [logger.py:44] - Initializing EmbeddingService with sentence-transformers
+2025-11-16 18:05:58,375 - youtube_rag - INFO - [logger.py:38] - Using device: cpu
+2025-11-16 18:06:02,019 - youtube_rag - INFO - [logger.py:38] - Embedding model loaded successfully
+2025-11-16 18:06:03,538 - youtube_rag - INFO - [logger.py:38] - Pinecone index youtube-transcripts already exists
+2025-11-16 18:06:03,539 - youtube_rag - INFO - [logger.py:38] - Initializing AIService with API key: sk-or-v1-e...18b9
+2025-11-16 18:06:03,566 - youtube_rag - INFO - [logger.py:38] - Querying vector store with top_k=5
+2025-11-16 18:06:03,567 - youtube_rag - INFO - [logger.py:38] - Querying videos with: video_ids=['_diCfeZbH3I'], source_id=904a22af-381d-4c3d-8908-bf50afcca64e
+2025-11-16 18:06:03,567 - youtube_rag - INFO - [logger.py:38] - Creating embeddings for 1 texts
+2025-11-16 18:06:03,679 - youtube_rag - INFO - [logger.py:38] - ✓ Successfully created 1 embeddings
+2025-11-16 18:06:03,679 - youtube_rag - DEBUG - [logger.py:44] - Using filter: {'video_id': {'$in': ['_diCfeZbH3I']}}
+2025-11-16 18:06:06,000 - youtube_rag - INFO - [logger.py:38] - Query returned 5 results
+2025-11-16 18:06:06,002 - youtube_rag - INFO - [logger.py:38] - Found 5 relevant chunks
+2025-11-16 18:06:06,002 - youtube_rag - DEBUG - [logger.py:44] - Generating answer with model: openai/gpt-oss-120b
+2025-11-16 18:06:06,002 - youtube_rag - INFO - [logger.py:38] - Generating answer using model: openai/gpt-oss-120b
+2025-11-16 18:06:09,383 - youtube_rag - INFO - [logger.py:38] - Credits deducted. User c8992235-5976-4981-9b20-bb6521f2fc34 has 992 credits remaining
+2025-11-16 18:42:36,939 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 18:43:36,935 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 18:43:36,938 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 18:44:36,935 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 18:44:36,935 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 18:52:55,396 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 18:53:00,968 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 18:53:01,315 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 18:53:05,481 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 18:53:36,949 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-16 18:53:36,952 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-16 19:02:36,275 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user c8992235-5976-4981-9b20-bb6521f2fc34 (search=, limit=50, offset=0)
+2025-11-16 19:02:41,975 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user c8992235-5976-4981-9b20-bb6521f2fc34 (search=, limit=50, offset=0)
+2025-11-16 19:02:45,904 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user c8992235-5976-4981-9b20-bb6521f2fc34 (search=, limit=50, offset=0)
+2025-11-16 19:05:33,247 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:17:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:18:36,940 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:19:36,938 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:20:36,936 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:21:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:22:36,935 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:23:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:24:36,935 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:25:36,939 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:26:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:27:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:28:36,939 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:29:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:30:36,933 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:31:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:32:36,938 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:33:36,938 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:34:36,938 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:35:36,939 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:36:36,935 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:37:36,938 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:38:36,935 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:39:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:40:36,934 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:41:36,936 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:42:36,940 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:43:36,939 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:44:36,938 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:45:36,936 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:46:36,937 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:47:36,941 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:48:36,936 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:49:36,939 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:50:36,936 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:51:36,939 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:52:36,941 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 19:53:36,938 - youtube_rag - ERROR - [logger.py:41] - Rate limit exceeded: 429 Too Many Requests: 100 per 1 hour
+2025-11-16 20:08:11,404 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 20:08:14,375 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 20:08:14,520 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100/hour
+2025-11-16 20:08:16,626 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-16 20:08:32,855 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client

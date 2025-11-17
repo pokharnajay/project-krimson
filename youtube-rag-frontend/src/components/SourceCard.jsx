@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Trash2, RefreshCw, Video, Clock, CheckCircle, XCircle, MessageCircle } from 'lucide-react';
-import { transcriptAPI } from '@/lib/api';
+import { Trash2, RefreshCw, CheckCircle, XCircle, Clock, MessageCircle } from 'lucide-react';
+import { transcriptAPI, chatAPI } from '@/lib/api';
 
 export default function SourceCard({ source, onUpdate }) {
   const router = useRouter();
@@ -12,7 +12,7 @@ export default function SourceCard({ source, onUpdate }) {
 
   const handleDelete = async () => {
     if (!confirm('Are you sure you want to delete this source?')) return;
-    
+
     setIsDeleting(true);
     try {
       await transcriptAPI.deleteSource(source.id);
@@ -37,87 +37,101 @@ export default function SourceCard({ source, onUpdate }) {
   };
 
   const handleChat = () => {
-    // Navigate to dynamic chat page with source ID
-    router.push(`/chat/${source.id}`);
+    // Navigate to new chat page with sourceId - chat will be created after first message
+    router.push(`/chat/new?sourceId=${source.id}`);
   };
 
-  const getStatusIcon = () => {
+  const getStatusDisplay = () => {
     switch (source.status) {
       case 'ready':
-        return <CheckCircle className="text-green-500" size={20} />;
+        return (
+          <span className="inline-flex items-center gap-1.5 text-xs text-green-600">
+            <CheckCircle size={14} />
+            Ready
+          </span>
+        );
       case 'failed':
-        return <XCircle className="text-red-500" size={20} />;
+        return (
+          <span className="inline-flex items-center gap-1.5 text-xs text-red-600">
+            <XCircle size={14} />
+            Failed
+          </span>
+        );
       case 'processing':
-        return <Clock className="text-yellow-500 animate-pulse" size={20} />;
+        return (
+          <span className="inline-flex items-center gap-1.5 text-xs text-amber-600">
+            <Clock size={14} className="animate-spin" />
+            Processing
+          </span>
+        );
       default:
         return null;
     }
   };
 
-  const getStatusText = () => {
-    switch (source.status) {
-      case 'ready':
-        return 'Ready';
-      case 'failed':
-        return 'Failed';
-      case 'processing':
-        return 'Processing...';
-      default:
-        return 'Unknown';
-    }
-  };
-
   return (
-    <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <Video className="text-accent" size={24} />
-          <div>
-            <h3 className="font-semibold text-lg text-gray-900">{source.title}</h3>
-            <p className="text-sm text-gray-500">{source.video_ids.length} video(s)</p>
-          </div>
+    <div className="border border-claude-border rounded-lg p-4 hover:border-accent transition-colors bg-white">
+      {/* Header */}
+      <div className="flex items-start justify-between mb-3">
+        <div className="flex-1 min-w-0 mr-2">
+          <h3
+            className="text-sm font-medium text-claude-text truncate mb-1"
+            title={source.title}
+          >
+            {source.title}
+          </h3>
+          <p className="text-xs text-claude-muted">
+            {source.video_ids.length} video{source.video_ids.length > 1 ? 's' : ''}
+          </p>
         </div>
-        <div className="flex items-center gap-2">
-          {getStatusIcon()}
-          <span className="text-sm font-medium">{getStatusText()}</span>
-        </div>
+        {getStatusDisplay()}
       </div>
 
-      <div className="text-sm text-gray-600 mb-4">
-        Created: {new Date(source.created_at).toLocaleDateString()}
-      </div>
+      {/* Date */}
+      <p className="text-xs text-claude-muted mb-4">
+        {new Date(source.created_at).toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        })}
+      </p>
 
+      {/* Actions */}
       <div className="flex gap-2">
-        {/* Chat Button - Only show when ready */}
         {source.status === 'ready' && (
           <button
             onClick={handleChat}
-            className="btn-primary flex items-center gap-2 flex-1"
+            className="flex-1 px-3 py-2 bg-accent hover:bg-accent/90 text-white rounded-lg text-xs font-medium transition-colors flex items-center justify-center gap-1.5"
           >
-            <MessageCircle size={16} />
+            <MessageCircle size={14} />
             Chat
           </button>
         )}
 
-        {/* Retry Button - Only show when failed */}
         {source.status === 'failed' && (
           <button
             onClick={handleRetry}
             disabled={isRetrying}
-            className="btn-secondary flex items-center gap-2 flex-1"
+            className="flex-1 px-3 py-2 border border-claude-border hover:bg-claude-bg text-claude-text rounded-lg text-xs font-medium transition-colors flex items-center justify-center gap-1.5 disabled:opacity-50"
           >
-            <RefreshCw size={16} className={isRetrying ? 'animate-spin' : ''} />
-            {isRetrying ? 'Retrying...' : 'Retry'}
+            <RefreshCw size={14} className={isRetrying ? 'animate-spin' : ''} />
+            Retry
           </button>
         )}
-        
-        {/* Delete Button - Always show */}
+
+        {source.status === 'processing' && (
+          <div className="flex-1 px-3 py-2 bg-claude-bg text-claude-muted rounded-lg text-xs font-medium flex items-center justify-center gap-1.5">
+            <RefreshCw size={14} className="animate-spin" />
+            Processing
+          </div>
+        )}
+
         <button
           onClick={handleDelete}
           disabled={isDeleting}
-          className="btn-danger flex items-center gap-2"
+          className="px-3 py-2 border border-red-200 hover:bg-red-50 text-red-600 rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5 disabled:opacity-50"
         >
-          <Trash2 size={16} />
+          <Trash2 size={14} />
           {isDeleting ? 'Deleting...' : 'Delete'}
         </button>
       </div>

@@ -39,11 +39,13 @@ def create_app():
     from app.routes.transcript_routes import transcript_bp
     from app.routes.query_routes import query_bp
     from app.routes.user_routes import user_bp
+    from app.routes.chat_routes import chat_bp
 
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(transcript_bp, url_prefix='/api/transcripts')
     app.register_blueprint(query_bp, url_prefix='/api/query')
     app.register_blueprint(user_bp, url_prefix='/api/user')
+    app.register_blueprint(chat_bp, url_prefix='/api/chats')
 
     # Health check endpoint
     @app.route('/health', methods=['GET'])
@@ -68,7 +70,8 @@ def create_app():
                 'auth': '/api/auth',
                 'transcripts': '/api/transcripts',
                 'query': '/api/query',
-                'user': '/api/user'
+                'user': '/api/user',
+                'chats': '/api/chats'
             }
         }), 200
 

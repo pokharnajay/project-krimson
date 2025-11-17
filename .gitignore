@@ -83,3 +83,4 @@ Thumbs.db
 # Misc
 .vercel
 *.pem
+*.logging.txt
