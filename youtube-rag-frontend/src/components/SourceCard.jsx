@@ -74,12 +74,15 @@ export default function SourceCard({ source, onUpdate }) {
       {/* Header */}
       <div className="flex items-start justify-between mb-3">
         <div className="flex-1 min-w-0 mr-2">
-          <h3
-            className="text-sm font-medium text-claude-text truncate mb-1"
-            title={source.title}
-          >
-            {source.title}
-          </h3>
+          <div className="group relative">
+            <h3 className="text-sm font-medium text-claude-text truncate mb-1">
+              {source.title}
+            </h3>
+            {/* Immediate tooltip on hover */}
+            <div className="invisible group-hover:visible absolute left-0 top-full mt-1 z-50 max-w-xs bg-gray-900 text-white text-xs rounded py-1 px-2 whitespace-normal break-words shadow-lg">
+              {source.title}
+            </div>
+          </div>
           <p className="text-xs text-claude-muted">
             {source.video_ids.length} video{source.video_ids.length > 1 ? 's' : ''}
           </p>

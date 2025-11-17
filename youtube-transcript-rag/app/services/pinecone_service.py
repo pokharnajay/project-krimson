@@ -48,7 +48,9 @@ class PineconeService:
             log_debug(f"Video {video_id} exists in Pinecone: {exists}")
             return exists
         except Exception as e:
-            log_error(f"Error checking if video exists: {str(e)}")
+            # Log error but don't fail silently - we'll handle this in store_transcript
+            log_error(f"Error checking if video exists in Pinecone for {video_id}: {str(e)}")
+            # Return False to attempt storage - Pinecone will handle duplicate prevention
             return False
     
     def store_transcript(self, video_id, transcript_data, source_id=None, user_id=None):

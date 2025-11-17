@@ -159,6 +159,7 @@ def process_videos():
         log_info("Starting Pinecone storage")
         storage_results = []
         storage_errors = []
+        videos_already_exist = 0
 
         for transcript_data in transcript_results['results']:
             try:
@@ -170,7 +171,13 @@ def process_videos():
                     user_id=user_id
                 )
                 storage_results.append(result)
-                log_info(f"Storage result for {transcript_data['video_id']}: {result.get('status', 'unknown')}")
+
+                # Track videos that already exist
+                if result.get('status') == 'exists':
+                    videos_already_exist += 1
+                    log_info(f"Video {transcript_data['video_id']} already exists in vector store, reusing embeddings")
+                else:
+                    log_info(f"Storage result for {transcript_data['video_id']}: {result.get('status', 'unknown')}")
             except Exception as storage_error:
                 log_error(f"Failed to store transcript for {transcript_data['video_id']}: {str(storage_error)}")
                 storage_errors.append({
@@ -181,7 +188,7 @@ def process_videos():
         # Update status based on results
         try:
             if len(storage_results) == 0:
-                # No transcripts were successfully stored
+                # No transcripts were successfully stored or reused
                 log_error(f"No transcripts were stored for source {source_id}")
                 update_source_status(source_id, 'failed')
                 return jsonify({
@@ -189,13 +196,18 @@ def process_videos():
                     'message': 'Failed to store any transcripts in the vector database',
                     'source_id': source_id
                 }), 500
-            elif storage_errors or transcript_results['errors']:
-                # Some errors but some success - mark as ready with warnings
-                log_warning(f"Source {source_id} has partial errors but marking as ready")
-                update_source_status(source_id, 'ready')
             else:
-                # Complete success
-                log_info(f"Source {source_id} processed successfully, marking as ready")
+                # Success if we have any storage results (stored or exists)
+                # Videos can be reused from existing embeddings
+                if videos_already_exist > 0:
+                    log_info(f"Source {source_id}: {videos_already_exist} video(s) already existed, reusing embeddings")
+
+                if storage_errors or transcript_results['errors']:
+                    log_warning(f"Source {source_id} has partial errors but marking as ready")
+                else:
+                    log_info(f"Source {source_id} processed successfully, marking as ready")
+
+                # Always mark as ready if we have any successful storage results
                 update_source_status(source_id, 'ready')
         except Exception as status_error:
             log_error(f"Failed to update source status: {str(status_error)}")
