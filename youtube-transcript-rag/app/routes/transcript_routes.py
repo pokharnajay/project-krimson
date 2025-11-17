@@ -8,10 +8,94 @@ from app.services.supabase_service import (
     get_sources_by_user, get_sources_count_by_user,
     get_source_by_id, delete_source
 )
+from app.services.background_processor import submit_background_task
 from app.utils.helpers import extract_video_id
 from app.utils.logger import log_info, log_error, log_debug, log_warning
 
 transcript_bp = Blueprint('transcript', __name__)
+
+
+def process_source_background(source_id, video_ids, user_id):
+    """
+    Background task to process source transcripts and embeddings.
+    This runs asynchronously without blocking the HTTP request.
+
+    Args:
+        source_id: Source ID to process
+        video_ids: List of YouTube video IDs
+        user_id: User ID who created the source
+    """
+    log_info(f"[BACKGROUND] Starting processing for source {source_id}")
+
+    try:
+        # Initialize services
+        transcript_service = TranscriptService()
+        pinecone_service = PineconeService()
+
+        # Fetch transcripts
+        log_info(f"[BACKGROUND] Fetching transcripts for {len(video_ids)} videos")
+        transcript_results = transcript_service.fetch_multiple_transcripts(video_ids)
+        log_info(f"[BACKGROUND] Transcript fetch complete: {len(transcript_results['results'])} success, {len(transcript_results['errors'])} errors")
+
+        # Check if any transcripts were successfully fetched
+        if len(transcript_results['results']) == 0:
+            log_error(f"[BACKGROUND] No transcripts fetched for source {source_id}")
+            update_source_status(source_id, 'failed')
+            return
+
+        # Store in Pinecone
+        log_info(f"[BACKGROUND] Starting Pinecone storage for source {source_id}")
+        storage_results = []
+        storage_errors = []
+        videos_already_exist = 0
+
+        for transcript_data in transcript_results['results']:
+            try:
+                log_debug(f"[BACKGROUND] Storing transcript for video: {transcript_data['video_id']}")
+                result = pinecone_service.store_transcript(
+                    transcript_data['video_id'],
+                    transcript_data,
+                    source_id=source_id,
+                    user_id=user_id
+                )
+                storage_results.append(result)
+
+                # Track videos that already exist
+                if result.get('status') == 'exists':
+                    videos_already_exist += 1
+                    log_info(f"[BACKGROUND] Video {transcript_data['video_id']} already exists in vector store, reusing embeddings")
+                else:
+                    log_info(f"[BACKGROUND] Storage result for {transcript_data['video_id']}: {result.get('status', 'unknown')}")
+            except Exception as storage_error:
+                log_error(f"[BACKGROUND] Failed to store transcript for {transcript_data['video_id']}: {str(storage_error)}")
+                storage_errors.append({
+                    'video_id': transcript_data['video_id'],
+                    'error': str(storage_error)
+                })
+
+        # Update status based on results
+        if len(storage_results) == 0:
+            log_error(f"[BACKGROUND] No transcripts were stored for source {source_id}")
+            update_source_status(source_id, 'failed')
+        else:
+            if videos_already_exist > 0:
+                log_info(f"[BACKGROUND] Source {source_id}: {videos_already_exist} video(s) already existed, reusing embeddings")
+
+            if storage_errors or transcript_results['errors']:
+                log_warning(f"[BACKGROUND] Source {source_id} has partial errors but marking as ready")
+            else:
+                log_info(f"[BACKGROUND] Source {source_id} processed successfully")
+
+            update_source_status(source_id, 'ready')
+
+        log_info(f"[BACKGROUND] Processing complete for source {source_id}")
+
+    except Exception as e:
+        log_error(f"[BACKGROUND] Fatal error processing source {source_id}: {str(e)}", exc_info=True)
+        try:
+            update_source_status(source_id, 'failed')
+        except:
+            pass
 
 @transcript_bp.route('/process', methods=['POST'])
 @jwt_required()
@@ -125,104 +209,34 @@ def process_videos():
                 'error': 'Database error',
                 'message': 'Failed to create source record. Please try again.'
             }), 500
-        
-        # Fetch transcripts
-        log_info("Starting transcript fetch")
-        transcript_results = {'results': [], 'errors': []}
 
-        try:
-            transcript_results = transcript_service.fetch_multiple_transcripts(video_ids)
-            log_info(f"Transcript fetch complete: {len(transcript_results['results'])} success, {len(transcript_results['errors'])} errors")
-        except Exception as transcript_error:
-            log_error(f"Transcript fetch failed: {str(transcript_error)}", exc_info=True)
-            if source_id:
-                update_source_status(source_id, 'failed')
+        # ASYNC PROCESSING: Submit background task and return immediately
+        log_info(f"Submitting background task for source {source_id}")
+        task_submitted = submit_background_task(
+            process_source_background,
+            source_id,
+            video_ids,
+            user_id
+        )
+
+        if not task_submitted:
+            log_error(f"Failed to submit background task for source {source_id}")
+            update_source_status(source_id, 'failed')
             return jsonify({
-                'error': 'Transcript fetch failed',
-                'message': 'Failed to fetch video transcripts. Videos may not have captions available.',
-                'source_id': source_id
+                'error': 'Processing failed',
+                'message': 'Failed to start background processing. Please try again.'
             }), 500
 
-        # Check if any transcripts were successfully fetched
-        if len(transcript_results['results']) == 0:
-            log_error(f"No transcripts fetched for any videos in source {source_id}")
-            if source_id:
-                update_source_status(source_id, 'failed')
-            return jsonify({
-                'error': 'No transcripts available',
-                'message': 'Could not fetch transcripts for any of the videos. They may not have captions available.',
-                'source_id': source_id,
-                'errors': transcript_results['errors']
-            }), 400
-
-        # Store in Pinecone
-        log_info("Starting Pinecone storage")
-        storage_results = []
-        storage_errors = []
-        videos_already_exist = 0
-
-        for transcript_data in transcript_results['results']:
-            try:
-                log_debug(f"Storing transcript for video: {transcript_data['video_id']}")
-                result = pinecone_service.store_transcript(
-                    transcript_data['video_id'],
-                    transcript_data,
-                    source_id=source_id,
-                    user_id=user_id
-                )
-                storage_results.append(result)
-
-                # Track videos that already exist
-                if result.get('status') == 'exists':
-                    videos_already_exist += 1
-                    log_info(f"Video {transcript_data['video_id']} already exists in vector store, reusing embeddings")
-                else:
-                    log_info(f"Storage result for {transcript_data['video_id']}: {result.get('status', 'unknown')}")
-            except Exception as storage_error:
-                log_error(f"Failed to store transcript for {transcript_data['video_id']}: {str(storage_error)}")
-                storage_errors.append({
-                    'video_id': transcript_data['video_id'],
-                    'error': str(storage_error)
-                })
-
-        # Update status based on results
-        try:
-            if len(storage_results) == 0:
-                # No transcripts were successfully stored or reused
-                log_error(f"No transcripts were stored for source {source_id}")
-                update_source_status(source_id, 'failed')
-                return jsonify({
-                    'error': 'Storage failed',
-                    'message': 'Failed to store any transcripts in the vector database',
-                    'source_id': source_id
-                }), 500
-            else:
-                # Success if we have any storage results (stored or exists)
-                # Videos can be reused from existing embeddings
-                if videos_already_exist > 0:
-                    log_info(f"Source {source_id}: {videos_already_exist} video(s) already existed, reusing embeddings")
-
-                if storage_errors or transcript_results['errors']:
-                    log_warning(f"Source {source_id} has partial errors but marking as ready")
-                else:
-                    log_info(f"Source {source_id} processed successfully, marking as ready")
-
-                # Always mark as ready if we have any successful storage results
-                update_source_status(source_id, 'ready')
-        except Exception as status_error:
-            log_error(f"Failed to update source status: {str(status_error)}")
-            # Don't fail the request if status update fails
-
+        # Return immediately - processing continues in background
         response_data = {
             'success': True,
             'source_id': source_id,
             'title': title,
-            'processed': len(storage_results),
-            'total_videos': len(video_ids),
-            'transcript_errors': transcript_results['errors'],
-            'storage_errors': storage_errors
+            'status': 'processing',
+            'message': 'Source created successfully. Processing started in background.',
+            'total_videos': len(video_ids)
         }
-        log_info(f"Processing complete: {response_data}")
+        log_info(f"Source created and processing started: {source_id}")
 
         return jsonify(response_data), 200
 

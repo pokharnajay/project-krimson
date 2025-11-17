@@ -39,6 +39,12 @@ export const authService = {
       // Calculate and store token expiry time
       const expiryTime = Date.now() + DEFAULT_TOKEN_EXPIRY * 1000;
       localStorage.setItem(TOKEN_EXPIRY_KEY, expiryTime.toString());
+
+      // Store token for Supabase client (for direct database access)
+      // Note: This won't work with RLS until backend JWT is Supabase-compatible
+      if (typeof window !== 'undefined') {
+        window.__supabase_token = access_token;
+      }
     }
 
     if (refresh_token) {
@@ -142,6 +148,11 @@ export const authService = {
     localStorage.removeItem(REFRESH_TOKEN_KEY);
     localStorage.removeItem(TOKEN_EXPIRY_KEY);
     localStorage.removeItem(USER_KEY);
+
+    // Clear Supabase token
+    if (typeof window !== 'undefined') {
+      delete window.__supabase_token;
+    }
   },
 
   /**

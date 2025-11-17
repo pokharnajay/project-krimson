@@ -5,7 +5,7 @@
 
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
-import { userAPI, transcriptAPI } from './api';
+import { userAPI, transcriptAPI, chatAPI } from './api';
 import { authService } from './auth';
 
 /**
@@ -303,6 +303,99 @@ export const useChatStore = create(
       }
     ),
     { name: 'chat-store' }
+  )
+);
+
+/**
+ * Chat Metadata Store - Manages chat history metadata (list of chats)
+ * Separate from useChatStore which manages message content
+ */
+export const useChatMetadataStore = create(
+  devtools(
+    (set, get) => ({
+      // State
+      chatList: [], // Array of chat metadata {id, title, updated_at, source_id, sources}
+      isLoading: false,
+      error: null,
+      lastFetched: null, // Timestamp of last fetch
+
+      // Actions
+      /**
+       * Fetch chat metadata from backend
+       * Uses caching - only refetches if explicitly requested or stale
+       */
+      fetchChatMetadata: async (forceRefresh = false) => {
+        const { lastFetched } = get();
+        const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+        // Skip fetch if recently fetched (unless forced)
+        if (!forceRefresh && lastFetched && Date.now() - lastFetched < CACHE_DURATION) {
+          return get().chatList;
+        }
+
+        set({ isLoading: true, error: null });
+        try {
+          const response = await chatAPI.getChats();
+          set({
+            chatList: response.chats || [],
+            isLoading: false,
+            lastFetched: Date.now(),
+          });
+          return response.chats || [];
+        } catch (error) {
+          console.error('Failed to fetch chat metadata:', error);
+          set({ error: error.message, isLoading: false });
+          throw error;
+        }
+      },
+
+      /**
+       * Add a new chat to the list (optimistic update)
+       */
+      addChat: (chat) => {
+        const chatList = get().chatList;
+        set({ chatList: [chat, ...chatList] });
+      },
+
+      /**
+       * Delete a chat from the list
+       */
+      deleteChat: (chatId) => {
+        const chatList = get().chatList.filter((chat) => chat.id !== chatId);
+        set({ chatList });
+      },
+
+      /**
+       * Update chat title or metadata
+       */
+      updateChat: (chatId, updates) => {
+        const chatList = get().chatList.map((chat) =>
+          chat.id === chatId ? { ...chat, ...updates } : chat
+        );
+        set({ chatList });
+      },
+
+      /**
+       * Search chats by title (client-side filtering)
+       */
+      searchChats: (query) => {
+        if (!query || !query.trim()) {
+          return get().chatList;
+        }
+
+        const lowerQuery = query.toLowerCase();
+        return get().chatList.filter((chat) =>
+          chat.title.toLowerCase().includes(lowerQuery) ||
+          (chat.sources?.title && chat.sources.title.toLowerCase().includes(lowerQuery))
+        );
+      },
+
+      /**
+       * Clear chat metadata
+       */
+      clearChatMetadata: () => set({ chatList: [], error: null, lastFetched: null }),
+    }),
+    { name: 'chat-metadata-store' }
   )
 );
 

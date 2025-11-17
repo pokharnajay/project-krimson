@@ -31,6 +31,11 @@ def create_app():
     else:
         log_info("Rate limiting disabled")
 
+    # Initialize background processor for async tasks
+    from app.services.background_processor import get_background_processor
+    processor = get_background_processor()
+    log_info("Background task processor initialized")
+
     # Register error handlers
     register_error_handlers(app)
 
