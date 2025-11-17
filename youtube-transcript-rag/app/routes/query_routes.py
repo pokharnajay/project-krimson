@@ -129,7 +129,11 @@ def ask_question():
             return jsonify({
                 'error': 'No relevant content found',
                 'message': 'Could not find relevant information in the video transcripts for your question.',
-                'answer': "I couldn't find relevant information in the video transcripts to answer your question. Try rephrasing or asking something more specific.",
+                'response': [{
+                    'text': "I couldn't find relevant information in the video transcripts to answer your question. Try rephrasing or asking something more specific.",
+                    'timestamp': None,
+                    'video_id': None
+                }],
                 'sources': []
             }), 200  # Return 200 with explanation instead of 404
 
@@ -163,13 +167,16 @@ def ask_question():
                 create_message(chat_id, 'user', question)
                 log_debug(f"Saved user message to chat {chat_id}")
 
+                # Create a plain text version of the response for storage
+                response_text = '\n\n'.join([segment['text'] for segment in result.get('response', [])])
+
                 # Save assistant message
                 create_message(
                     chat_id,
                     'assistant',
-                    result.get('answer', ''),
+                    response_text,
                     model_used=result.get('model_used', model),
-                    primary_source=result.get('primary_source')
+                    primary_source=result.get('sources', [{}])[0] if result.get('sources') else None
                 )
                 log_debug(f"Saved assistant message to chat {chat_id}")
             except Exception as msg_error:
@@ -188,10 +195,8 @@ def ask_question():
 
         return jsonify({
             'chat_id': chat_id,
-            'answer': result.get('answer', ''),
-            'sections': result.get('sections', []),
+            'response': result.get('response', []),
             'sources': result.get('sources', []),
-            'primary_source': result['sources'][0] if result.get('sources') else None,
             'model_used': result.get('model_used', model),
             'credits_remaining': credits_left
         }), 200

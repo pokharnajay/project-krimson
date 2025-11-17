@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Send, Loader2, ExternalLink } from 'lucide-react';
 import { queryAPI } from '@/lib/api';
 
-export default function ChatInterface({ sourceId, videoIds }) {
+export default function ChatInterface({ sourceId, videoIds, onCreditsUpdate }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -32,19 +32,28 @@ export default function ChatInterface({ sourceId, videoIds }) {
 
     try {
       const response = await queryAPI.ask(input, videoIds);
-      
+
       const assistantMessage = {
         role: 'assistant',
-        content: response.data.answer,
+        responseSegments: response.data.response, // New format: array of {text, timestamp, video_id}
         sources: response.data.sources,
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
+
+      // Update credits if the callback is provided and credits_remaining is in response
+      if (onCreditsUpdate && response.data.credits_remaining !== undefined) {
+        onCreditsUpdate(response.data.credits_remaining);
+      }
     } catch (error) {
       console.error('Query error:', error);
       const errorMessage = {
         role: 'assistant',
-        content: 'Sorry, I encountered an error. Please try again.',
+        responseSegments: [{
+          text: 'Sorry, I encountered an error. Please try again.',
+          timestamp: null,
+          video_id: null
+        }],
       };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
@@ -82,28 +91,42 @@ export default function ChatInterface({ sourceId, videoIds }) {
                   : 'bg-white border border-gray-200'
               }`}
             >
-              <p className="text-sm leading-relaxed whitespace-pre-wrap">
-                {message.content}
-              </p>
+              {/* User message - simple text */}
+              {message.role === 'user' && (
+                <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                  {message.content}
+                </p>
+              )}
 
-              {message.sources && message.sources.length > 0 && (
-                <div className="mt-4 pt-4 border-t border-gray-200">
-                  <p className="text-xs font-semibold text-gray-500 mb-2">Sources:</p>
-                  <div className="space-y-2">
-                    {message.sources.map((source, idx) => (
-                      <a
-                        key={idx}
-                        href={source.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-xs text-accent hover:underline"
-                      >
-                        <ExternalLink size={12} />
-                        <span>Video {source.video_id} at {Math.floor(source.start_time)}s</span>
-                      </a>
-                    ))}
-                  </div>
+              {/* Assistant message - segmented with watch links */}
+              {message.role === 'assistant' && message.responseSegments && (
+                <div className="space-y-3">
+                  {message.responseSegments.map((segment, segIdx) => (
+                    <div key={segIdx} className="pb-2">
+                      <p className="text-sm leading-relaxed whitespace-pre-wrap mb-1.5">
+                        {segment.text}
+                      </p>
+                      {segment.timestamp !== null && segment.timestamp !== undefined && segment.video_id && (
+                        <a
+                          href={segment.youtube_link || `https://www.youtube.com/watch?v=${segment.video_id}&t=${segment.timestamp}s`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs text-accent hover:underline font-medium"
+                        >
+                          <ExternalLink size={12} />
+                          <span>Watch at {Math.floor(segment.timestamp)}s</span>
+                        </a>
+                      )}
+                    </div>
+                  ))}
                 </div>
+              )}
+
+              {/* Fallback for old message format */}
+              {message.role === 'assistant' && message.content && !message.responseSegments && (
+                <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                  {message.content}
+                </p>
               )}
             </div>
           </div>

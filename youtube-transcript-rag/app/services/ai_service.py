@@ -4,6 +4,7 @@ from app.utils.logger import log_info, log_error, log_warning, log_debug
 import json
 import os
 import re
+from datetime import datetime
 
 def load_prompts():
     """Load prompts from JSON configuration file"""
@@ -66,9 +67,53 @@ class AIService:
 
         # Load prompts from JSON
         self.prompts = load_prompts()
+
+        # Setup AI responses log file
+        self._setup_ai_responses_log()
+
+    def _setup_ai_responses_log(self):
+        """Ensure logs directory and AI responses log file exist"""
+        try:
+            # Get the base directory (project root)
+            base_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+            logs_dir = os.path.join(base_dir, 'logs')
+
+            # Create logs directory if it doesn't exist
+            os.makedirs(logs_dir, exist_ok=True)
+
+            # Set the log file path
+            self.ai_responses_log = os.path.join(logs_dir, 'ai_responses.json')
+            log_info(f"AI responses will be logged to: {self.ai_responses_log}")
+        except Exception as e:
+            log_error(f"Failed to setup AI responses log: {e}")
+            self.ai_responses_log = None
+
+    def _log_ai_response(self, query, raw_response, model, parsed_response=None, error=None):
+        """Log AI response to external file"""
+        if not self.ai_responses_log:
+            return
+
+        try:
+            timestamp = datetime.now().isoformat()
+
+            log_entry = {
+                'timestamp': timestamp,
+                'model': model,
+                'query': query,
+                'raw_response': raw_response,
+                'parsed_response': parsed_response,
+                'error': error
+            }
+
+            # Append to log file
+            with open(self.ai_responses_log, 'a', encoding='utf-8') as f:
+                f.write(json.dumps(log_entry, ensure_ascii=False) + '\n')
+                f.write('-' * 100 + '\n')
+        except Exception as e:
+            log_error(f"Failed to write AI response to log file: {e}")
     
     def generate_answer(self, query, context_chunks, model=None):
-        """Generate structured answer with varied content types and citations"""
+        """Generate answer with text segments and associated timestamps/video_ids"""
         model = model or Config.OPENROUTER_MODEL
         log_info(f"Generating structured answer using model: {model}")
 
@@ -115,19 +160,32 @@ class AIService:
             answer_raw = response.choices[0].message.content
             log_debug(f"Received AI response: {len(answer_raw)} characters")
 
-            # Parse structured JSON response
-            result = self._parse_structured_response(answer_raw, sources_map)
+            # Parse the new response format
+            result = self._parse_response_segments(answer_raw, sources_map)
+
+            # Log the AI response to external file
+            self._log_ai_response(
+                query=query,
+                raw_response=answer_raw,
+                model=model,
+                parsed_response=result
+            )
 
             return {
-                'answer': result['answer'],
-                'sections': result['sections'],
+                'response': result['response'],
                 'sources': result['all_sources'],
-                'primary_source': result['all_sources'][0] if result['all_sources'] else None,
                 'model_used': model
             }
 
         except Exception as e:
             log_error(f"AI generation failed: {str(e)}")
+            # Log the error as well
+            self._log_ai_response(
+                query=query,
+                raw_response=None,
+                model=model,
+                error=str(e)
+            )
             raise Exception(f"Failed to generate answer: {str(e)}")
 
     def _format_context_grouped(self, context_chunks):
@@ -153,9 +211,9 @@ class AIService:
 
         return context_text
 
-    def _parse_structured_response(self, ai_response, sources_map):
+    def _parse_response_segments(self, ai_response, sources_map):
         """
-        Parse AI's JSON response into structured sections with clickable citations.
+        Parse AI's JSON response with text segments and metadata.
 
         Args:
             ai_response: Raw AI response (JSON string)
@@ -163,13 +221,12 @@ class AIService:
 
         Returns:
             {
-                'sections': [...],
-                'answer': '...',  # Plain text fallback
+                'response': [{'text': '...', 'timestamp': 120, 'video_id': '...'}],
                 'all_sources': [...]
             }
         """
         try:
-            # Try to clean up the response if it's wrapped in markdown code blocks
+            # Clean up the response if it's wrapped in markdown code blocks
             cleaned_response = ai_response.strip()
             if cleaned_response.startswith('```json'):
                 cleaned_response = cleaned_response[7:]
@@ -181,74 +238,73 @@ class AIService:
 
             # Parse JSON
             response_json = json.loads(cleaned_response)
-            sections = response_json.get('sections', [])
+            response_segments = response_json.get('response', [])
 
-            if not sections:
-                log_warning("AI returned empty sections array")
-                # Create fallback section
-                sections = [{
-                    'type': 'paragraph',
-                    'content': cleaned_response,
-                    'source_references': []
+            if not response_segments:
+                log_warning("AI returned empty response array")
+                # Create fallback response
+                response_segments = [{
+                    'text': cleaned_response,
+                    'timestamp': None,
+                    'video_id': None
                 }]
 
-            # Process each section to add full source info
-            processed_sections = []
+            # Process each segment to enrich with full source info
+            processed_segments = []
             used_sources = set()
 
-            for section in sections:
-                section_type = section.get('type', 'paragraph')
-                title = section.get('title')
-                content = section.get('content', '')
-                source_refs = section.get('source_references', [])
+            for segment in response_segments:
+                text = segment.get('text', '')
+                timestamp = segment.get('timestamp')
+                video_id = segment.get('video_id')
 
-                # Process sources
-                full_sources = []
-                for ref in source_refs:
-                    video_id = ref.get('video_id')
-                    timestamp = ref.get('timestamp')
+                # Validate segment
+                if not text:
+                    log_warning(f"Skipping segment with empty text: {segment}")
+                    continue
 
-                    if not video_id or timestamp is None:
-                        log_warning(f"Invalid source reference: {ref}")
-                        continue
+                # Create processed segment
+                processed_segment = {
+                    'text': text,
+                    'timestamp': timestamp,
+                    'video_id': video_id
+                }
 
+                # If we have valid source info, track it
+                if video_id and timestamp is not None:
                     key = f"{video_id}:{timestamp}"
+                    used_sources.add(key)
 
+                    # Add youtube_link for convenience
                     if key in sources_map:
-                        source_info = sources_map[key].copy()
-                        full_sources.append(source_info)
-                        used_sources.add(key)
+                        processed_segment['youtube_link'] = sources_map[key]['youtube_link']
                     else:
-                        # Create minimal source if not in map
-                        full_sources.append({
-                            'video_id': video_id,
-                            'start_time': timestamp,
-                            'youtube_link': f"https://www.youtube.com/watch?v={video_id}&t={timestamp}s"
-                        })
-                        used_sources.add(key)
+                        processed_segment['youtube_link'] = f"https://www.youtube.com/watch?v={video_id}&t={timestamp}s"
 
-                processed_sections.append({
-                    'type': section_type,
-                    'title': title,
-                    'content': content,
-                    'sources': full_sources
-                })
-
-            # Generate plain text fallback
-            plain_text = self._convert_sections_to_plain_text(processed_sections)
+                processed_segments.append(processed_segment)
 
             # Get all unique sources used
-            all_sources = [sources_map[key] for key in used_sources if key in sources_map]
+            all_sources = []
+            for key in used_sources:
+                if key in sources_map:
+                    all_sources.append(sources_map[key])
+                else:
+                    # Create minimal source if not in map
+                    video_id, timestamp = key.split(':')
+                    all_sources.append({
+                        'video_id': video_id,
+                        'start_time': int(timestamp),
+                        'youtube_link': f"https://www.youtube.com/watch?v={video_id}&t={timestamp}s"
+                    })
 
-            # If no sources were used, add all available sources
+            # If no sources were used, add all available sources as fallback
             if not all_sources:
                 all_sources = list(sources_map.values())
 
-            log_info(f"Parsed {len(processed_sections)} sections with {len(all_sources)} unique sources")
+            log_info(f"Parsed {len(processed_segments)} response segments with {len(all_sources)} unique sources")
 
             return {
-                'sections': processed_sections,
-                'answer': plain_text,
+                'response': processed_segments,
                 'all_sources': all_sources
             }
 
@@ -258,57 +314,20 @@ class AIService:
 
             # Fallback: treat as plain text
             return {
-                'sections': [{
-                    'type': 'paragraph',
-                    'title': None,
-                    'content': ai_response,
-                    'sources': []
+                'response': [{
+                    'text': ai_response,
+                    'timestamp': None,
+                    'video_id': None
                 }],
-                'answer': ai_response,
                 'all_sources': list(sources_map.values())
             }
         except Exception as e:
             log_error(f"Unexpected error parsing response: {e}")
             return {
-                'sections': [{
-                    'type': 'paragraph',
-                    'title': None,
-                    'content': ai_response if isinstance(ai_response, str) else str(ai_response),
-                    'sources': []
+                'response': [{
+                    'text': ai_response if isinstance(ai_response, str) else str(ai_response),
+                    'timestamp': None,
+                    'video_id': None
                 }],
-                'answer': ai_response if isinstance(ai_response, str) else str(ai_response),
                 'all_sources': list(sources_map.values())
             }
-
-    def _convert_sections_to_plain_text(self, sections):
-        """Convert structured sections to plain text for fallback"""
-        parts = []
-
-        for section in sections:
-            # Add title if present
-            if section.get('title'):
-                parts.append(f"\n{section['title']}")
-
-            # Add content
-            content = section['content']
-            if isinstance(content, list):
-                # Bullets or numbered list
-                for i, item in enumerate(content, 1):
-                    if section['type'] == 'numbered_list':
-                        parts.append(f"{i}. {item}")
-                    else:
-                        parts.append(f"• {item}")
-            else:
-                # Paragraph
-                parts.append(content)
-
-            # Add citation indicators
-            if section.get('sources'):
-                citations = []
-                for source in section['sources']:
-                    video_id = source.get('video_id', 'unknown')
-                    timestamp = source.get('start_time', 0)
-                    citations.append(f"📺 Watch at {timestamp}s")
-                parts.append(f"[{', '.join(citations)}]")
-
-        return "\n\n".join(parts)
