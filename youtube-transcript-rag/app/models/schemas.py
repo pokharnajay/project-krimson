@@ -32,7 +32,7 @@ Sources Table Schema:
 --------------------
 CREATE TABLE sources (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    user_id UUID REFERENCES users(id) ON DELETE CASCADE,  -- Original creator
     video_ids TEXT[] NOT NULL,
     title TEXT NOT NULL,
     pinecone_namespace VARCHAR(255),
@@ -44,6 +44,20 @@ CREATE TABLE sources (
 
 CREATE INDEX idx_sources_user_id ON sources(user_id);
 CREATE INDEX idx_sources_status ON sources(status);
+CREATE INDEX idx_sources_video_ids ON sources USING GIN(video_ids);  -- For duplicate detection
+
+User_Sources Table Schema (Many-to-Many):
+-----------------------------------------
+CREATE TABLE user_sources (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    source_id UUID REFERENCES sources(id) ON DELETE CASCADE,
+    created_at TIMESTAMP DEFAULT NOW(),
+    UNIQUE(user_id, source_id)  -- Prevent duplicate associations
+);
+
+CREATE INDEX idx_user_sources_user_id ON user_sources(user_id);
+CREATE INDEX idx_user_sources_source_id ON user_sources(source_id);
 
 Pinecone Vector Schema:
 ----------------------

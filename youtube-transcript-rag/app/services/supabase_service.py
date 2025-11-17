@@ -158,6 +158,136 @@ def delete_source(source_id):
     supabase.table('sources').delete().eq('id', source_id).execute()
 
 
+def get_source_by_video_ids(video_ids):
+    """
+    Find an existing source with the exact same video_ids (for duplicate detection).
+
+    Args:
+        video_ids: List of YouTube video IDs
+
+    Returns:
+        Source record if found, None otherwise
+    """
+    supabase = get_supabase_client()
+
+    # Query for sources with matching video_ids array
+    # Note: PostgreSQL array comparison requires exact match (order matters)
+    # We only want to match sources that are 'ready' status
+    result = supabase.table('sources').select('*').eq('video_ids', video_ids).eq('status', 'ready').execute()
+
+    if result.data and len(result.data) > 0:
+        # Return the first (oldest) matching source
+        return result.data[0]
+
+    return None
+
+
+def create_user_source_association(user_id, source_id):
+    """
+    Create an association between a user and a source (for shared sources).
+
+    Args:
+        user_id: User ID
+        source_id: Source ID
+
+    Returns:
+        User-source association record
+    """
+    supabase = get_supabase_client()
+
+    try:
+        result = supabase.table('user_sources').insert({
+            'user_id': user_id,
+            'source_id': source_id
+        }).execute()
+
+        return result.data[0] if result.data else None
+    except Exception as e:
+        # Handle unique constraint violation (user already has this source)
+        if 'duplicate key' in str(e).lower() or 'unique constraint' in str(e).lower():
+            log_debug(f"User {user_id} already has access to source {source_id}")
+            return {'user_id': user_id, 'source_id': source_id, 'already_exists': True}
+        raise
+
+
+def get_user_source_association(user_id, source_id):
+    """
+    Check if a user-source association exists.
+
+    Args:
+        user_id: User ID
+        source_id: Source ID
+
+    Returns:
+        Association record if exists, None otherwise
+    """
+    supabase = get_supabase_client()
+    result = supabase.table('user_sources').select('*').eq('user_id', user_id).eq('source_id', source_id).execute()
+    return result.data[0] if result.data else None
+
+
+def get_sources_by_user_with_associations(user_id, limit=None, offset=None):
+    """
+    Get all sources for a user, including shared sources from user_sources table.
+    This replaces get_sources_by_user() for the new multi-user sharing model.
+
+    Args:
+        user_id: User ID
+        limit: Maximum number of results (optional)
+        offset: Number of results to skip (optional)
+
+    Returns:
+        List of sources
+    """
+    supabase = get_supabase_client()
+
+    # Query user_sources table with join to get source details
+    query = supabase.table('user_sources').select('source_id, sources(*)').eq('user_id', user_id).order('created_at', desc=True)
+
+    if limit:
+        query = query.limit(limit)
+    if offset:
+        query = query.offset(offset)
+
+    result = query.execute()
+
+    # Extract source objects from the joined data
+    sources = []
+    if result.data:
+        for item in result.data:
+            if item.get('sources'):
+                sources.append(item['sources'])
+
+    # Fall back to old sources table for backward compatibility
+    # (sources created before migration that might not be in user_sources yet)
+    if not sources or len(sources) == 0:
+        sources = get_sources_by_user(user_id, limit, offset)
+
+    return sources
+
+
+def get_sources_count_by_user_with_associations(user_id):
+    """
+    Get total count of sources for a user, including shared sources.
+
+    Args:
+        user_id: User ID
+
+    Returns:
+        Total count of sources
+    """
+    supabase = get_supabase_client()
+    result = supabase.table('user_sources').select('id', count='exact').eq('user_id', user_id).execute()
+
+    count = result.count if result.count is not None else 0
+
+    # Fall back to old sources table if no associations found
+    if count == 0:
+        count = get_sources_count_by_user(user_id)
+
+    return count
+
+
 # Chat operations
 def create_chat(user_id, source_id, title):
     """Create a new chat session"""

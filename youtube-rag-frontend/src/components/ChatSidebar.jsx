@@ -1,34 +1,27 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { MessageSquare, Search, X, Trash2, PanelRightOpen, PanelRight } from 'lucide-react';
 import { chatAPI } from '@/lib/api';
+import { useChatMetadataStore } from '@/lib/store';
 
 export default function ChatSidebar({ isOpen, onToggle, currentChatId }) {
   const router = useRouter();
-  const [chats, setChats] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
 
+  // Use Zustand store for chat metadata (cached)
+  const { chatList, isLoading, fetchChatMetadata, deleteChat: deleteChatFromStore, searchChats } = useChatMetadataStore();
+
+  // Fetch chat metadata once when component mounts
   useEffect(() => {
-    if (isOpen) {
-      fetchChats();
-    }
-  }, [isOpen, searchQuery]);
+    fetchChatMetadata(); // Will use cache if recently fetched
+  }, [fetchChatMetadata]);
 
-  const fetchChats = async () => {
-    setIsLoading(true);
-    try {
-      const response = await chatAPI.getChats(searchQuery);
-      setChats(response.chats || []);
-    } catch (error) {
-      console.error('Failed to fetch chats:', error);
-      setChats([]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  // Client-side search filtering
+  const filteredChats = useMemo(() => {
+    return searchChats(searchQuery);
+  }, [searchQuery, chatList, searchChats]);
 
   const handleDeleteChat = async (chatId, e) => {
     e.stopPropagation();
@@ -36,7 +29,7 @@ export default function ChatSidebar({ isOpen, onToggle, currentChatId }) {
 
     try {
       await chatAPI.deleteChat(chatId);
-      setChats(chats.filter(chat => chat.id !== chatId));
+      deleteChatFromStore(chatId); // Update store
 
       // If currently viewing the deleted chat, redirect to dashboard
       if (currentChatId === chatId) {
@@ -147,7 +140,7 @@ export default function ChatSidebar({ isOpen, onToggle, currentChatId }) {
                 <div className="inline-block animate-spin rounded-full h-6 w-6 border-2 border-claude-border border-t-accent mb-2"></div>
                 <p>Loading chats...</p>
               </div>
-            ) : chats.length === 0 ? (
+            ) : filteredChats.length === 0 ? (
               <div className="p-4 text-center text-sm text-claude-muted">
                 {searchQuery ? (
                   <div>
@@ -164,7 +157,7 @@ export default function ChatSidebar({ isOpen, onToggle, currentChatId }) {
               </div>
             ) : (
               <div className="py-1">
-                {chats.map((chat) => (
+                {filteredChats.map((chat) => (
                   <button
                     key={chat.id}
                     onClick={() => handleChatClick(chat.id)}
