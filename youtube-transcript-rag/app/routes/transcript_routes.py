@@ -6,10 +6,7 @@ from app.services.pinecone_service import PineconeService
 from app.services.supabase_service import (
     create_source, update_source_status,
     get_sources_by_user, get_sources_count_by_user,
-    get_source_by_id, delete_source,
-    get_source_by_video_ids, create_user_source_association,
-    get_user_source_association, get_sources_by_user_with_associations,
-    get_sources_count_by_user_with_associations
+    get_source_by_id, delete_source
 )
 from app.services.background_processor import submit_background_task
 from app.utils.helpers import extract_video_id
@@ -200,58 +197,12 @@ def process_videos():
         if len(title) > 200:
             title = title[:197] + '...'
 
-        # DUPLICATE DETECTION: Check if source with same video_ids already exists
-        log_debug(f"Checking for existing source with video_ids: {video_ids}")
-        existing_source = get_source_by_video_ids(video_ids)
-
-        if existing_source:
-            existing_source_id = existing_source['id']
-            log_info(f"Found existing source: {existing_source_id} with same video_ids")
-
-            # Check if user already has access to this source
-            existing_association = get_user_source_association(user_id, existing_source_id)
-
-            if existing_association:
-                log_info(f"User {user_id} already has access to source {existing_source_id}")
-                return jsonify({
-                    'error': 'Source already exists',
-                    'message': 'You have already added this video/playlist to your sources.',
-                    'source_id': existing_source_id
-                }), 400
-
-            # Create user-source association (link user to existing source)
-            log_info(f"Creating user-source association for user {user_id} and source {existing_source_id}")
-            try:
-                create_user_source_association(user_id, existing_source_id)
-                log_info(f"Successfully linked user {user_id} to existing source {existing_source_id}")
-
-                # Return immediately - no processing needed!
-                return jsonify({
-                    'success': True,
-                    'source_id': existing_source_id,
-                    'title': existing_source['title'],
-                    'message': 'Source added instantly (already processed by another user)',
-                    'reused': True,
-                    'processed': len(existing_source.get('video_ids', [])),
-                    'total_videos': len(existing_source.get('video_ids', []))
-                }), 200
-            except Exception as assoc_error:
-                log_error(f"Failed to create user-source association: {str(assoc_error)}", exc_info=True)
-                return jsonify({
-                    'error': 'Association error',
-                    'message': 'Failed to link you to the existing source. Please try again.'
-                }), 500
-
-        # No existing source found - create new source entry in Supabase
-        log_debug("No existing source found. Creating new source entry in Supabase")
+        # Create source entry in Supabase
+        log_debug("Creating source entry in Supabase")
         try:
             source = create_source(user_id, video_ids, title)
             source_id = source['id']
             log_info(f"Created source: {source_id}")
-
-            # Also create user-source association for new multi-user model
-            create_user_source_association(user_id, source_id)
-            log_debug(f"Created user-source association for new source {source_id}")
         except Exception as db_error:
             log_error(f"Failed to create source in database: {str(db_error)}", exc_info=True)
             return jsonify({
@@ -328,9 +279,9 @@ def get_all_sources():
         # Calculate offset
         offset = (page - 1) * limit
 
-        # Get paginated sources (including shared sources via user_sources table)
-        sources = get_sources_by_user_with_associations(user_id, limit=limit, offset=offset)
-        total_count = get_sources_count_by_user_with_associations(user_id)
+        # Get paginated sources
+        sources = get_sources_by_user(user_id, limit=limit, offset=offset)
+        total_count = get_sources_count_by_user(user_id)
 
         # Calculate total pages
         total_pages = (total_count + limit - 1) // limit if total_count > 0 else 0
