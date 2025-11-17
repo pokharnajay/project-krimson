@@ -112,8 +112,11 @@ class PineconeService:
     def query_videos(self, query_text, video_ids=None, source_id=None, top_k=None):
         """Query vector store with enhanced deduplication and grouping"""
         log_info(f"Querying videos with: video_ids={video_ids}, source_id={source_id}")
-        # Increase top_k to get more diverse results
-        top_k = top_k or min(15, Config.TOP_K_RESULTS * 3)
+        # Use provided top_k or config value (respect env variable)
+        if top_k is None:
+            top_k = Config.TOP_K_RESULTS
+
+        log_info(f"Using top_k={top_k} for vector search (Config.TOP_K_RESULTS={Config.TOP_K_RESULTS})")
 
         try:
             # Create query embedding

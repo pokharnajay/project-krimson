@@ -68,9 +68,9 @@ class AIService:
         self.prompts = load_prompts()
     
     def generate_answer(self, query, context_chunks, model=None):
-        """Generate multi-paragraph answer with timestamp citations"""
+        """Generate structured answer with varied content types and citations"""
         model = model or Config.OPENROUTER_MODEL
-        log_info(f"Generating answer using model: {model}")
+        log_info(f"Generating structured answer using model: {model}")
 
         try:
             # Format context grouped by video and chronologically ordered
@@ -87,7 +87,8 @@ class AIService:
                     sources_map[key] = {
                         'video_id': video_id,
                         'start_time': start_time,
-                        'text': chunk['metadata']['text'][:200],
+                        'end_time': int(chunk['metadata']['end_time']),
+                        'text': chunk['metadata']['text'][:300],
                         'youtube_link': f"https://www.youtube.com/watch?v={video_id}&t={start_time}s"
                     }
 
@@ -97,37 +98,31 @@ class AIService:
                 query=query
             )
 
-            log_debug(f"Calling AI with max_tokens={self.prompts.get('max_tokens', 1500)}")
+            log_debug(f"Calling AI with JSON mode, max_tokens={self.prompts.get('max_tokens', 2000)}")
+
+            # Call AI with JSON mode
             response = self.client.chat.completions.create(
                 model=model,
                 messages=[
-                    {
-                        "role": "system",
-                        "content": self.prompts['system_prompt']
-                    },
+                    {"role": "system", "content": self.prompts['system_prompt']},
                     {"role": "user", "content": user_prompt}
                 ],
-                max_tokens=self.prompts.get('max_tokens', 1500),
-                temperature=self.prompts.get('temperature', 0.7)
+                max_tokens=self.prompts.get('max_tokens', 2000),
+                temperature=self.prompts.get('temperature', 0.7),
+                response_format={"type": "json_object"}
             )
 
             answer_raw = response.choices[0].message.content
             log_debug(f"Received AI response: {len(answer_raw)} characters")
 
-            # Parse paragraphs with citations
-            paragraphs = self._parse_paragraphs_with_citations(answer_raw, sources_map)
-
-            # Also keep plain answer text (with citations converted to readable format)
-            answer_text = self._convert_citations_to_text(answer_raw)
-
-            # Collect all unique sources used
-            all_sources = list(sources_map.values())
+            # Parse structured JSON response
+            result = self._parse_structured_response(answer_raw, sources_map)
 
             return {
-                'answer': answer_text,
-                'paragraphs': paragraphs,
-                'sources': all_sources,
-                'primary_source': all_sources[0] if all_sources else None,
+                'answer': result['answer'],
+                'sections': result['sections'],
+                'sources': result['all_sources'],
+                'primary_source': result['all_sources'][0] if result['all_sources'] else None,
                 'model_used': model
             }
 
@@ -158,71 +153,162 @@ class AIService:
 
         return context_text
 
-    def _parse_paragraphs_with_citations(self, answer_text, sources_map):
+    def _parse_structured_response(self, ai_response, sources_map):
         """
-        Parse AI response into paragraphs with citations.
-        Expected format: Each paragraph ends with [CITE:video_id:timestamp]
+        Parse AI's JSON response into structured sections with clickable citations.
+
+        Args:
+            ai_response: Raw AI response (JSON string)
+            sources_map: Dict mapping video_id:timestamp to source metadata
+
+        Returns:
+            {
+                'sections': [...],
+                'answer': '...',  # Plain text fallback
+                'all_sources': [...]
+            }
         """
-        paragraphs = []
+        try:
+            # Try to clean up the response if it's wrapped in markdown code blocks
+            cleaned_response = ai_response.strip()
+            if cleaned_response.startswith('```json'):
+                cleaned_response = cleaned_response[7:]
+            if cleaned_response.startswith('```'):
+                cleaned_response = cleaned_response[3:]
+            if cleaned_response.endswith('```'):
+                cleaned_response = cleaned_response[:-3]
+            cleaned_response = cleaned_response.strip()
 
-        # Split by double newlines to get paragraphs
-        raw_paragraphs = [p.strip() for p in answer_text.split('\n\n') if p.strip()]
+            # Parse JSON
+            response_json = json.loads(cleaned_response)
+            sections = response_json.get('sections', [])
 
-        # Pattern to match citations: [CITE:video_id:timestamp]
-        citation_pattern = r'\[CITE:([^:]+):(\d+)\]'
+            if not sections:
+                log_warning("AI returned empty sections array")
+                # Create fallback section
+                sections = [{
+                    'type': 'paragraph',
+                    'content': cleaned_response,
+                    'source_references': []
+                }]
 
-        for para_text in raw_paragraphs:
-            # Find citation in this paragraph
-            citation_match = re.search(citation_pattern, para_text)
+            # Process each section to add full source info
+            processed_sections = []
+            used_sources = set()
 
-            if citation_match:
-                video_id = citation_match.group(1)
-                timestamp = int(citation_match.group(2))
+            for section in sections:
+                section_type = section.get('type', 'paragraph')
+                title = section.get('title')
+                content = section.get('content', '')
+                source_refs = section.get('source_references', [])
 
-                # Remove citation marker from text
-                clean_text = re.sub(citation_pattern, '', para_text).strip()
+                # Process sources
+                full_sources = []
+                for ref in source_refs:
+                    video_id = ref.get('video_id')
+                    timestamp = ref.get('timestamp')
 
-                # Create YouTube link
-                youtube_link = f"https://www.youtube.com/watch?v={video_id}&t={timestamp}s"
+                    if not video_id or timestamp is None:
+                        log_warning(f"Invalid source reference: {ref}")
+                        continue
 
-                # Find source info
-                source_key = f"{video_id}:{timestamp}"
-                source_info = sources_map.get(source_key, {
-                    'video_id': video_id,
-                    'start_time': timestamp,
-                    'youtube_link': youtube_link
+                    key = f"{video_id}:{timestamp}"
+
+                    if key in sources_map:
+                        source_info = sources_map[key].copy()
+                        full_sources.append(source_info)
+                        used_sources.add(key)
+                    else:
+                        # Create minimal source if not in map
+                        full_sources.append({
+                            'video_id': video_id,
+                            'start_time': timestamp,
+                            'youtube_link': f"https://www.youtube.com/watch?v={video_id}&t={timestamp}s"
+                        })
+                        used_sources.add(key)
+
+                processed_sections.append({
+                    'type': section_type,
+                    'title': title,
+                    'content': content,
+                    'sources': full_sources
                 })
 
-                paragraphs.append({
-                    'text': clean_text,
-                    'citation': {
-                        'video_id': video_id,
-                        'timestamp': timestamp,
-                        'youtube_link': youtube_link,
-                        'display_text': '📺 Watch'
-                    },
-                    'source': source_info
-                })
+            # Generate plain text fallback
+            plain_text = self._convert_sections_to_plain_text(processed_sections)
+
+            # Get all unique sources used
+            all_sources = [sources_map[key] for key in used_sources if key in sources_map]
+
+            # If no sources were used, add all available sources
+            if not all_sources:
+                all_sources = list(sources_map.values())
+
+            log_info(f"Parsed {len(processed_sections)} sections with {len(all_sources)} unique sources")
+
+            return {
+                'sections': processed_sections,
+                'answer': plain_text,
+                'all_sources': all_sources
+            }
+
+        except json.JSONDecodeError as e:
+            log_error(f"Failed to parse AI JSON response: {e}")
+            log_debug(f"Raw response: {ai_response[:500]}...")
+
+            # Fallback: treat as plain text
+            return {
+                'sections': [{
+                    'type': 'paragraph',
+                    'title': None,
+                    'content': ai_response,
+                    'sources': []
+                }],
+                'answer': ai_response,
+                'all_sources': list(sources_map.values())
+            }
+        except Exception as e:
+            log_error(f"Unexpected error parsing response: {e}")
+            return {
+                'sections': [{
+                    'type': 'paragraph',
+                    'title': None,
+                    'content': ai_response if isinstance(ai_response, str) else str(ai_response),
+                    'sources': []
+                }],
+                'answer': ai_response if isinstance(ai_response, str) else str(ai_response),
+                'all_sources': list(sources_map.values())
+            }
+
+    def _convert_sections_to_plain_text(self, sections):
+        """Convert structured sections to plain text for fallback"""
+        parts = []
+
+        for section in sections:
+            # Add title if present
+            if section.get('title'):
+                parts.append(f"\n{section['title']}")
+
+            # Add content
+            content = section['content']
+            if isinstance(content, list):
+                # Bullets or numbered list
+                for i, item in enumerate(content, 1):
+                    if section['type'] == 'numbered_list':
+                        parts.append(f"{i}. {item}")
+                    else:
+                        parts.append(f"• {item}")
             else:
-                # Paragraph without citation - still include it
-                log_warning(f"Paragraph without citation: {para_text[:50]}...")
-                paragraphs.append({
-                    'text': para_text,
-                    'citation': None,
-                    'source': None
-                })
+                # Paragraph
+                parts.append(content)
 
-        log_info(f"Parsed {len(paragraphs)} paragraphs with citations")
-        return paragraphs
+            # Add citation indicators
+            if section.get('sources'):
+                citations = []
+                for source in section['sources']:
+                    video_id = source.get('video_id', 'unknown')
+                    timestamp = source.get('start_time', 0)
+                    citations.append(f"📺 Watch at {timestamp}s")
+                parts.append(f"[{', '.join(citations)}]")
 
-    def _convert_citations_to_text(self, answer_text):
-        """Convert citation markers to readable text format"""
-        # Replace [CITE:video_id:timestamp] with "📺 [Watch]"
-        citation_pattern = r'\[CITE:([^:]+):(\d+)\]'
-
-        def replace_citation(match):
-            video_id = match.group(1)
-            timestamp = match.group(2)
-            return f" 📺 [Watch]({video_id}@{timestamp}s)"
-
-        return re.sub(citation_pattern, replace_citation, answer_text)
+        return "\n\n".join(parts)

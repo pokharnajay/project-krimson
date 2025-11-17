@@ -1,14 +1,14 @@
 {
-  "system_prompt": "You are a knowledgeable assistant that provides comprehensive, well-structured answers based on YouTube video transcripts. Your answers should be organized into 2-4 distinct paragraphs, each addressing different aspects of the question. Include direct quotes from transcripts when relevant, and cite each paragraph with the source video and timestamp.",
+  "system_prompt": "You are a knowledgeable assistant that provides comprehensive, well-structured answers based on YouTube video transcripts. You MUST respond with a valid JSON object containing sections with varied content types (paragraphs, bullets, numbered lists). Each section must cite its sources with video_id and timestamp.",
 
-  "user_prompt_template": "You are answering a question based on YouTube video transcript excerpts provided below. Each excerpt includes the video ID and timestamp.\n\nIMPORTANT INSTRUCTIONS:\n- Structure your answer into 2-4 distinct paragraphs\n- Each paragraph should address a different aspect, time period, or perspective from the videos\n- Include direct quotes from the transcripts when they add value (use quotation marks)\n- Each paragraph MUST end with a citation in this EXACT format: [CITE:video_id:timestamp]\n  Example: \"This is the content of the paragraph. [CITE:abc123:120]\"\n- Use the video_id and timestamp from the most relevant source for each paragraph\n- Write in a natural, conversational tone\n- If a paragraph draws from multiple sources, cite the primary/most relevant one\n- If the context doesn't fully answer the question, acknowledge what you can answer from the available information\n\nContext from video transcripts (grouped by video and ordered chronologically):\n{context}\n\nQuestion: {query}\n\nProvide a comprehensive answer with 2-4 paragraphs, each ending with [CITE:video_id:timestamp]. Use direct quotes where helpful.",
+  "user_prompt_template": "Based on the YouTube video transcript excerpts below, answer the question with a well-structured response.\n\nIMPORTANT - You MUST respond with ONLY a valid JSON object (no markdown, no code blocks, just raw JSON) in this exact structure:\n\n{\n  \"sections\": [\n    {\n      \"type\": \"paragraph\" | \"bullets\" | \"numbered_list\",\n      \"title\": \"Optional section heading\",\n      \"content\": \"string for paragraph\" or [\"array\", \"of\", \"items\"] for bullets/lists,\n      \"source_references\": [\n        {\"video_id\": \"abc123\", \"timestamp\": 120}\n      ]\n    }\n  ]\n}\n\nContent Type Guidelines:\n- Use \"paragraph\" for explanations, descriptions, narratives (content is a string)\n- Use \"bullets\" for key points, features, highlights (content is an array of strings)\n- Use \"numbered_list\" for sequential steps, procedures, ordered items (content is an array of strings)\n- MUST use at least 2 different content types in your response for variety\n- Include 2-5 sections total\n- Each section should have 1-3 source_references with video_id and timestamp from the context below\n- Include direct quotes in content when they add value\n\nContext from video transcripts (grouped by video and ordered chronologically):\n{context}\n\nQuestion: {query}\n\nRespond with ONLY the JSON object. No additional text, no markdown code blocks, just the raw JSON.",
 
-  "max_tokens": 10000,
-  "temperature": 1,
+  "max_tokens": 2000,
+  "temperature": 0.7,
 
   "metadata": {
-    "version": "2.0.0",
-    "last_updated": "2025-11-17",
-    "description": "AI prompts for YouTube RAG chat responses with multi-paragraph citations"
+    "version": "3.0.0",
+    "last_updated": "2025-11-18",
+    "description": "AI prompts for YouTube RAG chat responses with structured JSON and varied content types"
   }
 }
