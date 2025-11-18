@@ -9,14 +9,14 @@ import { queryAPI, chatAPI } from '@/lib/api';
 
 // OpenRouter models list
 const MODELS = [
-  { id: 'openai/gpt-4o', name: 'GPT-4o' },
-  { id: 'anthropic/claude-3.5-sonnet', name: 'Claude 3.5 Sonnet' },
-  { id: 'anthropic/claude-3-opus', name: 'Claude 3 Opus' },
-  { id: 'google/gemini-pro-1.5', name: 'Gemini Pro 1.5' },
-  { id: 'meta-llama/llama-3.1-70b-instruct', name: 'Llama 3.1 70B' },
-  { id: 'mistralai/mistral-large', name: 'Mistral Large' },
-  { id: 'perplexity/llama-3.1-sonar-huge-128k-online', name: 'Sonar Huge' },
-  { id: 'cohere/command-r-plus', name: 'Command R+' },
+  { id: 'openai/gpt-oss-120b', name: 'GPT OSS 120B - Paid' },
+  { id: 'openrouter/sherlock-dash-alpha', name: 'Sherlock Dash Alpha⚡️' },
+  { id: 'openrouter/sherlock-think-alpha', name: 'Sherlock Think Alpha🧠' },
+  { id: 'kwaipilot/kat-coder-pro:free', name: 'Kwaipilot: KAT-Coder-Pro V1 (free)' },
+  { id: 'qwen/qwen3-coder:free', name: 'Llama 3.1 70B' },
+  { id: 'google/gemini-2.0-flash-exp:free', name: 'Google: Gemini 2.0 Flash Experimental (free)' },
+  { id: 'nvidia/nemotron-nano-9b-v2:free', name: 'NVIDIA: Nemotron Nano 9B V2 (free)' },
+  { id: 'deepseek/deepseek-chat-v3.1:free', name: 'DeepSeek: DeepSeek V3.1 (free)' },
 ];
 
 export default function ChatPage({ params }) {
@@ -140,7 +140,7 @@ export default function ChatPage({ params }) {
               <div key={index}>
                 {message.role === 'user' ? (
                   <div className="flex justify-end mb-4">
-                    <div className="max-w-[80%] bg-claude-bg rounded-lg px-4 py-3 border border-claude-border">
+                    <div className="max-w-[80%] bg-claude-bg rounded-lg px-4 border border-claude-border py-3">
                       <p className="text-[15px] leading-relaxed text-claude-text">{message.content}</p>
                     </div>
                   </div>
@@ -152,7 +152,7 @@ export default function ChatPage({ params }) {
                   </div>
                 ) : (
                   <div className="flex justify-start mb-4">
-                    <div className="max-w-[80%] space-y-4">
+                    <div className="max-w-[80%] space-y-3 bg-claude-bg py-3 rounded-lg border border-claude-border">
                       {(() => {
                         // Try to parse content as JSON with response array
                         try {
@@ -163,8 +163,8 @@ export default function ChatPage({ params }) {
                           if (parsed.response && Array.isArray(parsed.response)) {
                             // Display each response item separately with its own YouTube link
                             return parsed.response.map((item, idx) => (
-                              <div key={idx} className="bg-claude-bg rounded-lg px-4 py-3 border border-claude-border">
-                                <p className="text-[15px] leading-relaxed text-claude-text whitespace-pre-wrap mb-2">
+                              <div key={idx} className="bg-transparent rounded-lg px-4">
+                                <p className="text-[15px] leading-relaxed text-claude-text whitespace-pre-wrap mb-0">
                                   {item.text}
                                 </p>
                                 {item.youtube_link && (
@@ -189,7 +189,7 @@ export default function ChatPage({ params }) {
 
                         // Default: display as plain text with optional primarySource
                         return (
-                          <div className="bg-claude-bg rounded-lg px-4 py-3 border border-claude-border">
+                          <div className="bg-transparent rounded-lg px-4">
                             <p className="text-[15px] leading-relaxed text-claude-text whitespace-pre-wrap mb-2">
                               {message.content}
                             </p>

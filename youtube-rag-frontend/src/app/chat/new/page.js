@@ -165,8 +165,8 @@ export default function NewChatPage() {
                     </div>
                   </div>
                 ) : (
-                  <div className="flex justify-start mb-4">
-                    <div className="max-w-[80%] space-y-4">
+                     <div className="flex justify-start mb-4">
+                    <div className="max-w-[80%] space-y-3 bg-claude-bg py-3 rounded-lg border border-claude-border">
                       {(() => {
                         // Try to parse content as JSON with response array
                         try {
@@ -177,8 +177,8 @@ export default function NewChatPage() {
                           if (parsed.response && Array.isArray(parsed.response)) {
                             // Display each response item separately with its own YouTube link
                             return parsed.response.map((item, idx) => (
-                              <div key={idx} className="bg-claude-bg rounded-lg px-4 py-3 border border-claude-border">
-                                <p className="text-[15px] leading-relaxed text-claude-text whitespace-pre-wrap mb-2">
+                              <div key={idx} className="bg-transparent rounded-lg px-4">
+                                <p className="text-[15px] leading-relaxed text-claude-text whitespace-pre-wrap mb-0">
                                   {item.text}
                                 </p>
                                 {item.youtube_link && (
@@ -203,7 +203,7 @@ export default function NewChatPage() {
 
                         // Default: display as plain text with optional primarySource
                         return (
-                          <div className="bg-claude-bg rounded-lg px-4 py-3 border border-claude-border">
+                          <div className="bg-transparent rounded-lg px-4">
                             <p className="text-[15px] leading-relaxed text-claude-text whitespace-pre-wrap mb-2">
                               {message.content}
                             </p>
