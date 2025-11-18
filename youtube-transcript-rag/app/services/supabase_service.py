@@ -289,10 +289,24 @@ def get_sources_count_by_user_with_associations(user_id):
 
 
 # Chat operations
-def create_chat(user_id, source_id, title):
-    """Create a new chat session"""
+def create_chat(user_id, source_id, title, chat_id=None):
+    """
+    Create a new chat session
+
+    Args:
+        user_id: User ID
+        source_id: Source ID
+        title: Chat title
+        chat_id: Optional pre-generated chat ID (if not provided, will generate new UUID)
+
+    Returns:
+        Chat record
+    """
     supabase = get_supabase_client()
-    chat_id = str(uuid.uuid4())
+
+    # Use provided chat_id or generate new one
+    if not chat_id:
+        chat_id = str(uuid.uuid4())
 
     result = supabase.table('chats').insert({
         'id': chat_id,

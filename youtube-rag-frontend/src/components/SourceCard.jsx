@@ -37,8 +37,9 @@ export default function SourceCard({ source, onUpdate }) {
   };
 
   const handleChat = () => {
-    // Navigate to new chat page with sourceId - chat will be created after first message
-    router.push(`/chat/new?sourceId=${source.id}`);
+    // Generate a new chat ID and navigate directly to chat page
+    const chatId = crypto.randomUUID();
+    router.push(`/chat/${chatId}?sourceId=${source.id}`);
   };
 
   const getStatusDisplay = () => {

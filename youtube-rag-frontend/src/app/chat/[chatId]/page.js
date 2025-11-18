@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Send, Loader2, ChevronDown } from 'lucide-react';
 import Header from '@/components/Header';
 import ChatSidebar from '@/components/ChatSidebar';
-import { queryAPI, chatAPI } from '@/lib/api';
+import { queryAPI, chatAPI, transcriptAPI } from '@/lib/api';
 
 // OpenRouter models list
 const MODELS = [
@@ -21,7 +21,9 @@ const MODELS = [
 
 export default function ChatPage({ params }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const chatId = params.chatId;
+  const sourceId = searchParams.get('sourceId');
 
   const [chat, setChat] = useState(null);
   const [source, setSource] = useState(null);
@@ -33,31 +35,61 @@ export default function ChatPage({ params }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Load chat and messages
+  // Load chat and messages, or source if it's a new chat
   useEffect(() => {
     if (!chatId) return;
 
-    const loadChat = async () => {
+    const loadChatOrSource = async () => {
       try {
-        const response = await chatAPI.getChat(chatId);
-        setChat(response);
-        setSource(response.sources);
+        // First, try to load existing chat
+        try {
+          const response = await chatAPI.getChat(chatId);
+          setChat(response);
+          setSource(response.sources);
 
-        // Convert database messages to UI format
-        const formattedMessages = (response.messages || []).map((msg) => ({
-          role: msg.role,
-          content: msg.content,
-          primarySource: msg.primary_source,
-        }));
-        setMessages(formattedMessages);
+          // Convert database messages to UI format
+          const formattedMessages = (response.messages || []).map((msg) => ({
+            role: msg.role,
+            content: msg.content,
+            primarySource: msg.primary_source,
+          }));
+          setMessages(formattedMessages);
+          return; // Successfully loaded chat
+        } catch (chatError) {
+          // Chat doesn't exist yet, check if we have sourceId for new chat
+          if (sourceId) {
+            // Load source for new chat
+            const sources = await transcriptAPI.getAllSources();
+            const foundSource = sources.sources.find(s => s.id === sourceId);
+
+            if (!foundSource) {
+              console.error('Source not found');
+              router.push('/dashboard');
+              return;
+            }
+
+            if (foundSource.status !== 'ready') {
+              alert('This source is not ready yet. Please wait until processing is complete.');
+              router.push('/dashboard');
+              return;
+            }
+
+            setSource(foundSource);
+            setMessages([]); // New chat, no messages yet
+          } else {
+            // No chat found and no sourceId provided
+            console.error('Chat not found and no sourceId provided');
+            router.push('/dashboard');
+          }
+        }
       } catch (error) {
-        console.error('Failed to load chat:', error);
+        console.error('Failed to load chat or source:', error);
         router.push('/dashboard');
       }
     };
 
-    loadChat();
-  }, [chatId, router]);
+    loadChatOrSource();
+  }, [chatId, sourceId, router]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -91,6 +123,12 @@ export default function ChatPage({ params }) {
           primarySource: response.primary_source,
         },
       ]);
+
+      // If this was the first message (new chat), clean up the URL
+      if (sourceId && messages.length === 0) {
+        // Remove sourceId from URL after first message
+        router.replace(`/chat/${chatId}`, { scroll: false });
+      }
     } catch (error) {
       setMessages((prev) => [
         ...prev,
@@ -104,7 +142,7 @@ export default function ChatPage({ params }) {
     }
   };
 
-  if (!source || !chat) {
+  if (!source) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <Loader2 className="animate-spin text-claude-muted" size={24} />

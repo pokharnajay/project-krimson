@@ -148,15 +148,28 @@ def ask_question():
             log_error(f"AI generation failed: {str(ai_error)}", exc_info=True)
             return jsonify({'error': 'Failed to generate answer. Please try again.'}), 500
 
-        # Create chat AFTER successful AI response (only if chat_id not provided)
-        if not chat_id and source_id:
+        # Create chat AFTER successful AI response
+        # If chat_id is provided (pre-generated from frontend), use it to create the chat
+        # Otherwise generate a new one
+        if source_id:
             try:
-                # Use first few words of question as title
-                title = question[:50] + ("..." if len(question) > 50 else "")
-                log_info(f"Creating new chat for source {source_id} after successful AI response")
-                chat = create_chat(user_id, source_id, title)
-                chat_id = chat['id']
-                log_debug(f"Created chat {chat_id}")
+                # Check if chat already exists
+                from app.services.supabase_service import get_chat_by_id
+                existing_chat = None
+                if chat_id:
+                    try:
+                        existing_chat = get_chat_by_id(chat_id)
+                    except:
+                        pass  # Chat doesn't exist yet
+
+                # Only create chat if it doesn't exist
+                if not existing_chat:
+                    # Use first few words of question as title
+                    title = question[:50] + ("..." if len(question) > 50 else "")
+                    log_info(f"Creating new chat{' with ID ' + chat_id if chat_id else ''} for source {source_id}")
+                    chat = create_chat(user_id, source_id, title, chat_id=chat_id)
+                    chat_id = chat['id']
+                    log_debug(f"Created chat {chat_id}")
             except Exception as chat_error:
                 log_error(f"Failed to create chat: {str(chat_error)}")
                 # Continue without saving messages if chat creation fails
