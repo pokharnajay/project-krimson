@@ -13,6 +13,7 @@ from app.services.supabase_service import (
 from app.utils.logger import log_info, log_error, log_warning, log_debug
 from config.settings import Config
 import os
+import json
 
 query_bp = Blueprint('query', __name__)
 
@@ -167,14 +168,16 @@ def ask_question():
                 create_message(chat_id, 'user', question)
                 log_debug(f"Saved user message to chat {chat_id}")
 
-                # Create a plain text version of the response for storage
-                response_text = '\n\n'.join([segment['text'] for segment in result.get('response', [])])
+                # Store the full response array as JSON for proper frontend rendering
+                response_json = json.dumps({
+                    'response': result.get('response', [])
+                }, ensure_ascii=False)
 
-                # Save assistant message
+                # Save assistant message with full response array
                 create_message(
                     chat_id,
                     'assistant',
-                    response_text,
+                    response_json,
                     model_used=result.get('model_used', model),
                     primary_source=result.get('sources', [{}])[0] if result.get('sources') else None
                 )
@@ -193,12 +196,19 @@ def ask_question():
             # Don't fail the request if credit update fails, but log it
             credits_left = user.get('credits', 0) - int(os.getenv('CREDITS_PER_QUERY', 1))
 
+        # Return response in JSON format that frontend can parse
+        answer_json = json.dumps({
+            'response': result.get('response', [])
+        }, ensure_ascii=False)
+
         return jsonify({
             'chat_id': chat_id,
-            'response': result.get('response', []),
+            'answer': answer_json,  # Frontend expects 'answer' field with JSON string
+            'response': result.get('response', []),  # Keep for backward compatibility
             'sources': result.get('sources', []),
             'model_used': result.get('model_used', model),
-            'credits_remaining': credits_left
+            'credits_remaining': credits_left,
+            'primary_source': result.get('sources', [{}])[0] if result.get('sources') else None
         }), 200
 
     except ValueError as ve:
