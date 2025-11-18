@@ -9,14 +9,14 @@ import { queryAPI, chatAPI } from '@/lib/api';
 
 // OpenRouter models list
 const MODELS = [
-  { id: 'openai/gpt-4o', name: 'GPT-4o' },
-  { id: 'anthropic/claude-3.5-sonnet', name: 'Claude 3.5 Sonnet' },
-  { id: 'anthropic/claude-3-opus', name: 'Claude 3 Opus' },
-  { id: 'google/gemini-pro-1.5', name: 'Gemini Pro 1.5' },
-  { id: 'meta-llama/llama-3.1-70b-instruct', name: 'Llama 3.1 70B' },
-  { id: 'mistralai/mistral-large', name: 'Mistral Large' },
-  { id: 'perplexity/llama-3.1-sonar-huge-128k-online', name: 'Sonar Huge' },
-  { id: 'cohere/command-r-plus', name: 'Command R+' },
+  { id: 'openai/gpt-oss-120b', name: 'GPT OSS 120B - Paid' },
+  { id: 'openrouter/sherlock-dash-alpha', name: 'Sherlock Dash Alpha⚡️' },
+  { id: 'openrouter/sherlock-think-alpha', name: 'Sherlock Think Alpha🧠' },
+  { id: 'kwaipilot/kat-coder-pro:free', name: 'Kwaipilot: KAT-Coder-Pro V1 (free)' },
+  { id: 'qwen/qwen3-coder:free', name: 'Llama 3.1 70B' },
+  { id: 'google/gemini-2.0-flash-exp:free', name: 'Google: Gemini 2.0 Flash Experimental (free)' },
+  { id: 'nvidia/nemotron-nano-9b-v2:free', name: 'NVIDIA: Nemotron Nano 9B V2 (free)' },
+  { id: 'deepseek/deepseek-chat-v3.1:free', name: 'DeepSeek: DeepSeek V3.1 (free)' },
 ];
 
 export default function ChatPage({ params }) {
@@ -140,7 +140,7 @@ export default function ChatPage({ params }) {
               <div key={index}>
                 {message.role === 'user' ? (
                   <div className="flex justify-end mb-4">
-                    <div className="max-w-[80%] bg-claude-bg rounded-lg px-4 py-3 border border-claude-border">
+                    <div className="max-w-[80%] bg-claude-bg rounded-lg px-4 border border-claude-border py-3">
                       <p className="text-[15px] leading-relaxed text-claude-text">{message.content}</p>
                     </div>
                   </div>
@@ -152,7 +152,7 @@ export default function ChatPage({ params }) {
                   </div>
                 ) : (
                   <div className="flex justify-start mb-4">
-                    <div className="max-w-[80%] space-y-4">
+                    <div className="max-w-[80%] space-y-3 bg-claude-bg py-3 rounded-lg border border-claude-border">
                       {(() => {
                         // Try to parse content as JSON with response array
                         try {
@@ -161,10 +161,10 @@ export default function ChatPage({ params }) {
                             : message.content;
 
                           if (parsed.response && Array.isArray(parsed.response)) {
-                            // Display each response item separately
+                            // Display each response item separately with its own YouTube link
                             return parsed.response.map((item, idx) => (
-                              <div key={idx} className="space-y-2">
-                                <p className="text-[15px] leading-relaxed text-claude-text whitespace-pre-wrap">
+                              <div key={idx} className="bg-transparent rounded-lg px-4">
+                                <p className="text-[15px] leading-relaxed text-claude-text whitespace-pre-wrap mb-0">
                                   {item.text}
                                 </p>
                                 {item.youtube_link && (
@@ -172,12 +172,12 @@ export default function ChatPage({ params }) {
                                     href={item.youtube_link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1.5 text-xs text-accent hover:underline"
+                                    className="inline-flex items-center gap-1.5 text-xs text-accent hover:underline font-medium"
                                   >
-                                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                                     </svg>
-                                    <span>Watch at {item.timestamp}s</span>
+                                    <span>Watch on YouTube at {item.timestamp}s</span>
                                   </a>
                                 )}
                               </div>
@@ -189,8 +189,8 @@ export default function ChatPage({ params }) {
 
                         // Default: display as plain text with optional primarySource
                         return (
-                          <>
-                            <p className="text-[15px] leading-relaxed text-claude-text whitespace-pre-wrap">
+                          <div className="bg-transparent rounded-lg px-4">
+                            <p className="text-[15px] leading-relaxed text-claude-text whitespace-pre-wrap mb-2">
                               {message.content}
                             </p>
                             {message.primarySource && (
@@ -198,15 +198,15 @@ export default function ChatPage({ params }) {
                                 href={message.primarySource.youtube_link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 text-xs text-accent hover:underline"
+                                className="inline-flex items-center gap-1.5 text-xs text-accent hover:underline font-medium"
                               >
-                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                                 </svg>
-                                <span>Watch at {Math.floor(message.primarySource.start_time)}s</span>
+                                <span>Watch on YouTube at {Math.floor(message.primarySource.start_time)}s</span>
                               </a>
                             )}
-                          </>
+                          </div>
                         );
                       })()}
                     </div>
