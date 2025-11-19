@@ -3309,3 +3309,104 @@ httpx.ReadError: [Errno 35] Resource temporarily unavailable
 2025-11-18 15:53:05,552 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user c8992235-5976-4981-9b20-bb6521f2fc34 (search=, limit=50, offset=0)
 2025-11-18 15:53:06,886 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 8514da1b-3a1b-4387-822e-434a85b31765 for user c8992235-5976-4981-9b20-bb6521f2fc34
 2025-11-18 15:53:07,141 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 8514da1b-3a1b-4387-822e-434a85b31765 for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-18 17:03:59,140 - youtube_rag - INFO - [logger.py:38] - Rate limiting enabled: 100000/hour
+2025-11-18 17:03:59,141 - youtube_rag - DEBUG - [logger.py:44] - BackgroundProcessor initialized with 2 workers
+2025-11-18 17:03:59,141 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-0 started
+2025-11-18 17:03:59,141 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-0
+2025-11-18 17:03:59,141 - youtube_rag - DEBUG - [logger.py:44] - BackgroundWorker-1 started
+2025-11-18 17:03:59,141 - youtube_rag - INFO - [logger.py:38] - Started background worker: BackgroundWorker-1
+2025-11-18 17:03:59,141 - youtube_rag - INFO - [logger.py:38] - Background task processor initialized
+2025-11-18 17:04:04,964 - youtube_rag - INFO - [logger.py:38] - Flask application initialized successfully
+2025-11-18 17:04:50,193 - youtube_rag - DEBUG - [logger.py:44] - Initializing Supabase client
+2025-11-18 17:04:53,876 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user c8992235-5976-4981-9b20-bb6521f2fc34 (search=, limit=50, offset=0)
+2025-11-18 17:04:54,518 - youtube_rag - DEBUG - [logger.py:44] - Fetching chats for user c8992235-5976-4981-9b20-bb6521f2fc34 (search=, limit=50, offset=0)
+2025-11-18 17:04:56,270 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 2c69a474-bd7a-442e-9456-65b545b58b75 for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-18 17:04:56,537 - youtube_rag - WARNING - [logger.py:47] - Chat 2c69a474-bd7a-442e-9456-65b545b58b75 not found
+2025-11-18 17:04:56,540 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 2c69a474-bd7a-442e-9456-65b545b58b75 for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-18 17:04:57,118 - youtube_rag - WARNING - [logger.py:47] - Chat 2c69a474-bd7a-442e-9456-65b545b58b75 not found
+2025-11-18 17:05:01,172 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 8514da1b-3a1b-4387-822e-434a85b31765 for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-18 17:05:01,736 - youtube_rag - DEBUG - [logger.py:44] - Fetching chat 8514da1b-3a1b-4387-822e-434a85b31765 for user c8992235-5976-4981-9b20-bb6521f2fc34
+2025-11-18 17:59:09,180 - youtube_rag - ERROR - [logger.py:41] - Unexpected error: [Errno 8] nodename nor servname provided, or not known
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection.py", line 101, in handle_request
+    raise exc
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection.py", line 78, in handle_request
+    stream = self._connect(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_sync/connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_backends/sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+         ~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask_jwt_extended/view_decorators.py", line 170, in decorator
+    return current_app.ensure_sync(fn)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/routes/user_routes.py", line 12, in get_credits
+    user = get_user_by_id(user_id)
+  File "/Users/jaypokharna/Desktop/Shared Folder/Shared Folder/python/transcriber.ai/main_project/youtube-transcript-rag/app/services/supabase_service.py", line 48, in get_user_by_id
+    res = supabase.table('users').select('*').eq('id', user_id).execute()
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/postgrest/_sync/request_builder.py", line 47, in execute
+    r = self.request.send()
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/postgrest/base_request_builder.py", line 81, in send
+    return self.session.request(
+           ~~~~~~~~~~~~~~~~~~~~^
+        self.http_method,
+        ^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        auth=self.auth,
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 8] nodename nor servname provided, or not known
+2025-11-18 17:59:09,180 - youtube_rag - ERROR - [logger.py:41] - Error fetching sources: [Errno 8] nodename nor servname provided, or not known

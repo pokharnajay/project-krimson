@@ -243,3 +243,13 @@ temp/
 *.backup
 
 *.logging.txt
+*.logging.txt
+*.logging.txt
+youtube-transcript-rag/logs/logging.txt
+/youtube-transcript-rag/logs
+youtube-transcript-rag/logs/logging.txt
+./logs/logging.txt
+*./logs/logging.txt
+/logs/logging.txt
+*.logs/logging.txt
+
